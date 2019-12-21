@@ -1,0 +1,14 @@
+.containerWidth {
+    max-width: 35em;
+}
+.intl-tel-input .flag-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    padding: 1px;
+}
+.intl-tel-input {
+    position: relative;
+    display: inline-block;
+}
