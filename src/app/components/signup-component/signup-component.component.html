@@ -8,7 +8,7 @@
             formControlName="countryCode" placeholder="Select country" (change)="country($event.target.value)">
             <option value="" disabled selected>Select Country</option>
             <ng-container *ngFor="let country of countryList;">
-              <option [value]="country.alpha3Code" *ngIf="country.callingCodes[0]">
+              <option [value]="country.alpha2Code" *ngIf="country.callingCodes[0]">
                 {{country.name}} (+{{country.callingCodes[0]}})
               </option>
             </ng-container>
@@ -26,13 +26,14 @@
             <option value="prepaid">Prepaid Electrity</option>
           </select>
         </div>
-          <!-- <div class="input-group-prepend">
+        <div class="input-group input-group-icon">
+          <div class="input-group-prepend">
             <div class="input-icon">+{{mobileOperator}}</div>
-          </div> -->
-          <!-- <input type="text" numbersOnly  [ngClass]="checkFieldValid('mobileNumber')"
-            style=" line-height: 1.4;  height: 3.4em;" minlength="10" maxlength="10" class=""
-            placeholder="Mobile Number" formControlName="mobileNumber"> -->
-            <ngx-intl-tel-input [ngClass]="checkMobileNumber()"
+          </div>
+          <input type="text" numbersOnly  [ngClass]="checkFieldValid('mobileNumber')"
+            style=" line-height: 1.4;  height: 3.4em;" minlength="{{minLengthDigits}}" maxlength="{{maxLengthDigits}}" class=""
+            placeholder="Mobile Number" formControlName="mobileNumber">
+            <!-- <ngx-intl-tel-input [ngClass]="checkMobileNumber()"
             [cssClass]="'custom'" class="input-group" style="display: block;width: 100%;"
             [preferredCountries]="preferredCountries"
             [enableAutoCountrySelect]="false" 
@@ -46,13 +47,14 @@
             [phoneValidation]="true" 
             [separateDialCode]="true"
             name="mobileNumber" formControlName="mobileNumber">
-          </ngx-intl-tel-input>
+          </ngx-intl-tel-input> -->
          
 
-            <span *ngIf="checkMobileNumber()" style="color: red">
-            Enter Valid Mobile Number
+            <span style="color: red">
+              <small *ngIf="signUpForm.get('mobileNumber').errors?.minlength && signUpForm.get('mobileNumber').touched">Minimum Digits required: {{minLengthDigits}}</small>
+              <small *ngIf="signUpForm.get('mobileNumber').errors?.required && signUpForm.get('mobileNumber').touched">Mobile Number is Required.</small>
             </span>
-    
+        </div>
         <div class="input-group" *ngIf="prepaidElec">
           <!-- <div class="input-group-prepend">
             <div class="input-icon">+91</div>

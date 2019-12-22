@@ -23,6 +23,8 @@ export class SignupComponent implements OnInit {
   prepaidElec:Boolean = false;
   mobileOperator:String="93";
   selctedCountry;
+  maxLengthDigits;
+  minLengthDigits;
   constructor(private fb:FormBuilder,
               private authenticationService:AuthenticationService,
               private commonHelper:CommonHelperService,
@@ -51,6 +53,26 @@ export class SignupComponent implements OnInit {
       this.countryList=res;
       // this.signUpForm.get('countryCode').patchValue(this.countryList[0].callingCodes[0])
     })
+    this.signUpForm.get('countryCode').valueChanges.subscribe(data=>{
+      console.log(data)
+      if(data){
+        let mobileData=this.commonHelper.checkMobileNumber(data)[0];
+        if(mobileData.MaxNumberLengthNoPrefix<this.maxLengthDigits){
+          this.signUpForm.get('mobileNumber').patchValue('');
+        }
+        this.minLengthDigits=mobileData.MinNumberLengthNoPrefix;
+        this.maxLengthDigits=mobileData.MaxNumberLengthNoPrefix;
+        console.log(this.minLengthDigits,this.maxLengthDigits)
+        this.signUpForm.get('mobileNumber').setValidators([Validators.required,Validators.minLength(mobileData.MinNumberLengthNoPrefix),Validators.maxLength(mobileData.MaxNumberLengthNoPrefix)])
+        this.signUpForm.get('mobileNumber').updateValueAndValidity();
+      }else{
+        this.signUpForm.get('mobileNumber').setValidators([Validators.required])
+        this.signUpForm.get('mobileNumber').updateValueAndValidity(); 
+      }
+    })
+    this.signUpForm.get('mobileNumber').valueChanges.subscribe(data=>{
+      console.log(this.signUpForm.get('mobileNumber'))
+    });
   }
   
   serviceType(event){
@@ -66,7 +88,7 @@ export class SignupComponent implements OnInit {
   }
 
   country(event){
-    let countryObj = this.countryList.find(obj => obj.alpha3Code === event);
+    let countryObj = this.countryList.find(obj => obj.alpha2Code === event);
     this.selctedCountry = countryObj.name;
     this.mobileOperator= countryObj.callingCodes[0];
   }
@@ -122,4 +144,6 @@ export class SignupComponent implements OnInit {
     else return '';
     
   }
+
+  
 }
