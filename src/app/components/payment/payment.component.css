@@ -34,7 +34,7 @@ body {
  
 .form-body {
     height: 340px;
-    padding: 30px 30px 20px;
+    padding: 13px 29px 13px 29px;
 }
 /* Title */
 .title {
@@ -149,4 +149,26 @@ body {
  
 .cvv-details p {
     margin-top: 6px;
+}
+
+.containerPayment {
+    max-width: 50em;
+    padding: 1em 0em 1em 0em;
+    margin: 5em auto;
+}
+/* 
+
+.form-body[_ngcontent-gbm-c3] {
+    height: 340px;
+    padding: 13px 29px 13px 29px;
+} */
+
+.credit-card[_ngcontent-rry-c2] {
+    /* width: 381px; */
+    /* height: 400px; */
+    margin: 0px 7px 0px 0px;
+    border: 1px 0px 0px 0px solid #ddd;
+    /* border-radius: 6px; */
+    /* background-color: #fff; */
+    box-shadow: 1px 2px 3px 0 rgba(0,0,0,.10);
 }
