@@ -88,10 +88,13 @@ export class SignupComponent implements OnInit {
   }
 
   country(event){
-    let countryObj = this.countryList.find(obj => obj.alpha2Code === event);
-    this.selctedCountry = countryObj.name;
+    console.log(event)
+    let countryObj = this.countryList.find(obj => obj.alpha2Code === event.alpha2Code);
+    this.selctedCountry = countryObj;
     this.mobileOperator= countryObj.callingCodes[0];
+    this.signUpForm.get('countryCode').patchValue(event.alpha2Code);
   }
+
 
   register(){
     console.log("this.",this.signUpForm)
@@ -101,7 +104,7 @@ export class SignupComponent implements OnInit {
         lastName: this.signUpForm.get('lastName').value,
         email: this.signUpForm.get('email').value,
         mobileOperator: this.mobileOperator,
-        country:this.selctedCountry,
+        country:this.selctedCountry.name,
         mobileNumber: this.signUpForm.get('mobileNumber').value,
         amount: this.signUpForm.get('amount').value,
         serviceType: this.signUpForm.get('serviceType').value,
@@ -131,14 +134,12 @@ export class SignupComponent implements OnInit {
      }
   }
   checkMinMaxError(formControl){
-    console.log(this.signUpForm.get([formControl]).errors && (this.signUpForm.get([formControl]).errors.minlength && this.signUpForm.get([formControl]).touched && !this.signUpForm.get([formControl]).errors.required ))
-   if(this.signUpForm.get([formControl]).errors && (this.signUpForm.get([formControl]).errors.minlength && this.signUpForm.get([formControl]).touched && !this.signUpForm.get([formControl]).errors.required )){
+    if(this.signUpForm.get([formControl]).errors && (this.signUpForm.get([formControl]).errors.minlength && this.signUpForm.get([formControl]).touched && !this.signUpForm.get([formControl]).errors.required )){
     return 'is-invalid';
    }else return '';
   }
 
   checkMobileNumber(){
-    console.log(this.signUpForm.get('mobileNumber'))
     if(this.signUpForm.get('mobileNumber').status =='INVALID' &&this.signUpForm.get('mobileNumber').touched)
       return 'is-invalid';
     else return '';

@@ -1146,6 +1146,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
 .mat-form-field-wrapper {
+  border-radius: 3px;
+  border: 1.3px solid #e5e5e5;
    padding-bottom: 0em; 
 }
 
@@ -1159,6 +1161,7 @@ mat-select-country {
   min-width: 100%;
 
 }
-mat-form-field-flex:hover{
-  border: none;
+ .mat-form-field-underline{
+  display: none !important
 }
+

@@ -3,7 +3,7 @@
     <div class="row">
       <h4>Account Details</h4>
       <div class="row">
-        <div class="input-group">
+        <div class="input-group"[ngClass]="checkFieldValid('countryCode')"  >
           <!-- <select [ngClass]="checkFieldValid('countryCode')" class="" id="inputGroupSelect02"
             formControlName="countryCode" placeholder="Select country" (change)="country($event.target.value)">
             <option value="" disabled selected>Select Country</option>
@@ -15,7 +15,7 @@
             </ng-container>
           </select> -->
         
-          <mat-select-country appearance="outline"  [ngClass]="checkFieldValid('countryCode')" (change)="country($event.target.value)">
+          <mat-select-country appearance="fill"  (onCountrySelected)="country($event)" >
           </mat-select-country>
         </div>
         <!-- <input type="text"   numbersOnly
@@ -96,16 +96,23 @@
           <span *ngIf="signUpForm.get('email').errors?.pattern" style="color:red">Please Enter Valid Email Id.</span>
           <div class="input-icon"><i class="fa fa-envelope"></i></div>
         </div>
-        <div class="input-group input-group-icon">
-          <div class="input-group-prepend">
-            <div class="input-icon"><i class="fa fa-dollar"></i></div>
+        <div class="input-group ">
+          <div class="col-md-2" style="padding: 0;">
+            <select >
+            <ng-container  *ngFor="let currency of selctedCountry?.currencies">
+           <option value="{{currency.symbol}}">{{currency.symbol}}</option>
+            </ng-container >
+          </select>
           </div>
+          <div class="col-md-10" style="padding: 0;">
           <input type="text"
           maxlength="12"
           numbersOnly [ngClass]="checkFieldValid('amount')" min=1 max=999999999999 placeholder="Amount"
             formControlName="amount">
           <!-- <div class="input-icon"><i class="fa fa-dollar"></i></div> -->
         </div>
+        </div>
+
       </div>
 
       <!-- <div class="input-group input-group-icon">
