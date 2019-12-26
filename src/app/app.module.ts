@@ -19,6 +19,7 @@ import { HomeComponent } from './components/home/home.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { CustomMaterialModule } from './custom-material.module';   
 import { DialogComponent } from './shared/dialog/dialog.component';
+import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 
 @NgModule({
   declarations: [
