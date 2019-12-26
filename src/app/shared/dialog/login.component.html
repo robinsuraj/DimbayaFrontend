@@ -1,0 +1,77 @@
+<!-- <mat-icon class="float-right mt-5 pointer" (click)="closeDialog('cancel')">close</mat-icon> -->
+<div class="modal-body">
+
+    <div class="row">
+        <div>
+            <!-- Nav tabs -->
+            <h3 class="other-nw" style="text-align: center; padding-bottom: 10px;">
+                Welcome to Dimbaya</h3>
+
+            <!-- Tab panes -->
+            <div>
+                <div style="padding-bottom: 20px;" id="Login" *ngIf="!otpSend; else elseBlock">
+                    <form class="form-horizontal" action="#" method="get">
+                        <div class="row">
+                            <div class="col-sm-2">
+                            </div>
+                            <div class="col-sm-10">
+                                <mat-form-field hintLabel="Max 10 characters">
+                                    <input matInput #input maxlength="10" placeholder="Enter Mobile Number">
+                                    <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                            </div>
+                            <div class="col-sm-10" style="padding-top: 20px;">
+                                <button type="submit" class="submit btn btn-primary btn-sm"
+                                    style="padding: 0.25rem 5.5rem;" (click)="loggedIn()">
+                                    Log In</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+                <ng-template #elseBlock>Content to render when condition is false.
+                    <div style="padding-bottom: 20px;" id="Verify">
+                        <div id="wrapper">
+                            <div id="dialog">
+                              <button class="close">×</button>
+                              <p>Please enter the 4-digit verification code we sent via SMS:</p>
+                              <span>(we want to make sure it's you before we contact our movers)</span>
+                              <div id="form" >
+                                <input type="text" class="inputClass" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                                <input type="text" style="width: auto;" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                                <input type="text" style="width: auto;" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                                <input type="text" style="width: auto;" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                                <button class="btn btn-primary btn-embossed">Verify</button>
+                              </div>
+                              
+                              <div>
+                                Didn't receive the code?<br />
+                                <a href="#">Send code again</a><br />
+                                <a href="#">Change phone number</a>
+                              </div>
+                               <img src="http://jira.moovooz.com/secure/attachment/10424/VmVyaWZpY2F0aW9uLnN2Zw==" alt="test" />
+                            </div>
+                          </div>
+                    </div>
+                </ng-template>
+
+                <mat-divider></mat-divider>
+                <div class="row text-center sign-with">
+                    <div class="col-md-12" style="padding-top: 15px;">
+                        <h2 class="other-nw">
+                            Sign in with</h2>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="btn-group btn-group-justified">
+                            <a href="#" class="btn btn-primary">Facebook</a> <a href="#" class="btn btn-danger">
+                                Google +</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

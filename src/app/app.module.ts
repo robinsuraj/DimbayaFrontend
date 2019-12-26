@@ -15,7 +15,10 @@ import { HeaderComponent } from './components/header-component/header-component.
 import { LoginComponent } from './components/login-component/login-component.component';
 import { SignupComponent } from './components/signup-component/signup-component.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { HomeComponent } from './components/home/home.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import { CustomMaterialModule } from './custom-material.module';   
+import { DialogComponent } from './shared/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,9 @@ import { PaymentComponent } from './components/payment/payment.component';
     LoginComponent,
     SignupComponent,
     DashboardComponent,
-    PaymentComponent
+    HomeComponent,
+    PaymentComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +39,7 @@ import { PaymentComponent } from './components/payment/payment.component';
     HttpClientModule,
     BrowserAnimationsModule, 
     SharedModule,
+    CustomMaterialModule,
     BsDropdownModule.forRoot(),
     NgxIntlTelInputModule,
     ToastrModule.forRoot({timeOut: 3000,
@@ -46,6 +52,9 @@ import { PaymentComponent } from './components/payment/payment.component';
       useClass: HttpInterceptorService,
       multi: true
     }
+  ],
+  entryComponents: [
+    DialogComponent
   ],
   bootstrap: [AppComponent]
 })
