@@ -1137,3 +1137,28 @@ select {
   
   .iti-flag.np {
     background-color: transparent; }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+
+
+.mat-form-field-wrapper {
+   padding-bottom: 0em; 
+}
+
+
+.mat-form-field {
+  min-width: 100%;
+}
+
+
+mat-select-country {
+  min-width: 100%;
+
+}
+mat-form-field-flex:hover{
+  border: none;
+}

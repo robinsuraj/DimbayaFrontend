@@ -4,15 +4,19 @@
       <h4>Account Details</h4>
       <div class="row">
         <div class="input-group">
-          <select [ngClass]="checkFieldValid('countryCode')" class="" id="inputGroupSelect02"
+          <!-- <select [ngClass]="checkFieldValid('countryCode')" class="" id="inputGroupSelect02"
             formControlName="countryCode" placeholder="Select country" (change)="country($event.target.value)">
             <option value="" disabled selected>Select Country</option>
+            <option ><input type="text"/></option>
             <ng-container *ngFor="let country of countryList;">
               <option [value]="country.alpha2Code" *ngIf="country.callingCodes[0]">
                 {{country.name}} (+{{country.callingCodes[0]}})
               </option>
             </ng-container>
-          </select>
+          </select> -->
+        
+          <mat-select-country appearance="outline"  [ngClass]="checkFieldValid('countryCode')" (change)="country($event.target.value)">
+          </mat-select-country>
         </div>
         <!-- <input type="text"   numbersOnly
           [ngClass]="{ 'is-invalid': signUpForm.get('mobileNumber').errors?.required && signUpForm.get('mobileNumber').touched   }"

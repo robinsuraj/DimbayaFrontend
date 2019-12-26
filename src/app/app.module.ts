@@ -16,6 +16,7 @@ import { LoginComponent } from './components/login-component/login-component.com
 import { SignupComponent } from './components/signup-component/signup-component.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 
 @NgModule({
   declarations: [
