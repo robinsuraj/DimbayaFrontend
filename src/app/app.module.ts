@@ -15,7 +15,10 @@ import { HeaderComponent } from './components/header-component/header-component.
 import { LoginComponent } from './components/login-component/login-component.component';
 import { SignupComponent } from './components/signup-component/signup-component.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { HomeComponent } from './components/home/home.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import { CustomMaterialModule } from './custom-material.module';   
+import { DialogComponent } from './shared/dialog/dialog.component';
 import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 
 @NgModule({
@@ -25,7 +28,9 @@ import { MatSelectCountryModule } from '@angular-material-extensions/select-coun
     LoginComponent,
     SignupComponent,
     DashboardComponent,
-    PaymentComponent
+    HomeComponent,
+    PaymentComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +40,7 @@ import { MatSelectCountryModule } from '@angular-material-extensions/select-coun
     HttpClientModule,
     BrowserAnimationsModule, 
     SharedModule,
+    CustomMaterialModule,
     BsDropdownModule.forRoot(),
     NgxIntlTelInputModule,
     ToastrModule.forRoot({timeOut: 3000,
@@ -47,6 +53,9 @@ import { MatSelectCountryModule } from '@angular-material-extensions/select-coun
       useClass: HttpInterceptorService,
       multi: true
     }
+  ],
+  entryComponents: [
+    DialogComponent
   ],
   bootstrap: [AppComponent]
 })

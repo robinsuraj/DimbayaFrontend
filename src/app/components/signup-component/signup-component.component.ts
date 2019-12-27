@@ -83,7 +83,6 @@ export class SignupComponent implements OnInit {
     }
     this.signUpForm.get('meterNumber').updateValueAndValidity();
  
-    console.log("clicked---------------------->>>",event)
     event == 'prepaid'?this.prepaidElec=true:this.prepaidElec= false;
   }
 
@@ -110,16 +109,15 @@ export class SignupComponent implements OnInit {
         serviceType: this.signUpForm.get('serviceType').value,
        // meterNumber:this.signUpForm.get('meterNumber').value,
       }
-      console.log("registerRequest=========>>",registerRequest)
       this.commonHelper.setUserDataForPayment(registerRequest);
-      this.router.navigate(['/payment'])
+      // this.router.navigate(['/payment'])
 
-      // this.authenticationService.register(registerRequest).subscribe(response=>{
-      //   this.commonHelper.showSuccessToast("Registration Success","Success",5000);
-      //   this.router.navigate(['/payment'])
-      //   localStorage.setItem("user",registerRequest.firstName)
-      //   this.commonHelper.setUserStatus(registerRequest.firstName);
-      // })
+      this.authenticationService.register(registerRequest).subscribe(response=>{
+        this.commonHelper.showSuccessToast("Registration Success","Success",5000);
+        this.router.navigate(['/payment'])
+        localStorage.setItem("user",registerRequest.firstName)
+        this.commonHelper.setUserStatus(registerRequest.firstName);
+      })
     }else{
       this.commonHelper.validateFormFields(this.signUpForm)
     }
@@ -148,3 +146,5 @@ export class SignupComponent implements OnInit {
 
   
 }
+
+
