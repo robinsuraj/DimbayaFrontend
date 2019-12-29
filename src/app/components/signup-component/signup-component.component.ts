@@ -46,7 +46,8 @@ export class SignupComponent implements OnInit {
       mobileNumber:['',Validators.required],
       amount:['',Validators.required],
       serviceType:['',Validators.required],
-      meterNumber:['']
+      meterNumber:[''],
+      currencyCode:['',Validators.required]
     })
     this.commonHelper.getCountry().subscribe(res=>{
       console.log(res)
@@ -92,6 +93,7 @@ export class SignupComponent implements OnInit {
     this.selctedCountry = countryObj;
     this.mobileOperator= countryObj.callingCodes[0];
     this.signUpForm.get('countryCode').patchValue(event.alpha2Code);
+    this.signUpForm.get('currencyCode').patchValue(this.selctedCountry.currencies[0].code);
   }
 
 
@@ -99,25 +101,26 @@ export class SignupComponent implements OnInit {
     console.log("this.",this.signUpForm)
     if(this.signUpForm.valid){
       const registerRequest ={
-        firstName: this.signUpForm.get('firstName').value,
-        lastName: this.signUpForm.get('lastName').value,
+        buyerName: this.signUpForm.get('firstName').value,
+        benificiaryName: this.signUpForm.get('lastName').value,
         email: this.signUpForm.get('email').value,
         mobileOperator: this.mobileOperator,
         country:this.selctedCountry.name,
-        mobileNumber: this.signUpForm.get('mobileNumber').value,
+        mobile: this.signUpForm.get('mobileNumber').value,
         amount: this.signUpForm.get('amount').value,
         serviceType: this.signUpForm.get('serviceType').value,
+        currency:this.signUpForm.get('currencyCode').value
        // meterNumber:this.signUpForm.get('meterNumber').value,
       }
       this.commonHelper.setUserDataForPayment(registerRequest);
-      // this.router.navigate(['/payment'])
+      this.router.navigate(['/payment'])
 
-      this.authenticationService.register(registerRequest).subscribe(response=>{
-        this.commonHelper.showSuccessToast("Registration Success","Success",5000);
-        this.router.navigate(['/payment'])
-        localStorage.setItem("user",registerRequest.firstName)
-        this.commonHelper.setUserStatus(registerRequest.firstName);
-      })
+      // this.authenticationService.register(registerRequest).subscribe(response=>{
+      //   this.commonHelper.showSuccessToast("Registration Success","Success",5000);
+      //   this.router.navigate(['/payment'])
+      //   localStorage.setItem("user",registerRequest.buyerName)
+      //   this.commonHelper.setUserStatus(registerRequest.buyerName);
+      // })
     }else{
       this.commonHelper.validateFormFields(this.signUpForm)
     }

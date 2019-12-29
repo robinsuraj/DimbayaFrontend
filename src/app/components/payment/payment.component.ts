@@ -46,22 +46,23 @@ export class PaymentComponent implements OnInit {
         cvc: this.paymentForm.get('cvv').value,
         exp_year: this.paymentForm.get('expiryYear').value,
       }
-      alert("seucess")
+      // alert("seucess")
       // this.router.navigate(['/payment'])
-      localStorage.setItem('user',paymentObj.firstName)
-      this.commonHelper.setUserStatus(paymentObj.firstName);
-      this.router.navigate(['/dashboard'])
+      // localStorage.setItem('user',paymentObj.buyerName)
+      // this.commonHelper.setUserStatus(paymentObj.buyerName);
+      // this.router.navigate(['/dashboard'])
 
       
-      //  this.authenticationService.payment(paymentObj).subscribe(response=>{
-      //    console.log("response============>",response)
-      //   localStorage.setItem('user',paymentObj.firstName)
-      // this.commonHelper.setUserStatus(paymentObj.firstName);
-      // this.router.navigate(['/dashboard'])
-      // },err=>{
-      //   localStorage.clear();
+       this.authenticationService.payment(paymentObj).subscribe(response=>{
+        console.log("response============>",response)
+        localStorage.setItem('user',paymentObj.buyerName)
+      this.commonHelper.setUserStatus(paymentObj.buyerName);
+      this.router.navigate(['/dashboard'])
+      },err=>{
+        this.commonHelper.showErrorToast(err.error.message,'Error',5000);
+      // localStorage.clear();
       // this.commonHelper.setUserStatus('');
-      // })
+      })
     }else{
       this.commonHelper.validateFormFields(this.paymentForm)
     }

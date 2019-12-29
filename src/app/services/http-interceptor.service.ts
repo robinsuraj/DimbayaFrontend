@@ -18,20 +18,20 @@ export class HttpInterceptorService implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
       return next.handle(request)
           .pipe(
-              retry(1),
-              catchError((error: HttpErrorResponse) => {
-                  let errorMessage = '';
-                  if (error.error instanceof ErrorEvent) {
-                      // client-side error
-                      errorMessage = `Error: ${error.error.message}`;
-                  } else {
-                      // server-side error
-                      errorMessage = `Error Status: ${error.status}\nMessage: ${error.message}`;
-                      this.commonHelper.showErrorToast("Error",errorMessage,5000);
-                    }
+              retry(1)
+          //     catchError((error: HttpErrorResponse) => {
+          //         let errorMessage = '';
+          //         if (error.error instanceof ErrorEvent) {
+          //             // client-side error
+          //             errorMessage = `Error: ${error.error.message}`;
+          //         } else {
+          //             // server-side error
+          //             errorMessage = `Error Status: ${error.status}\nMessage: ${error.message}`;
+          //             // this.commonHelper.showErrorToast("Error",errorMessage,5000);
+          //           }
                  
-                  return throwError(errorMessage);
-              })
+          //         // return throwError(errorMessage);
+          //     })
           )
   }
 }

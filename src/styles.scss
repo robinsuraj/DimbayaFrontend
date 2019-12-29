@@ -1153,15 +1153,16 @@ select {
       height: 10px;
       background-position: -5632px 0px; }
   
-  .iti-flag {
-    height: 15px;
-    box-shadow: 0px 0px 1px 0px #888;
-    background-repeat: no-repeat;
-    background-color: #DBDBDB;
-    background-position: 20px 0; }
-    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
       .iti-flag {
-      } }
+        height: 15px;
+        box-shadow: 0px 0px 1px 0px #888;
+        background-image: url("../src/assets/images/img/flags.png");
+        background-repeat: no-repeat;
+        background-color: #DBDBDB;
+        background-position: 20px 0; }
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+          .iti-flag {
+            background-image: url("../src/assets/images/img/flags@2x.png"); } }
   
   .iti-flag.np {
     background-color: transparent; }
@@ -1193,3 +1194,10 @@ mat-select-country {
   display: none !important
 }
 
+.dropdown-menu{
+width: 380px !important;
+}
+
+.mat-dialog-container {
+  padding: 60px !important;
+}

@@ -98,9 +98,9 @@
         </div>
         <div class="input-group ">
           <div class="col-md-2" style="padding: 0;">
-            <select >
-            <ng-container  *ngFor="let currency of selctedCountry?.currencies">
-           <option value="{{currency.symbol}}">{{currency.symbol}}</option>
+            <select formControlName="currencyCode">
+            <ng-container  *ngFor="let currency of selctedCountry?.currencies;let i=index;">
+           <option [selected]="i==0" [value]="currency.code">{{currency.symbol}}</option>
             </ng-container >
           </select>
           </div>
