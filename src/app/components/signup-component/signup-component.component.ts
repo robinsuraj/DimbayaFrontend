@@ -100,6 +100,7 @@ export class SignupComponent implements OnInit {
   register(){
     console.log("this.",this.signUpForm)
     if(this.signUpForm.valid){
+      console.log("this.signUpForm.get('firstName').value",this.signUpForm.get('firstName').value)
       const registerRequest ={
         buyerName: this.signUpForm.get('firstName').value,
         benificiaryName: this.signUpForm.get('lastName').value,

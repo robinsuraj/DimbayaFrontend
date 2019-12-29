@@ -7,7 +7,7 @@
           <h1><a href="">Dimbaya</a></h1>
         </div>
       <!--//logo-->
-        <div class="w3layouts-login">
+        <div *ngIf="!isLoggedIn" class="w3layouts-login">
           <!-- <button (click)="test()">login</button> -->
           <a (click)="login()" style="cursor: pointer;"><i class="glyphicon glyphicon-user"> </i>Login/Register</a>
         </div>    
@@ -66,17 +66,17 @@
       <div class="container" #payment>
         <div class="category-list">
           <div id="parentVerticalTab">
-            <div class="agileits-tab_nav">
+            <!-- <div class="agileits-tab_nav">
             <ul class="">
               <li><i class="fa fa-mobile" aria-hidden="true"></i>Mobile</li>
               <li><i class="icon fa fa-lightbulb-o" aria-hidden="true"></i>Electricity</li>
-              <!-- <li><i class="icon fa fa-phone" aria-hidden="true"></i>Land Line</li>
+              <li><i class="icon fa fa-phone" aria-hidden="true"></i>Land Line</li>
               <li><i class="icon fa fa-connectdevelop" aria-hidden="true"></i>Broad Band</li>
               <li><i class="icon fa fa-flask" aria-hidden="true"></i>Gas</li>
               <li><i class="icon fa fa-tint" aria-hidden="true"></i>Water</li>
-              <li><i class="icon fa fa-subway" aria-hidden="true"></i>Metro</li> -->
+              <li><i class="icon fa fa-subway" aria-hidden="true"></i>Metro</li>
             </ul>
-            </div>
+            </div> -->
            <app-signup-component></app-signup-component>
             <div class="clearfix"></div>
           </div>
