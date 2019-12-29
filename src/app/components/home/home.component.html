@@ -62,30 +62,28 @@
      
   
       <!--Vertical Tab-->
-    <!-- <div class="categories-section main-grid-border" id="mobilew3layouts">
-      <div class="container">
+    <div *ngIf="isLoggedIn" class="categories-section main-grid-border" id="mobilew3layouts">
+      <div class="container" #payment>
         <div class="category-list">
           <div id="parentVerticalTab">
             <div class="agileits-tab_nav">
             <ul class="">
               <li><i class="fa fa-mobile" aria-hidden="true"></i>Mobile</li>
-              <li><i class="icon fa fa-television" aria-hidden="true"></i>DTH</li>
-              <li><i class="icon fa fa-credit-card" aria-hidden="true"></i>Data Card</li>
               <li><i class="icon fa fa-lightbulb-o" aria-hidden="true"></i>Electricity</li>
-              <li><i class="icon fa fa-phone" aria-hidden="true"></i>Land Line</li>
+              <!-- <li><i class="icon fa fa-phone" aria-hidden="true"></i>Land Line</li>
               <li><i class="icon fa fa-connectdevelop" aria-hidden="true"></i>Broad Band</li>
               <li><i class="icon fa fa-flask" aria-hidden="true"></i>Gas</li>
               <li><i class="icon fa fa-tint" aria-hidden="true"></i>Water</li>
-              <li><i class="icon fa fa-subway" aria-hidden="true"></i>Metro</li>
+              <li><i class="icon fa fa-subway" aria-hidden="true"></i>Metro</li> -->
             </ul>
             </div>
-           
+           <app-signup-component></app-signup-component>
             <div class="clearfix"></div>
           </div>
         </div>
       </div>
-    </div> -->
-    <!--Plug-in Initialisation-->
+    </div>
+    <!--Plug-in Initialisation -->
   
   
   <script type="text/javascript">
