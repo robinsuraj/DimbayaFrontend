@@ -18,3 +18,9 @@
   .inputClass::selection {
     background: transparent;
   }
+/* 
+  @media (max-width: 400px)  {.mat-dialog-container {
+    padding: 15px !important;
+}}
+
+   */
