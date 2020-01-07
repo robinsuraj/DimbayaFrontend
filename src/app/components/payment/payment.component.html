@@ -7,20 +7,15 @@
 
     <div class="form-body">
       <!-- Card Number -->
-      <input type="text"  numbersOnly 
-      [ngClass]="checkFieldValid('cardNumber')"
-      maxlength="16"
-      minlength="16"
-      class="card-number" placeholder="Card Number" formControlName="cardNumber">
+      <input type="text" numbersOnly [ngClass]="checkFieldValid('cardNumber')" maxlength="16" minlength="16"
+        class="card-number" placeholder="Card Number" formControlName="cardNumber">
       <span *ngIf="checkMinMaxError('cardNumber')" style="color: red">
-          Card Number should be atleast {{paymentForm.get('cardNumber').errors.minlength.requiredLength}} digits .
-          </span>
+        Card Number should be atleast {{paymentForm.get('cardNumber').errors.minlength.requiredLength}} digits .
+      </span>
       <!-- Date Field -->
       <div class="date-field">
         <div class="month">
-          <select name="Month"
-           [ngClass]="checkFieldValid('expiryMonth')"
-             formControlName="expiryMonth">
+          <select name="Month" [ngClass]="checkFieldValid('expiryMonth')" formControlName="expiryMonth">
             <option value="january">January</option>
             <option value="february">February</option>
             <option value="march">March</option>
@@ -36,9 +31,7 @@
           </select>
         </div>
         <div class="year">
-          <select name="Year"
-          [ngClass]="checkFieldValid('expiryYear')"
-            formControlName="expiryYear">
+          <select name="Year" [ngClass]="checkFieldValid('expiryYear')" formControlName="expiryYear">
             <option value="2019">2019</option>
             <option value="2020">2020</option>
             <option value="2021">2021</option>
@@ -52,25 +45,24 @@
       <!-- Card Verification Field -->
       <div class="card-verification">
         <div class="cvv-input">
-          <input type="text" 
-          [ngClass]="checkFieldValid('cvv')"
-          minlength="3"
-          maxlength="4"
-          placeholder="CVV" formControlName="cvv">
+          <input type="text" [ngClass]="checkFieldValid('cvv')" minlength="3" maxlength="4" placeholder="CVV"
+            formControlName="cvv">
           <span *ngIf="checkMinMaxError('cvv')" style="color: red">
-              CVV Number should be atleast {{paymentForm.get('cvv').errors.minlength.requiredLength}} digits .
-              </span>
+            CVV Number should be atleast {{paymentForm.get('cvv').errors.minlength.requiredLength}} digits .
+          </span>
         </div>
         <div class="cvv-details">
           <p>3 or 4 digits usually found <br> on the signature strip</p>
         </div>
       </div>
+      
       <!-- Buttons -->
       <button type="submit" class="proceed-btn" (click)="proceed()">Proceed</button>
       <mat-divider></mat-divider>
       <div style="padding-top: 21px;">
 
-        <a class="paypal-button" href="http://ec2-3-136-169-121.us-east-2.compute.amazonaws.com:7000/api/payment/paypal">
+        <a class="paypal-button"
+          href="http://ec2-3-136-169-121.us-east-2.compute.amazonaws.com:7000/api/payment/paypal">
           <span class="paypal-button-title">
             Pay with
           </span>
@@ -80,7 +72,7 @@
         </a>
       </div>
       <button type="button" class="btn btn-danger-lg" (click)="back()">Back</button>
-      
+
     </div>
   </form>
 </div>

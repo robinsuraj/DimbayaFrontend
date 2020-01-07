@@ -38,9 +38,14 @@ body {
 }
 /* Title */
 .title {
-    font-size: 18px;
+    font-size: 16px;
     margin: 0;
     color: #5e6977;
+}
+
+.savedCrad{
+  font-size: 12px;
+  color: #666666;
 }
 /* Common */
 .card-number,
@@ -215,7 +220,7 @@ body {
       }
   
 
-      * {
+      /* * {
         margin: 0px; 
         padding: 0px; 
         box-sizing: border-box;
@@ -224,7 +229,7 @@ body {
     body, html {
         height: 100%;
         font-family: Poppins-Regular, sans-serif;
-    }
+    } */
     
     /*---------------------------------------------*/
     a {
@@ -378,7 +383,7 @@ body {
       
     }
     
-    .input100 {
+    /* .input100 {
       display: block;
       width: 100%;
       background: transparent;
@@ -387,25 +392,25 @@ body {
       color: #555555;
       line-height: 1.2;
       padding-right: 15px;
-    }
+    } */
     
     
     /*---------------------------------------------*/
-    input.input100 {
+    /* input.input100 {
       height: 40px;
     }
+     */
     
-    
-    textarea.input100 {
+    /* textarea.input100 {
       min-height: 120px;
       padding-top: 9px;
       padding-bottom: 13px;
-    }
+    } */
     
     
-    .input100:focus + .focus-input100::before {
+    /* .input100:focus + .focus-input100::before {
       width: 100%;
-    }
+    } */
     
     .has-val.input100 + .focus-input100::before {
       width: 100%;
@@ -456,10 +461,10 @@ body {
       padding-bottom: 5px;
     }
     
-    .input-radio100 {
+    /* .input-radio100 {
       display: none;
     }
-    
+     */
     .label-radio100 {
       display: block;
       position: relative;
@@ -512,9 +517,9 @@ body {
     
     }
     
-    .input-radio100:checked + .label-radio100::after {
+    /* .input-radio100:checked + .label-radio100::after {
       display: block;
-    }
+    } */
     
     
     /*==================================================================

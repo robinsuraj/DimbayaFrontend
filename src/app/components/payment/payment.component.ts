@@ -13,6 +13,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class PaymentComponent implements OnInit {
   paymentForm: FormGroup;
   userData;
+  cardSelect: boolean=false;
   constructor(private fb:FormBuilder,
               private authenticationService:AuthenticationService,
               private commonHelper:CommonHelperService,
@@ -86,5 +87,9 @@ export class PaymentComponent implements OnInit {
 
       back(){
         window.history.go(-1);
+      }
+
+      cardProceed(){
+        this.cardSelect = true;
       }
 }
