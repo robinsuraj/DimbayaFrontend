@@ -143,6 +143,35 @@ a.w3ls-ads:hover {
 	min-height: 650px;
 }
 
+.side-container {
+  padding: 0px;
+  background-color: rgba(243, 243, 243, 0.25);
+  border: none;
+  float: left;
+  width: 70%;
+  border: 1px solid transparent !important;
+  border-radius: 0;
+  clear: none;
+min-height: 650px;
+padding: 25px 60px;
+}
+@media (max-width: 768px) {
+  .side-container {
+    padding: 0px;
+    background-color: rgba(243, 243, 243, 0.25);
+    border: none;
+    float: left;
+    border: 1px solid transparent !important;
+    border-radius: 0;
+    clear: none;
+    min-height: 650px;
+    padding: 5px;
+    width: 100%;
+  }
+}
+
+
+
 .resp-vtabs .resp-tab-content {
     border: none;
     word-wrap: break-word;
@@ -244,7 +273,7 @@ h2.resp-accordion:first-child {
 		font-size: 18px;
 	}
     ul.resp-tabs-list {
-        display: none;
+        /* display: none; */
     }
 
     h2.resp-accordion {
@@ -2078,6 +2107,56 @@ i.icon.inner-icon {
     margin-left: 30px;
 }
 
+.listBox {display: block !important;
+padding: 0px 0px !important;
+margin: 0 0 20px !important;
+cursor: pointer !important;
+float: none !important;
+border: 1px solid #F5F5F5;
+border-color: rgb(241, 241, 241)!important;
+background-color: #ffffff!important;}
+
+.listActive {
+  display: block !important;
+padding: 0px 0px !important;
+margin: 0 0 20px !important;
+cursor: pointer !important;
+float: none !important;
+background-color: #28ece3! important;
+background: #28ece3;
+color: #fff;
+
+  /* position: relative;
+  z-index: 1;
+  margin-right: 0px !important;
+  padding: 0px 0px 0px 0px !important;
+  margin: 0 0 20px 0 !important;
+  background-color: #28ece3! important;
+  background: #28ece3;
+  color: #fff;
+  position: relative; */
+}
+
+.listDet{
+  
+}
+
+.icon {color: #000000;
+margin-right: 20px;
+padding: 15px 10px;
+width: 50px;
+height: 50px;
+text-align: center;}
+
+.iconActive {
+  color: white;
+  margin-right: 20px;
+  padding: 15px 10px;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  background: black;
+}
 /*--phone--*/
 .phone-text h4{
 	color:#ffffff;
@@ -7364,6 +7443,8 @@ html {
     background-color: transparent;
     /* margin-bottom: -15px; */
     padding-bottom: 12px;
+    border-radius: 0 !important;
+    box-shadow: none !important;
   }
  
   .container[_ngcontent-fnd-c2]{
@@ -13397,3 +13478,103 @@ body .ui-tooltip { border-width: 2px; }
     box-shadow: 0 40px 100px rgba(255, 255, 255, 0.2);
 }
 
+.homebanner1 .headpara1
+{
+    font-family: 'Montserrat-Regular';
+	color: white;
+	font-size: 46px;
+	font-weight: 300;
+	line-height: 50px;
+}
+.homebanner1 .headpara2
+{
+    font-family: 'Montserrat-Regular';
+	color: white;
+	font-size: 20px;
+	font-weight: 300;
+	line-height: 50px;
+	padding-bottom:30px;
+}
+.homebanner1 .form-group .form-field .form-control {
+    border: none;
+	weight: 50% !important;
+    height: 70px !important;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    -ms-border-radius: 40px;
+    border-radius: 40px;
+    padding-left: 25px;
+    padding-right: 50px;
+    -webkit-box-shadow: 0px 5px 27px -14px rgba(0, 0, 0, 0.28);
+    -moz-box-shadow: 0px 5px 27px -14px rgba(0, 0, 0, 0.28);
+    box-shadow: 0px 5px 27px -14px rgba(0, 0, 0, 0.28);
+}
+
+.homebanner1 .form-control {
+    display: block;
+    width: 50% !important;
+    height: calc(2.25rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+	margin:0 auto;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+	border:3px solid #333 !important;
+    border-radius: 0.25rem;
+ }
+.homebanner1 .form-group button {
+    background: transparent;
+    border: none;
+    position: relative;
+	left:23%;
+	top:-35px;
+    right: 0;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 70px;
+    height: 70px;
+    border-radius: 0 50% 50% 50%;
+    background: #fff905;
+	border:3px solid #333;
+	font-size:22px;
+}
+.homebanner1 .caption {
+    position: absolute;
+    top: 30%;
+    width: 100%;
+    left: 0%;
+    margin: 0 auto;
+	padding:0px 20px;
+}
+.homebanner1 {
+    min-height: 100vh !important;
+}
+@media (max-width: 768px) {
+.homebanner1 .headpara1
+{
+	font-size: 35px;
+	font-weight: 300;
+	line-height: 50px;
+}
+.homebanner1 .headpara2
+{
+	font-size: 20px;
+	font-weight: 300;
+	line-height: 30px;
+	padding-bottom:30px;
+}
+.homebanner1 .form-control {
+    width: 90% !important;
+}
+.homebanner1 .form-group button {
+    left:38%;
+}
+.homebanner1 .caption {
+    top: 25%;
+}
+}

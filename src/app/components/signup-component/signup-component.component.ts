@@ -7,7 +7,7 @@ import { SearchCountryField, TooltipLabel, CountryISO } from 'ngx-intl-tel-input
 
 @Component({
   selector: 'app-signup-component',
-  templateUrl: './signup-component.component.html',
+  templateUrl: './signup-component.componentTest.html',
   styleUrls: ['./signup-component.component.css']
 })
 export class SignupComponent implements OnInit {
@@ -45,7 +45,7 @@ export class SignupComponent implements OnInit {
       countryCode:['',Validators.required],
       mobileNumber:['',Validators.required],
       amount:['',Validators.required],
-      serviceType:['',Validators.required],
+      // serviceType:['',Validators.required],
       meterNumber:[''],
       currencyCode:['',Validators.required]
     })
@@ -109,7 +109,7 @@ export class SignupComponent implements OnInit {
         country:this.selctedCountry.name,
         mobile: this.signUpForm.get('mobileNumber').value,
         amount: this.signUpForm.get('amount').value,
-        serviceType: this.signUpForm.get('serviceType').value,
+        serviceType: 'mobile',
         currency:this.signUpForm.get('currencyCode').value
        // meterNumber:this.signUpForm.get('meterNumber').value,
       }

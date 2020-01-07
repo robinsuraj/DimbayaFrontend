@@ -6,7 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-payment',
-  templateUrl: './payment.component.html',
+  templateUrl: './payment.component1.html',
   styleUrls: ['./payment.component.css']
 })
 
@@ -20,9 +20,9 @@ export class PaymentComponent implements OnInit {
     ) { 
       this.commonHelper.getUserDataForPayment.subscribe(userData=>{
         this.userData=userData
-        if(Object.entries(this.userData).length === 0 && this.userData.constructor === Object ){
-          this.router.navigate(['/signup'])
-        }
+        // if(Object.entries(this.userData).length === 0 && this.userData.constructor === Object ){
+        //   this.router.navigate(['/signup'])
+        // }
       })
     }
 
