@@ -9,6 +9,7 @@ import { DialogComponent } from 'src/app/shared/dialog/dialog.component';
 })
 export class HomeComponent implements OnInit {
   isLoggedIn;
+  countryData;
   @ViewChild('payment',{static: false}) private paymentPage: ElementRef;
   constructor(private _dialog: MatDialog) { }
 
@@ -16,6 +17,11 @@ export class HomeComponent implements OnInit {
     this.isLoggedIn=localStorage.getItem('token');
   
   }
+
+  country(event){
+    this.countryData=event;
+  }
+
   login(){
     const dialogRef = this._dialog.open(DialogComponent, {
       width: 'auto',
@@ -24,7 +30,8 @@ export class HomeComponent implements OnInit {
       data: {
         type: 'resetPassword',
         title: 'Reset Password',
-        body: 'Are you sure you want to reset the password?'
+        body: 'Are you sure you want to reset the password?',
+        countryData:this.countryData
       }
     })
 

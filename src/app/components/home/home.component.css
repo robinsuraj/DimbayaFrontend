@@ -13578,3 +13578,10 @@ body .ui-tooltip { border-width: 2px; }
     top: 25%;
 }
 }
+
+
+
+
+.mat-form-field-flex{
+  border-radius: 45px !important;
+}

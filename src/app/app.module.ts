@@ -20,7 +20,7 @@ import { PaymentComponent } from './components/payment/payment.component';
 import { CustomMaterialModule } from './custom-material.module';   
 import { DialogComponent } from './shared/dialog/dialog.component';
 import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
-
+import { NgHttpLoaderModule } from 'ng-http-loader'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +45,9 @@ import { MatSelectCountryModule } from '@angular-material-extensions/select-coun
     NgxIntlTelInputModule,
     ToastrModule.forRoot({timeOut: 3000,
       positionClass: 'toast-top-right',
-      preventDuplicates: true}) 
+      preventDuplicates: true}) ,
+    
+      NgHttpLoaderModule.forRoot(),
   ],
   providers: [
     {

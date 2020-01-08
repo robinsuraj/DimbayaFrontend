@@ -23,7 +23,7 @@ export class DialogComponent implements OnInit {
 	TooltipLabel = TooltipLabel;
 	CountryISO = CountryISO;
   preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
-  
+  selectedCountryISO: CountryISO = CountryISO.India;
 
   otpSend:Boolean = false;
   constructor(private fb:FormBuilder,
@@ -34,13 +34,16 @@ export class DialogComponent implements OnInit {
       @Inject(MAT_DIALOG_DATA) public data
   ) { }
 
-  countryCode="";
+  countryCode="IN";
   ngOnInit() {
 
     this.loginModalForm = this.fb.group({
       mobileNumber:['',Validators.required]
     })
 
+    this.selectedCountryISO=this.data.countryData.alpha2Code;
+    this.countryCode = this.data.countryData.alpha2Code;
+    this.ddd(this.countryCode);
     this.otpForm = this.fb.group({
       key1:['',Validators.required],
       key2:['',Validators.required],
@@ -91,6 +94,9 @@ export class DialogComponent implements OnInit {
   loggedIn(){
 
     console.log(this.loginModalForm)
+
+
+    
     if(this.loginModalForm.valid ){
       const req = {
         mobile:this.loginModalForm.get('mobileNumber').value.number,

@@ -17,7 +17,7 @@
   </header>
 
   <!--//-->
-  <div class=" header-right">
+  <div class=" header-right" >
     <div class="banner">
       <div class="slider">
         <div class="callbacks_container">
@@ -29,13 +29,17 @@
                   <p class="headpara2">Recharge quickly and stay connected with the people that matter most.</p>
                   <div class="form-group">
                     <div class="form-field">
-                      <select class="form-control">
+                      <!-- <select class="form-control">
                         <option value="-1">Choose Country</option>
                         <option>India</option>
                         <option>Australia</option>
                         <option>Algeria</option>
-                      </select>
-                      <button><i class="fa fa-check"></i></button>
+                      </select> -->
+                      <div class="form-control">
+                      <mat-select-country  appearance="fill"  (onCountrySelected)="country($event)" >
+                      </mat-select-country>
+                      </div>
+                      <button (click)="login()"><i class="fa fa-check"></i></button>
                     </div>
                   </div>
                 </div>
