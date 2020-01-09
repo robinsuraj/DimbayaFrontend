@@ -18,6 +18,15 @@
   .inputClass::selection {
     background: transparent;
   }
+  .custom-input-group{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .custom-input-group input{
+    width: calc(50% - 10px);
+    margin-bottom: 20px;
+  }
 /* 
   @media (max-width: 400px)  {.mat-dialog-container {
     padding: 15px !important;

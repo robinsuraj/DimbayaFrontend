@@ -39,7 +39,7 @@
                             </div>
                             <div class="col-sm-10" style="padding-top: 20px;">
                                 <button type="submit" class="submit btn btn-primary btn-sm"
-                                    style="padding: 0.25rem 5.5rem;" (click)="loggedIn()">
+                                    style="padding: 0.25rem 1.5rem; width: 100%;" (click)="loggedIn()">
                                     Log In</button>
                             </div>
 
@@ -54,11 +54,14 @@
                               <p>Please enter the 4-digit verification code we sent via SMS:</p>
                               <span>(we want to make sure it's you before we contact our movers)</span>
                               <div>
-                                <input formControlName="key1" numbersOnly type="text" (keyup)="moveCursor($event)" style="width: auto;" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
-                                <input formControlName="key2" numbersOnly type="text" (keyup)="moveCursor($event)" style="width: auto;" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
-                                <input formControlName="key3" numbersOnly type="text" (keyup)="moveCursor($event)" style="width: auto;" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
-                                <input formControlName="key4" numbersOnly type="text"  style="width: auto;" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
-                                <button type="button" (click)="validLogin()" class="btn btn-primary btn-embossed">Verify</button>
+                                    <div class="custom-input-group">
+                                        <input formControlName="key1" numbersOnly type="text" (keyup)="moveCursor($event)" style="width: auto;" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                                        <input formControlName="key2" numbersOnly type="text" (keyup)="moveCursor($event)" style="width: auto;" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                                        <input formControlName="key3" numbersOnly type="text" (keyup)="moveCursor($event)" style="width: auto;" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                                        <input formControlName="key4" numbersOnly type="text"  style="width: auto;" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                                
+                                    </div>
+                                    <button type="button" (click)="validLogin()" class="btn btn-primary btn-embossed">Verify</button>
                               </div>
                               
                               <div>
