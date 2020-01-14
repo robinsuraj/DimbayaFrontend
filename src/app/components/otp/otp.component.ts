@@ -61,6 +61,8 @@ export class OtpComponent implements OnInit {
       },err=>{
         this.commonHelper.showErrorToast(err.error.message,'Error',5000);
       })
+    }else{
+      this.commonHelper.validateFormFields(this.otpForm)
     }
   }
 }
