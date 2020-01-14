@@ -25,11 +25,18 @@ export class HomeComponent implements OnInit {
   }
 
   onCountryChange(event){
-    let country =this.countrys.filter(x=> event.target.value.split('(')[0].trim() == x.name);
-    this.flag=country[0].flag
-    this.commonHelper.setCountry('+'+country[0].callingCodes[0])
-
-   console.table(country)
+    if(event.target.value){
+      let country =this.countrys.filter(x=> event.target.value.split('(')[0].trim() == x.name);
+      if(country){
+      this.flag=country[0].flag
+      this.commonHelper.setCountry('+'+country[0].callingCodes[0])
+      }
+    }else{
+      this.commonHelper.setCountry('');
+      this.flag="";
+    }
+   
+  
   }
 
   country(event){

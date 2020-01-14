@@ -1,150 +1,135 @@
-
-
-
 <div class="container">
   <div class="row">
-      <div class="col-md-4">
-          <div class="resp-tabs-list">
-              <span class="custom-dropdown active">
-                  <a href="">
-                      <i class="fa fa-mobile" aria-hidden="true"></i>
-                      Mobile
-                  </a>
-              </span>
-              <ul>
-                  <li class="active">
-                      <a href="">
-                          <i class="fa fa-mobile" aria-hidden="true"></i>
-                          Mobile
-                      </a>
-                  </li>
-                  <li>
-                      <a href="">
-                          <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
-                          Electricity
-                      </a>
-                  </li>
-                  <li>
-                      <a href="">
-                          <i class="fa fa-phone" aria-hidden="true"></i>
-                          Land Line
-                      </a>
-                  </li>
-                  <li>
-                      <a href="">
-                          <i class="fa fa-connectdevelop" aria-hidden="true"></i>
-                          Broad Band
-                      </a>
-                  </li>
-                  <li>
-                      <a href="">
-                          <i class="fa fa-flask" aria-hidden="true"></i>
-                          Gas
-                      </a>
-                  </li>
-                  <li>
-                      <a href="">
-                          <i class="fa fa-tint" aria-hidden="true"></i>
-                          Water
-                      </a>
-                  </li>
-                  <li>
-                      <a href="">
-                          <i class="fa fa-subway" aria-hidden="true"></i>
-                          Metro
-                      </a>
-                  </li>
-              </ul>
-          </div>
+    <div class="col-md-4">
+      <div class="resp-tabs-list">
+        <span class="custom-dropdown active">
+          <a href="">
+            <i class="fa fa-mobile" aria-hidden="true"></i>
+            Mobile
+          </a>
+        </span>
+        <ul>
+          <li class="active">
+            <a href="">
+              <i class="fa fa-mobile" aria-hidden="true"></i>
+              Mobile
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+              Electricity
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <i class="fa fa-phone" aria-hidden="true"></i>
+              Land Line
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <i class="fa fa-connectdevelop" aria-hidden="true"></i>
+              Broad Band
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <i class="fa fa-flask" aria-hidden="true"></i>
+              Gas
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <i class="fa fa-tint" aria-hidden="true"></i>
+              Water
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <i class="fa fa-subway" aria-hidden="true"></i>
+              Metro
+            </a>
+          </li>
+        </ul>
       </div>
-      <div class="col-md-8">
-          <div class="resp-tabs-wrapper">
-              <div class="resp-tabs-tab">
+    </div>
+    <div class="col-md-8">
+      <div class="resp-tabs-wrapper">
+        <div class="resp-tabs-tab">
+          <form [formGroup]="signUpForm">
+            <div class=" row">
+              <datalist id="suggestions" >
+                <ng-container *ngFor="let country of countrys">
+                  <option>{{country.name}} (+{{country.callingCodes[0]}})</option>
+                </ng-container>
+              </datalist>
+              <input  [ngClass]="checkFieldValid('countryCode')" formControlName="countryCode" (change)="onCountryChange($event)" placeholder="Select Country"
+                type="text" autoComplete="on" list="suggestions">
 
-                <form [formGroup]="signUpForm">
-                    <div class=" row">
-                      <div class="input-group" >
-                        <!-- <mat-select-country appearance="fill"  (onCountrySelected)="country($event)" >
-                        </mat-select-country> -->
-                      </div>
-                      <div class="input-group input-group-icon">
-                        <select formControlName="serviceType"  (change)="serviceType($event.target.value)"
-                          [ngClass]="checkFieldValid('serviceType')">
-                          <option value="" disabled selected hidden>Select Service Type</option>
-                          <option value="mobile">Mobile Recharge</option>
-                          <option value="prepaid">Prepaid Electrity</option>
-                        </select>
-                      </div>
-                      <div class="input-group input-group-icon">
-                        <div class="input-group-prepend">
-                          <div class="input-icon">+{{mobileOperator}}</div>
-                        </div>
-                        <input type="text" numbersOnly  [ngClass]="checkFieldValid('mobileNumber')"
-                          style=" line-height: 1.4;  height: 3.4em;" minlength="{{minLengthDigits}}" maxlength="{{maxLengthDigits}}" class=""
-                          placeholder="Mobile Number" formControlName="mobileNumber">
-                        
-                          <span style="color: red">
-                            <small *ngIf="signUpForm.get('mobileNumber').errors?.minlength && signUpForm.get('mobileNumber').touched">Minimum Digits required: {{minLengthDigits}}</small>
-                            <small *ngIf="signUpForm.get('mobileNumber').errors?.required && signUpForm.get('mobileNumber').touched">Mobile Number is Required.</small>
-                          </span>
-                      </div>
-                      <div class="input-group" *ngIf="prepaidElec">
-                  
-                        <input type="text" numbersOnly [ngClass]="checkFieldValid('meterNumber')"
-                          style=" line-height: 1.4;  height: 3.4em;" class="" placeholder="Meter Number"
-                          formControlName="meterNumber" minlength="10" maxlength="15">
-                          <span *ngIf="checkMinMaxError('meterNumber')" style="color: red">
-                              Meter Number should be atleast {{signUpForm.get('meterNumber').errors.minlength.requiredLength}} digits .
-                            </span>
-                      </div>
-              
-                      <div class="input-group input-group-icon">
-                        <div class="input-group-prepend">
-                          <div class="input-icon"><i class="fa fa-user"></i></div>
-                        </div>
-                        <input type="text" alphabetsOnly [ngClass]="checkFieldValid('firstName')" placeholder="Buyers Full Name"
-                          formControlName="firstName">
-                          </div>
-                      <div class="input-group input-group-icon">
-                        <div class="input-group-prepend">
-                          <div class="input-icon"><i class="fa fa-user"></i></div>
-                        </div>
-                       <input type="text" alphabetsOnly [ngClass]="checkFieldValid('lastName')" placeholder="Beneficiary's Full Name"
-                          formControlName="lastName">
-                      </div>
-                      <div class="input-group input-group-icon">
-                        <input [ngClass]="checkFieldValid('email') || signUpForm.get('email').errors?.pattern? 'is-invalid':''" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" type="email" placeholder="Email" formControlName="email">
-                        <span *ngIf="signUpForm.get('email').errors?.pattern" style="color:red">Please Enter Valid Email Id.</span>
-                        <div class="input-icon"><i class="fa fa-envelope"></i></div>
-                      </div>
-                      <div class="input-group ">
-                        <div class="col-md-2" style="padding: 0;">
-                          <select formControlName="currencyCode">
-                          <ng-container  *ngFor="let currency of selctedCountry?.currencies;let i=index;">
-                         <option [selected]="i==0" [value]="currency.code">{{currency.symbol}}</option>
-                          </ng-container >
-                        </select>
-                        </div>
-                        <div class="col-md-10" style="padding: 0;">
-                        <input type="text"
-                        maxlength="12"
-                        numbersOnly [ngClass]="checkFieldValid('amount')" min=1 max=999999999999 placeholder="Amount"
-                          formControlName="amount">
-                       </div>
-                      </div>
-                    </div>
-                
-                  <button style="line-height: 1.4;  height: 3.4em;" class="btn btn-info  btn-block btn-round"
-                    (click)="register()">PAY</button>
-                </form>
-              </div>
-              <div class="resp-tabs-tab"></div>
-              <div class="resp-tabs-tab"></div>
-              <div class="resp-tabs-tab"></div>
-              <div class="resp-tabs-tab"></div>
-              <div class="resp-tabs-tab"></div>
-              <div class="resp-tabs-tab"></div>
-          </div>
+            </div>
+            <div class=" row">
+              <select formControlName="serviceType" (change)="serviceType($event.target.value)"
+                [ngClass]="checkFieldValid('serviceType')">
+                <option value="" disabled selected hidden>Select Service Type</option>
+                <option value="mobile">Mobile Recharge</option>
+                <option value="prepaid">Prepaid Electrity</option>
+              </select>
+            </div>
+            <div class=" row">
+              <span>{{countryCode}}</span>
+              <input type="text" numbersOnly [ngClass]="checkFieldValid('mobileNumber')"
+                style=" line-height: 1.4;  height: 3.4em;" minlength="{{minLengthDigits}}"
+                maxlength="{{maxLengthDigits}}" class="" placeholder="Mobile Number" formControlName="mobileNumber">
+            </div>
+            <div class="row" *ngIf="prepaidElec">
+              <input type="text" numbersOnly [ngClass]="checkFieldValid('meterNumber')"
+                style=" line-height: 1.4;  height: 3.4em;" class="" placeholder="Meter Number"
+                formControlName="meterNumber" minlength="10" maxlength="15">
+              <span *ngIf="checkMinMaxError('meterNumber')" style="color: red">
+                Meter Number should be atleast {{signUpForm.get('meterNumber').errors.minlength.requiredLength}} digits.
+              </span>
+            </div>
+            <div class=" row">
+              <input type="text" alphabetsOnly [ngClass]="checkFieldValid('firstName')" placeholder="Buyers Full Name"
+                formControlName="firstName">
+            </div>
+
+            <div class=" row">
+              <input type="text" alphabetsOnly [ngClass]="checkFieldValid('lastName')"
+                placeholder="Beneficiary's Full Name" formControlName="lastName">
+            </div>
+
+            <div class=" row">
+              <input [ngClass]="checkFieldValid('email') || signUpForm.get('email').errors?.pattern? 'is-invalid':''"
+                pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" type="email" placeholder="Email"
+                formControlName="email">
+              <span *ngIf="signUpForm.get('email').errors?.pattern" style="color:red">Please Enter Valid Email
+                Id.</span>
+            </div>
+
+            <div class=" row">
+              <select formControlName="currencyCode">
+                <ng-container *ngFor="let currency of currencyList;let i=index;">
+                  <option [value]="currency.code">{{currency.symbol}}</option>
+                </ng-container>
+              </select>
+              <input type="text" maxlength="12" numbersOnly [ngClass]="checkFieldValid('amount')" min=1 max=999999999999
+                placeholder="Amount" formControlName="amount">
+            </div>
+
+            <button style="line-height: 1.4;  height: 3.4em;" class="btn btn-info  btn-block btn-round"
+              (click)="register()">PAY</button>
+
+          </form>
+        </div>
+        <div class="resp-tabs-tab"></div>
+        <div class="resp-tabs-tab"></div>
+        <div class="resp-tabs-tab"></div>
+        <div class="resp-tabs-tab"></div>
+        <div class="resp-tabs-tab"></div>
+        <div class="resp-tabs-tab"></div>
       </div>
+    </div>
   </div>
 </div>

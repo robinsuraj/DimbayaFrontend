@@ -57,7 +57,7 @@ export class OtpComponent implements OnInit {
         this.commonHelper.showSuccessToast(res.message,"Success",5000);
         localStorage.setItem('token',res.data.token);
         localStorage.setItem('userActivities',res.data.user.activities);
-        this.router.navigate(['/pay'])
+        this.router.navigate(['/pay/payment1'])
       },err=>{
         this.commonHelper.showErrorToast(err.error.message,'Error',5000);
       })

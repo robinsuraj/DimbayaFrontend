@@ -2,14 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CommonHelperService } from 'src/app/services/common-helper.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-pay-credit-card-details',
-  templateUrl: './pay-credit-card-details.component.html',
-  styleUrls: ['./pay-credit-card-details.component.scss']
+  selector: 'app-payment',
+  templateUrl: './payment.component1.html',
+  styleUrls: ['./payment.component.css']
 })
-export class PayCreditCardDetailsComponent implements OnInit {
+
+export class PaymentComponent implements OnInit {
   paymentForm: FormGroup;
   userData;
   cardSelect: boolean=false;
@@ -78,7 +79,7 @@ export class PayCreditCardDetailsComponent implements OnInit {
        }
     }
     checkMinMaxError(formControl){
-      // console.log(this.paymentForm.get([formControl]).errors && (this.paymentForm.get([formControl]).errors.minlength && this.paymentForm.get([formControl]).touched && !this.paymentForm.get([formControl]).errors.required ))
+      console.log(this.paymentForm.get([formControl]).errors && (this.paymentForm.get([formControl]).errors.minlength && this.paymentForm.get([formControl]).touched && !this.paymentForm.get([formControl]).errors.required ))
      if(this.paymentForm.get([formControl]).errors && (this.paymentForm.get([formControl]).errors.minlength && this.paymentForm.get([formControl]).touched && !this.paymentForm.get([formControl]).errors.required )){
       return 'is-invalid';
      }else return '';
