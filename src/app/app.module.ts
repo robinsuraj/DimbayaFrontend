@@ -16,11 +16,10 @@ import { LoginComponent } from './components/login-component/login-component.com
 import { SignupComponent } from './components/signup-component/signup-component.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HomeComponent } from './components/home/home.component';
-import { PaymentComponent } from './components/payment/payment.component';
-import { CustomMaterialModule } from './custom-material.module';   
 import { DialogComponent } from './shared/dialog/dialog.component';
 import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 import { NgHttpLoaderModule } from 'ng-http-loader'; 
+import { OtpComponent } from './components/otp/otp.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,8 +28,8 @@ import { NgHttpLoaderModule } from 'ng-http-loader';
     SignupComponent,
     DashboardComponent,
     HomeComponent,
-    PaymentComponent,
-    DialogComponent
+    DialogComponent,
+    OtpComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +39,6 @@ import { NgHttpLoaderModule } from 'ng-http-loader';
     HttpClientModule,
     BrowserAnimationsModule, 
     SharedModule,
-    CustomMaterialModule,
     BsDropdownModule.forRoot(),
     NgxIntlTelInputModule,
     ToastrModule.forRoot({timeOut: 3000,

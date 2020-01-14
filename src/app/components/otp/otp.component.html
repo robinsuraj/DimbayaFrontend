@@ -1,0 +1,40 @@
+<div class="modal-wrapper" style="background: url(../../../assets/images/2.jpg) no-repeat 0 0/cover;height: 100vh;">
+    <div class="modal-overlay"></div>
+    <div class="modal-container">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3> Welcome to Dimbaya</h3>
+            <p>Please enter the 4-digit verification code we sent via SMS:</p>
+            <p>(we want to make sure it's you before we contact our movers)</p>
+            <form [formGroup]="otpForm">
+                <div class="form-group otp-wrapper">
+                    <input class="form-control" formControlName="key1" numbersOnly type="text" (keyup)="moveCursor($event)" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                    <input class="form-control" formControlName="key2" numbersOnly type="text" (keyup)="moveCursor($event)" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                    <input class="form-control" formControlName="key3" numbersOnly type="text" (keyup)="moveCursor($event)" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                    <input class="form-control" formControlName="key4" numbersOnly type="text"  maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+            
+                </div>
+                <div class="form-group">
+                    <button type="button" (click)="validLogin()" class="btn btn-primary">Verify</button>
+                </div>
+                <div class="form-control">
+                    <label>Didn't receive the code?</label>
+                    <div class="resend-btn-wrapper">
+                        <a href="">Send Code Again</a>
+                        <a href="">Change Phone Number</a>
+                    </div>
+                </div>
+            </form>
+            <div class="signup-option">
+                <h2>Sign in with</h2>
+                <div class="btn-wrapper">
+                    <a href="http://ec2-3-136-169-121.us-east-2.compute.amazonaws.com:7000/api/auth/facebook"
+            class="btn btn-primary">Facebook</a>
+          <a href="http://ec2-3-136-169-121.us-east-2.compute.amazonaws.com:7000/api/auth/google"
+            class="btn btn-danger">
+            Google +</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

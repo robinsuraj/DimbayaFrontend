@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <form [formGroup]="loginForm">
     <div class="row">
       <h4>Account Details</h4>
@@ -18,4 +18,52 @@
         (click)="login()">Login</button>
     </div>
   </form>
+</div> -->
+
+
+<div class="modal-wrapper" style="background: url(../../../assets/images/2.jpg) no-repeat 0 0/cover;height: 100vh;">
+  <div class="modal-overlay"></div>
+  <div class="modal-container">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3> Welcome to Dimbaya</h3>
+      <div class="country-code-dropdown">
+        <form [formGroup]="loginForm">
+          <div class="form-group">
+            
+            <select formControlName="countryCode" (change)="setCountry($event)">
+              <ng-container *ngFor="let country of countrys">
+                <option value="+{{country.callingCodes[0]}}">(+{{country.callingCodes[0]}}) {{country.name}}</option>
+              </ng-container>
+            </select>
+            <img class="country-flag" *ngIf="flag" src={{flag}} />
+
+            <input type="tel" formControlName="mobileNumber" id="mobile-number" class="form-control"
+              placeholder="e.g. +1 702 123 4567">
+            <span style="color: red">
+              <small
+                *ngIf="!loginForm.get('mobileNumber').errors?.required && loginForm.get('mobileNumber').errors && !loginForm.get('mobileNumber').errors?.validatePhoneNumber?.valid && loginForm.get('mobileNumber').touched">Enter
+                Valid Mobile Number</small>
+              <small
+                *ngIf="loginForm.get('mobileNumber').errors?.required && loginForm.get('mobileNumber').touched">Mobile
+                Number is Required.</small>
+            </span>
+          </div>
+          <div class="form-group">
+            <button type="submit" (click)="login()" class="btn btn-primary">Log In</button>
+          </div>
+        </form>
+      </div>
+      <div class="signup-option">
+        <h2>Sign in with</h2>
+        <div class="btn-wrapper">
+          <a href="http://ec2-3-136-169-121.us-east-2.compute.amazonaws.com:7000/api/auth/facebook"
+            class="btn btn-primary">Facebook</a>
+          <a href="http://ec2-3-136-169-121.us-east-2.compute.amazonaws.com:7000/api/auth/google"
+            class="btn btn-danger">
+            Google +</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

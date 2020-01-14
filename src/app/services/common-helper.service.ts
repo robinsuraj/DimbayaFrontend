@@ -5567,9 +5567,473 @@ export class CommonHelperService {
   }
 ]
 
+mockCountryData=[
+  {
+    "name": "Benin",
+    "alpha2Code": "BJ",
+    "alpha3Code": "BEN",
+    "callingCodes": [
+      "229"
+    ],
+    "capital": "Porto-Novo",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "numericCode": "204",
+    "currencies": [
+      {
+        "code": "XOF",
+        "name": "West African CFA franc",
+        "symbol": "Fr"
+      }
+    ],
+    "flag": "../../../assets/svg-country-flags/svg/bj.svg",
+    "cioc": "BEN"
+  },{
+    "name": "Burkina Faso",
+    "alpha2Code": "BF",
+    "alpha3Code": "BFA",
+    "callingCodes": [
+      "226"
+    ],
+    "capital": "Ouagadougou",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "numericCode": "854",
+    "currencies": [
+      {
+        "code": "XOF",
+        "name": "West African CFA franc",
+        "symbol": "Fr"
+      }
+    ],
+    "flag": "../../../assets/svg-country-flags/svg/bf.svg",
+    "cioc": "BUR"
+  },{
+    "name": "Cabo Verde",
+    "alpha2Code": "CV",
+    "alpha3Code": "CPV",
+    "callingCodes": [
+      "238"
+    ],
+    "capital": "Praia",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "numericCode": "132",
+    "currencies": [
+      {
+        "code": "CVE",
+        "name": "Cape Verdean escudo",
+        "symbol": "Esc"
+      }
+    ],
+    "flag": "../../../assets/svg-country-flags/svg/cv.svg",
+    "cioc": "CPV"
+  },
+  {
+    "name": "Gambia",
+    "alpha2Code": "GM",
+    "alpha3Code": "GMB",
+    "callingCodes": [
+      "220"
+    ],
+    "capital": "Banjul",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "nativeName": "Gambia",
+    "numericCode": "270",
+    "currencies": [
+      {
+        "code": "GMD",
+        "name": "Gambian dalasi",
+        "symbol": "D"
+      }
+    ],
+    "flag": "../../../assets/svg-country-flags/svg/gm.svg",
+    "cioc": "GAM"
+  },
+  {
+    "name": "Ghana",
+    "alpha2Code": "GH",
+    "alpha3Code": "GHA",
+    "callingCodes": [
+      "233"
+    ],
+    "capital": "Accra",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "nativeName": "Ghana",
+    "numericCode": "288",
+    "currencies": [
+      {
+        "code": "GHS",
+        "name": "Ghanaian cedi",
+        "symbol": "₵"
+      }
+    ],
+    "flag": "../../../assets/svg-country-flags/svg/gh.svg",
+    "cioc": "GHA"
+  },
+  {
+    "name": "Guinea",
+    "alpha2Code": "GN",
+    "alpha3Code": "GIN",
+    "callingCodes": [
+      "224"
+    ],
+    "capital": "Conakry",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "nativeName": "Guinée",
+    "numericCode": "324",
+    "currencies": [
+      {
+        "code": "GNF",
+        "name": "Guinean franc",
+        "symbol": "Fr"
+      }
+    ],
+    "flag": "../../../assets/svg-country-flags/svg/gn.svg",
+    "cioc": "GUI"
+  },
+  {
+    "name": "Guinea-Bissau",
+    "alpha2Code": "GW",
+    "alpha3Code": "GNB",
+    "callingCodes": [
+      "245"
+    ],
+    "capital": "Bissau",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "nativeName": "Guiné-Bissau",
+    "numericCode": "624",
+    "currencies": [
+      {
+        "code": "XOF",
+        "name": "West African CFA franc",
+        "symbol": "Fr"
+      }
+    ],
+    "flag": "../../../assets/svg-country-flags/svg/gw.svg",
+    "cioc": "GBS"
+  },{
+    "name": "Liberia",
+    "alpha2Code": "LR",
+    "alpha3Code": "LBR",
+    "callingCodes": [
+      "231"
+    ],
+    "capital": "Monrovia",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "nativeName": "Liberia",
+    "numericCode": "430",
+    "currencies": [
+      {
+        "code": "LRD",
+        "name": "Liberian dollar",
+        "symbol": "$"
+      }
+    ],
+    "flag": "../../../assets/svg-country-flags/svg/lr.svg",
+    "cioc": "LBR"
+  },
+  {
+    "name": "Mali",
+    "alpha2Code": "ML",
+    "alpha3Code": "MLI",
+    "callingCodes": [
+      "223"
+    ],
+    "capital": "Bamako",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "nativeName": "Mali",
+    "numericCode": "466",
+    "currencies": [
+      {
+        "code": "XOF",
+        "name": "West African CFA franc",
+        "symbol": "Fr"
+      }
+    ],
+    "flag": "../../../assets/svg-country-flags/svg/ml.svg",
+    "cioc": "MLI"
+  },
+  {
+    "name": "Mauritania",
+    "alpha2Code": "MR",
+    "alpha3Code": "MRT",
+    "callingCodes": [
+      "222"
+    ],
+    "capital": "Nouakchott",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "nativeName": "موريتانيا",
+    "numericCode": "478",
+    "currencies": [
+      {
+        "code": "MRO",
+        "name": "Mauritanian ouguiya",
+        "symbol": "UM"
+      }
+    ],
+    "flag": "../../../assets/svg-country-flags/svg/mr.svg",
+    "cioc": "MTN"
+  },
+  {
+    "name": "Niger",
+    "alpha2Code": "NE",
+    "alpha3Code": "NER",
+    "callingCodes": [
+      "227"
+    ],
+    "capital": "Niamey",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "nativeName": "Niger",
+    "numericCode": "562",
+    "currencies": [
+      {
+        "code": "XOF",
+        "name": "West African CFA franc",
+        "symbol": "Fr"
+      }
+    ],
+    "flag": "../../../assets/svg-country-flags/svg/ne.svg",
+    "cioc": "NIG"
+  },
+  {
+    "name": "Nigeria",
+    "alpha2Code": "NG",
+    "alpha3Code": "NGA",
+    "callingCodes": [
+      "234"
+    ],
+    "capital": "Abuja",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "nativeName": "Nigeria",
+    "numericCode": "566",
+    "currencies": [
+      {
+        "code": "NGN",
+        "name": "Nigerian naira",
+        "symbol": "₦"
+      }
+    ],
+    "flag": "../../../assets/svg-country-flags/svg/ng.svg",
+    "cioc": "NGR"
+  },
+  {
+    "name": "Senegal",
+    "alpha2Code": "SN",
+    "alpha3Code": "SEN",
+    "callingCodes": [
+      "221"
+    ],
+    "capital": "Dakar",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "nativeName": "Sénégal",
+    "numericCode": "686",
+    "currencies": [
+      {
+        "code": "XOF",
+        "name": "West African CFA franc",
+        "symbol": "Fr"
+      }
+    ],
+    "flag": "../../../assets/svg-country-flags/svg/sn.svg",
+    "cioc": "SEN"
+  },
+  {
+    "name": "Sierra Leone",
+    "alpha2Code": "SL",
+    "alpha3Code": "SLE",
+    "callingCodes": [
+      "232"
+    ],
+    "capital": "Freetown",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "nativeName": "Sierra Leone",
+    "numericCode": "694",
+    "currencies": [
+      {
+        "code": "SLL",
+        "name": "Sierra Leonean leone",
+        "symbol": "Le"
+      }
+    ],
+    "flag": "../../../assets/svg-country-flags/svg/sl.svg",
+    "cioc": "SLE"
+  },
+  {
+    "name": "Togo",
+    "topLevelDomain": [
+      ".tg"
+    ],
+    "alpha2Code": "TG",
+    "alpha3Code": "TGO",
+    "callingCodes": [
+      "228"
+    ],
+    "capital": "Lomé",
+    "altSpellings": [
+      "TG",
+      "Togolese",
+      "Togolese Republic",
+      "République Togolaise"
+    ],
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "population": 7143000,
+    "latlng": [
+      8.0,
+      1.16666666
+    ],
+    "demonym": "Togolese",
+    "area": 56785.0,
+    "gini": 34.4,
+    "timezones": [
+      "UTC"
+    ],
+    "borders": [
+      "BEN",
+      "BFA",
+      "GHA"
+    ],
+    "nativeName": "Togo",
+    "numericCode": "768",
+    "currencies": [
+      {
+        "code": "XOF",
+        "name": "West African CFA franc",
+        "symbol": "Fr"
+      }
+    ],
+    "languages": [
+      {
+        "iso639_1": "fr",
+        "iso639_2": "fra",
+        "name": "French",
+        "nativeName": "français"
+      }
+    ],
+    "translations": {
+      "de": "Togo",
+      "es": "Togo",
+      "fr": "Togo",
+      "ja": "トーゴ",
+      "it": "Togo",
+      "br": "Togo",
+      "pt": "Togo",
+      "nl": "Togo",
+      "hr": "Togo",
+      "fa": "توگو"
+    },
+    "flag": "../../../assets/svg-country-flags/svg/tg.svg",
+    "regionalBlocs": [
+      {
+        "acronym": "AU",
+        "name": "African Union",
+        "otherAcronyms": [
+          
+        ],
+        "otherNames": [
+          "الاتحاد الأفريقي",
+          "Union africaine",
+          "União Africana",
+          "Unión Africana",
+          "Umoja wa Afrika"
+        ]
+      }
+    ],
+    "cioc": "TOG"
+  },
+  {
+    "name": "Tokelau",
+    "alpha2Code": "TK",
+    "alpha3Code": "TKL",
+    "callingCodes": [
+      "690"
+    ],
+    "capital": "Fakaofo",
+    "region": "Oceania",
+    "subregion": "Polynesia",
+    "nativeName": "Tokelau",
+    "numericCode": "772",
+    "currencies": [
+      {
+        "code": "NZD",
+        "name": "New Zealand dollar",
+        "symbol": "$"
+      }
+    ],
+    "flag": "../../../assets/svg-country-flags/svg/tk.svg",
+    "cioc": ""
+  },{
+    "name": "Saint Helena, Ascension and Tristan da Cunha",
+    "alpha2Code": "SH",
+    "alpha3Code": "SHN",
+    "callingCodes": [
+      "290"
+    ],
+    "capital": "Jamestown",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "nativeName": "Saint Helena",
+    "numericCode": "654",
+    "currencies": [
+      {
+        "code": "SHP",
+        "name": "Saint Helena pound",
+        "symbol": "£"
+      }
+    ],
+    "flag": "../../../assets/svg-country-flags/svg/sn.svg",
+    "cioc": null
+  },
+  {
+    "name": "Côte d'Ivoire",
+    "alpha2Code": "CI",
+    "alpha3Code": "CIV",
+    "callingCodes": [
+      "225"
+    ],
+    "capital": "Yamoussoukro",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "nativeName": "Côte d'Ivoire",
+    "numericCode": "384",
+    "currencies": [
+      {
+        "code": "XOF",
+        "name": "West African CFA franc",
+        "symbol": "Fr"
+      }
+    ],
+    "flag": "../../../assets/svg-country-flags/svg/ci.svg",
+    "cioc": "CIV"
+  }
+]
+
+  country = new BehaviorSubject('')
+  getSelectedCountry = this.country.asObservable();
+setCountry(data){
+  this.country.next(data);
+}
+
   checkMobileNumber(code){
     return this.mockMobileData.filter(data=>data.CountryIso==code)
   }
+  mobileNumber = new BehaviorSubject('');
+  getMobileNumber = this.mobileNumber.asObservable();
 
+  setMobileNumber(data){
+    this.mobileNumber.next(data)
+  }
 
 }

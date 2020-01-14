@@ -2,15 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CommonHelperService } from 'src/app/services/common-helper.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-payment',
-  templateUrl: './payment.component1.html',
-  styleUrls: ['./payment.component.css']
+  selector: 'app-pay-credit-card-details',
+  templateUrl: './pay-credit-card-details.component.html',
+  styleUrls: ['./pay-credit-card-details.component.scss']
 })
-
-export class PaymentComponent implements OnInit {
+export class PayCreditCardDetailsComponent implements OnInit {
   paymentForm: FormGroup;
   userData;
   cardSelect: boolean=false;

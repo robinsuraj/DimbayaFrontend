@@ -1,20 +1,18 @@
 <body>
   <!--header-->
-  <header>
+  <!-- <header>
     <div class="container">
-      <!--logo-->
+
       <div class="logo">
         <h1><a href="">Dimbaya</a></h1>
       </div>
-      <!--//logo-->
       <div *ngIf="!isLoggedIn" class="w3layouts-login">
-        <!-- <button (click)="test()">login</button> -->
-        <a (click)="login()" style="cursor: pointer;"><i class="glyphicon glyphicon-user"> </i>Login/Register</a>
+         <a (click)="login()" style="cursor: pointer;"><i class="glyphicon glyphicon-user"> </i>Login/Register</a>
       </div>
       <div class="clearfix"></div>
 
     </div>
-  </header>
+  </header> -->
 
   <!--//-->
   <div class=" header-right" *ngIf="!isLoggedIn">
@@ -29,16 +27,13 @@
                   <p class="headpara2">Recharge quickly and stay connected with the people that matter most.</p>
                   <div class="form-group">
                     <div class="form-field">
-                      <!-- <select class="form-control">
-                        <option value="-1">Choose Country</option>
-                        <option>India</option>
-                        <option>Australia</option>
-                        <option>Algeria</option>
-                      </select> -->
-                      <div class="form-control">
-                      <mat-select-country  appearance="fill"  (onCountrySelected)="country($event)" >
-                      </mat-select-country>
-                      </div>
+                      <datalist  id="suggestions">
+                        <ng-container *ngFor="let country of countrys">
+                          <option >{{country.name}} (+{{country.callingCodes[0]}})</option>
+                        </ng-container>
+                        </datalist>
+                        <img class="country-flag"  *ngIf="flag" src={{flag}}/>
+                      <input (change)="onCountryChange($event)" placeholder="Select Country" class="form-control" type="text" autoComplete="on" list="suggestions">
                       <button (click)="login()"><i class="fa fa-check"></i></button>
                     </div>
                   </div>

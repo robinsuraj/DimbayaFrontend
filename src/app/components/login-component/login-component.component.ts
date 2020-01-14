@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CommonHelperService } from 'src/app/services/common-helper.service';
@@ -11,35 +11,59 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  constructor(private fb:FormBuilder,
-              private authenticationService:AuthenticationService,
-              private commonHelper:CommonHelperService,
-              private router:Router
-    ) { 
-      if(localStorage.getItem('user')){
-        this.router.navigate(['/dashboard'])
-      }
+  countrys = this.commonHelper.mockCountryData
+  countryCode;
+
+  @ViewChild('myselect', { static: true }) myselect: ElementRef;
+  constructor(private fb: FormBuilder,
+    private authService: AuthenticationService,
+    private commonHelper: CommonHelperService,
+    private router: Router) {
+
+    this.commonHelper.getSelectedCountry.subscribe(res => {
+      console.log(res)
+      this.countryCode = res;
+    })
+
+    if (localStorage.getItem('user')) {
+      this.router.navigate(['/dashboard'])
     }
+  }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
-      email:['',Validators.required],
-      password:['',Validators.required]
+      countryCode: [this.countryCode?this.countryCode:'+'+this.countrys[0].callingCodes[0], Validators.required],
+      mobileNumber: ['', Validators.required]
     })
   }
-  
-  login(){
-    if(this.loginForm.valid){
-      const loginRequest ={
-        email: this.loginForm.get('email').value,
-        password: this.loginForm.get('password').value,
+
+  clickDiv() {
+    let a = this.myselect.nativeElement as HTMLElement;
+    a.focus();
+    a.click();
+  }
+
+  setCountry(event) {
+    console.log(event.target.value)
+    this.commonHelper.setCountry(event.target.value)
+  }
+  login() {
+    if (this.loginForm.valid) {
+      const req = {
+        mobile: this.loginForm.get('mobileNumber').value,
+        mobileOperator: this.loginForm.get('countryCode').value,
+        role: 'buyer'
       }
-      this.authenticationService.register(loginRequest).subscribe(response=>{
-        this.commonHelper.showSuccessToast("Registration Success","Success",5000);
-        this.router.navigate(['/dashboard'])
+      this.commonHelper.setCountry(this.loginForm.get('countryCode').value)
+      this.commonHelper.setMobileNumber(req.mobile);
+      console.log(req)
+      this.authService.loginUser(req).subscribe(res => {
+        this.commonHelper.showSuccessToast(res.message, "Success", 5000);
+        this.router.navigate(['otp'])
       })
-    }else {
-     this.commonHelper.validateFormFields(this.loginForm);
+
+    } else {
+      this.commonHelper.validateFormFields(this.loginForm)
     }
   }
 

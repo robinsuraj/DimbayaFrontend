@@ -4,15 +4,18 @@ import { SignupComponent } from '../app/components/signup-component/signup-compo
 import { LoginComponent } from '../app/components/login-component/login-component.component';
 import { DashboardComponent } from '../app/components/dashboard/dashboard.component';
 import { HomeComponent } from '../app/components/home/home.component';
-import { PaymentComponent } from '../app/components/payment/payment.component';
 import { AuthGuardService } from '../app/services/auth-guard.service';
+import { OtpComponent } from './components/otp/otp.component';
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home'},
   {path: 'home', component: HomeComponent},
-  {path: 'pay', component: SignupComponent,canActivate : [AuthGuardService]},
+  { path: 'pay', loadChildren: './payment/payment.module#PaymentModule' },
+  
+  // {path: 'pay', component: SignupComponent,canActivate : [AuthGuardService]},
   {path: 'login', component: LoginComponent},
-  {path: 'payment', component: PaymentComponent},
+  // {path: 'payment', component: PaymentComponent},
   {path: 'dashboard', component: DashboardComponent, canActivate : [AuthGuardService]},
+  {path: 'otp', component: OtpComponent},
   {path: '**', redirectTo:'home'}];
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: false, onSameUrlNavigation: 'reload' })],

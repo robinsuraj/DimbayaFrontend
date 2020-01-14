@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {MatDialogModule,MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { DialogComponent } from 'src/app/shared/dialog/dialog.component';
+import { CommonHelperService } from 'src/app/services/common-helper.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,12 +12,24 @@ import { DialogComponent } from 'src/app/shared/dialog/dialog.component';
 export class HomeComponent implements OnInit {
   isLoggedIn;
   countryData;
+  countrys=this.commonHelper.mockCountryData;
+  flag;
   @ViewChild('payment',{static: false}) private paymentPage: ElementRef;
-  constructor(private _dialog: MatDialog) { }
+  constructor(
+    private router:Router,
+    private commonHelper:CommonHelperService) { }
 
   ngOnInit() {
     this.isLoggedIn=localStorage.getItem('token');
   
+  }
+
+  onCountryChange(event){
+    let country =this.countrys.filter(x=> event.target.value.split('(')[0].trim() == x.name);
+    this.flag=country[0].flag
+    this.commonHelper.setCountry('+'+country[0].callingCodes[0])
+
+   console.table(country)
   }
 
   country(event){
@@ -23,35 +37,13 @@ export class HomeComponent implements OnInit {
   }
 
   login(){
-    const dialogRef = this._dialog.open(DialogComponent, {
-      width: 'auto',
-      height: '390',
-      disableClose: true,
-      data: {
-        type: 'resetPassword',
-        title: 'Reset Password',
-        body: 'Are you sure you want to reset the password?',
-        countryData:this.countryData
-      }
-    })
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        // this._userLogin.forceResetPassword(obj).subscribe(response => {
-        //   console.log(response);
-        //   if (response.status == 200) {
-        //     this._snackbar.openSnackBar("Password reset successful!", "");
-        //   }
-        // })
-        this.isLoggedIn=true;
+   
 
-        // this.paymentPage.nativeElement.scrollTo({left: 0 , top: 900, behavior: 'smooth'});
-        // this.paymentPage.nativeElement.scrollTop = this.paymentPage.nativeElement.scrollHeight;
-        window.scrollTo(0, this.paymentPage.nativeElement.scrollHeight-200);
-        // this.paymentPage.nativeElement.scrollTo({left: 0 , top: this.paymentPage.nativeElement.scrollHeight, behavior: 'smooth'});
-
-      }
-    })
+    this.router.navigate(['login'])
+    this.countryData
+   
+   
   }
 
 }

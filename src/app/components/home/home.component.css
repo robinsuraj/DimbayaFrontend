@@ -443,13 +443,7 @@ i.glyphicon.glyphicon-menu-hamburger {
 	  display: block;
 	  float: left;
 }
-.rslides img {
-	  display: block;
-	  height: auto;
-	  float: left;
-	  width: 100%;
-	  border: 0;
-}
+
 .callbacks_tabs a:after {
 	content: "\f111";
 	font-size: 0;
@@ -7435,51 +7429,7 @@ html {
     max-height: 340px;
     overflow-y: scroll;
   }
-  .container {
-    padding-right: 15px;
-    padding-left: 15px;
-    margin: 0px;
-    max-width: 100%;
-    background-color: transparent;
-    /* margin-bottom: -15px; */
-    padding-bottom: 12px;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-  }
- 
-  .container[_ngcontent-fnd-c2]{
-    padding-right: 15px;
-    padding-left: 15px;
-    margin: 0px;
-    background-color: transparent;
-    /* margin-bottom: -15px; */
-    padding-bottom: 12px;
-}
-  @media (min-width: 768px) {
-    .container {
-        padding-right: 15px;
-        padding-left: 15px;
-        margin: 0px auto;
-        max-width: 100%;
-        background-color: transparent;
-        /* margin-bottom: -15px; */
-        padding-bottom: 12px;
-    }
-    
-  }
-  @media (min-width: 992px) {
-    .container {
-        max-width: 100%;
-      width: 970px;
-      margin: 0px auto;
-    }
-  }
-  @media (min-width: 1200px) {
-    .container {
-        max-width: 100%;
-      width: 1170px;
-    }
-  }
+  
   .container-fluid {
     padding-right: 15px;
     padding-left: 15px;
@@ -13588,4 +13538,22 @@ body .ui-tooltip { border-width: 2px; }
 .mat-form-field-appearance-fill .mat-form-field-flex{
   padding: 0;
   background: transparent;
+}
+
+
+.country-flag{
+  background: transparent;
+  border: none;
+  position: relative;
+  left:0;
+  top:22px;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  border-radius: 0 50% 50% 50%;
+  background: #fff905;
+  border:3px solid #333;
+  font-size:10px;
 }
