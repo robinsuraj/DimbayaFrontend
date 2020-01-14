@@ -37,13 +37,8 @@ export class HomeComponent implements OnInit {
   }
 
   login(){
-
-   
-
+    console.log("dddddddd")
     this.router.navigate(['login'])
     this.countryData
-   
-   
   }
-
 }

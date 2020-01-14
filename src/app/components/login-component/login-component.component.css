@@ -161,6 +161,14 @@ input {
 .country-code-dropdown{
     text-align: center;
 }
+.btn-wrapper a.btn.btn-danger {
+    background: #ca3f1f;
+    color: #fff;
+}
+.country-code-dropdown select {
+    padding: 8px 10px;
+    margin-bottom: 10px;
+}
 .signup-option{
     text-align: center;
     margin-top: 20px;
