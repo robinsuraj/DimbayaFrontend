@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonHelperService } from 'src/app/services/common-helper.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'Header',
@@ -8,7 +9,8 @@ import { CommonHelperService } from 'src/app/services/common-helper.service';
 })
 export class HeaderComponent implements OnInit {
   isUserAvailabe;
-  constructor(private commonHelper:CommonHelperService ) { 
+  constructor(private commonHelper:CommonHelperService,
+    private router:Router) { 
     this.commonHelper.getUserStatus.subscribe(res=>{
       this.isUserAvailabe=res;
       if(this.isUserAvailabe)
@@ -24,5 +26,10 @@ export class HeaderComponent implements OnInit {
   logout(){
     localStorage.clear();
     this.commonHelper.setUserStatus('');
+  }
+
+  login(){
+   
+    this.router.navigate(['login'])
   }
 }

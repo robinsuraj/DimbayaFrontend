@@ -9,12 +9,12 @@ import { OtpComponent } from './components/otp/otp.component';
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home'},
   {path: 'home', component: HomeComponent},
-  { path: 'pay', loadChildren: './payment/payment.module#PaymentModule' },
+  { path: 'services', loadChildren: './payment/payment.module#PaymentModule',canActivate : [AuthGuardService] },
   
   // {path: 'pay', component: SignupComponent,canActivate : [AuthGuardService]},
   {path: 'login', component: LoginComponent},
   // {path: 'payment', component: PaymentComponent},
-  {path: 'dashboard', component: DashboardComponent, canActivate : [AuthGuardService]},
+  // {path: 'dashboard', component: DashboardComponent, canActivate : [AuthGuardService]},
   {path: 'otp', component: OtpComponent},
   {path: '**', redirectTo:'home'}];
 @NgModule({

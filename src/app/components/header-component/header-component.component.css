@@ -450,3 +450,19 @@ header .container-fluid {
         width: 100%;
     }
 }
+
+
+.w3layouts-login{
+    float:right;
+    display: flex;
+    align-items: center;
+}
+
+.w3layouts-login a{
+    display: block;
+    letter-spacing: 2px;
+    font-size: 13px;
+    color: #fff905;
+    text-decoration: none;
+    margin: 0 0.3em;
+}

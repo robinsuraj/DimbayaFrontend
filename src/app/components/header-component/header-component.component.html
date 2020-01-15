@@ -1,20 +1,26 @@
 <header>
   <div class="container-fluid">
       <div class="logo">
-          <a href="#">Dimbaya</a>
+          <a routerLink="/home">Dimbaya</a>
       </div>
       <div class="header-link" *ngIf="isUserAvailabe">
           <ul>
               <li>
-                  <a href="#">
+                  <a >
                       <i class="fa fa-user" aria-hidden="true"></i>
                   </a>
                   <ul >
-                      <li><a >Profile</a></li>
+                      <li><a>Profile</a></li>
                       <li><a  (click)="logout()">Logout</a></li>
                   </ul>
               </li>
           </ul>
       </div>
+
+      <div *ngIf="!isUserAvailabe" class="w3layouts-login">
+        <a (click)="login()" style="cursor: pointer;">
+            <i class="glyphicon glyphicon-user">   
+            </i>Login/Register</a>
+     </div>
   </div>
 </header>

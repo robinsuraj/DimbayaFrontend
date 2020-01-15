@@ -68,14 +68,14 @@
                 type="text" autoComplete="on" list="suggestions">
 
             </div>
-            <div class=" row">
+            <!-- <div class=" row">
               <select formControlName="serviceType" (change)="serviceType($event.target.value)"
                 [ngClass]="checkFieldValid('serviceType')">
                 <option value="" disabled selected hidden>Select Service Type</option>
                 <option value="mobile">Mobile Recharge</option>
                 <option value="prepaid">Prepaid Electrity</option>
               </select>
-            </div>
+            </div> -->
             <div class=" row">
               <span>{{countryCode}}</span>
               <input type="text" numbersOnly [ngClass]="checkFieldValid('mobileNumber')"

@@ -66,7 +66,7 @@ export class PaymentComponent implements OnInit {
       countryCode:[this.country,Validators.required],
       mobileNumber:['',Validators.required],
       amount:['',Validators.required],
-      serviceType:['',Validators.required],
+      // serviceType:['',Validators.required],
       meterNumber:[''],
       currencyCode:[this.currencyList[0].code,Validators.required]
     })
@@ -159,7 +159,7 @@ export class PaymentComponent implements OnInit {
        // meterNumber:this.signUpForm.get('meterNumber').value,
       }
       this.commonHelper.setUserDataForPayment(registerRequest);
-      this.router.navigate(['pay/payment2'])
+      this.router.navigate(['services/payment_details'])
 
       // this.authenticationService.register(registerRequest).subscribe(response=>{
       //   this.commonHelper.showSuccessToast("Registration Success","Success",5000);

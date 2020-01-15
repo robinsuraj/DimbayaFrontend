@@ -17,7 +17,12 @@ export class HomeComponent implements OnInit {
   @ViewChild('payment',{static: false}) private paymentPage: ElementRef;
   constructor(
     private router:Router,
-    private commonHelper:CommonHelperService) { }
+    private commonHelper:CommonHelperService) { 
+      if(localStorage.getItem('token')){
+        this.router.navigate(['/services'])
+      }
+
+    }
 
   ngOnInit() {
     this.isLoggedIn=localStorage.getItem('token');

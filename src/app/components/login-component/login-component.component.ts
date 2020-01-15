@@ -25,8 +25,8 @@ export class LoginComponent implements OnInit {
       this.countryCode = res;
     })
 
-    if (localStorage.getItem('user')) {
-      this.router.navigate(['/dashboard'])
+    if (localStorage.getItem('token')) {
+      this.router.navigate(['/services'])
     }
   }
 
@@ -65,6 +65,10 @@ export class LoginComponent implements OnInit {
     } else {
       this.commonHelper.validateFormFields(this.loginForm)
     }
+  }
+
+  moveBackPage(){
+      window.history.back();
   }
 
 }

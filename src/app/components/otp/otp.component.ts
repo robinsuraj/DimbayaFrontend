@@ -35,13 +35,25 @@ export class OtpComponent implements OnInit {
   }
   moveCursor(event){
 
+    if(event.keyCode==8){
+    let element=  event.srcElement.previousElementSibling;
+      if(element == null)  // check if its null
+      return;
+    else{
+      element.focus(); 
+      element.select();
+      return;
+    }
+}
+
+  
     let element = event.srcElement.nextElementSibling; // get the sibling element
     if(element == null)  // check if its null
         return;
-    else
-        element.focus(); 
+    else{
+              element.focus(); 
         element.select();
-  }
+  }}
 
   validLogin(){
     if(this.otpForm.valid ){
@@ -57,7 +69,7 @@ export class OtpComponent implements OnInit {
         this.commonHelper.showSuccessToast(res.message,"Success",5000);
         localStorage.setItem('token',res.data.token);
         localStorage.setItem('userActivities',res.data.user.activities);
-        this.router.navigate(['/pay/payment1'])
+        this.router.navigate(['/services/mobile_recharge'])
       },err=>{
         this.commonHelper.showErrorToast(err.error.message,'Error',5000);
       })
@@ -65,4 +77,8 @@ export class OtpComponent implements OnInit {
       this.commonHelper.validateFormFields(this.otpForm)
     }
   }
+
+  moveBackPage(){
+    window.history.back();
+}
 }

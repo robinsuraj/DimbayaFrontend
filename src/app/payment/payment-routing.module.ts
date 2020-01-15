@@ -5,9 +5,9 @@ import { PayCreditCardDetailsComponent } from './pay-credit-card-details/pay-cre
 
 
 const routes: Routes = [
-
-  {path: 'payment1', component:PaymentComponent},
-  {path: 'payment2', component:PayCreditCardDetailsComponent},
+  {path: '', redirectTo:'mobile_recharge'},
+  {path: 'mobile_recharge', component:PaymentComponent},
+  {path: 'payment_details', component:PayCreditCardDetailsComponent},
 ];
 
 @NgModule({

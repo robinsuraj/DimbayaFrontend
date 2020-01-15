@@ -38,7 +38,7 @@ export class CommonHelperService {
     return this.http.get("https://restcountries.eu/rest/v2/all");
   }
 
-  private userStatus = new BehaviorSubject(localStorage.getItem('user'));
+  private userStatus = new BehaviorSubject(localStorage.getItem('token'));
   getUserStatus = this.userStatus.asObservable();
   setUserStatus(data) {
     this.userStatus.next(data);
