@@ -85,9 +85,12 @@ export class PayCreditCardDetailsComponent implements OnInit {
     }
 
       back(){
-        window.history.go(-1);
+        this.cardSelect=false;
       }
 
+      home(){
+        window.history.back();
+      }
       cardProceed(){
         this.cardSelect = true;
       }

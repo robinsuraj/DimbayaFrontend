@@ -55,6 +55,8 @@
           <p>iDeal</p>
         </div>
       </form>
+      <button type="button" class="btn btn-danger" (click)="home()">Back</button>
+    
     </div>
   
     <div *ngIf="cardSelect" class="containerPayment">
@@ -66,8 +68,16 @@
     
         <div class="form-body">
           <!-- Card Number -->
-          <input type="text" numbersOnly [ngClass]="checkFieldValid('cardNumber')" maxlength="16" minlength="16"
-            class="card-number" placeholder="Card Number" formControlName="cardNumber">
+
+
+          <div class="input-group input-group-lg">
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="fa fa-credit-card"></i></div>
+            </div>
+            <input  class="form-control" type="text" numbersOnly [ngClass]="checkFieldValid('cardNumber')" maxlength="16" minlength="16"
+            placeholder="Card Number" formControlName="cardNumber">           
+          </div>
+
           <span *ngIf="checkMinMaxError('cardNumber')" style="color: red">
             Card Number should be atleast {{paymentForm.get('cardNumber').errors.minlength.requiredLength}} digits .
           </span>
@@ -104,7 +114,7 @@
           <!-- Card Verification Field -->
           <div class="card-verification">
             <div class="cvv-input">
-              <input type="text" [ngClass]="checkFieldValid('cvv')" minlength="3" maxlength="4" placeholder="CVV"
+              <input style="line-height: 40px" type="text" [ngClass]="checkFieldValid('cvv')" minlength="3" maxlength="4" placeholder="CVV"
                 formControlName="cvv">
               <span *ngIf="checkMinMaxError('cvv')" style="color: red">
                 CVV Number should be atleast {{paymentForm.get('cvv').errors.minlength.requiredLength}} digits .
@@ -115,14 +125,14 @@
             </div>
           </div>
           <div class="savedCrad">
-            <!-- <mat-checkbox>Save this card for faster payments<i class="material-icons" style="font-size: 15px;"  -->
+            <!-- <mat-checkbox>Save this card for faster payments<i class="material-icons" style="font-size: 15px;" 
               matTooltip="Save your credit card information and make your next purchase quick. Your card information is encrypted and safe with us. We dont store cvv number.">
               info
-              <!-- </i></mat-checkbox> -->
+              </i></mat-checkbox> -->
           </div>
           
           <!-- Buttons -->
-          <button type="submit" class="proceed-btn" (click)="proceed()">Proceed</button>
+          <button style="line-height: 35px;"type="submit" class="proceed-btn" (click)="proceed()">Proceed</button>
           <!-- <mat-divider></mat-divider> -->
           <div style="padding-top: 21px;">
     
@@ -136,7 +146,7 @@
               </span>
             </a>
           </div>
-          <button type="button" class="btn btn-danger-lg" (click)="back()">Back</button>
+          <button type="button" class="btn btn-danger" (click)="back()">Back</button>
     
         </div>
       </form>

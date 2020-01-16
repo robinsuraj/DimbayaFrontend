@@ -283,9 +283,7 @@ input {
     padding-bottom: 12px;
     display: block;
 }
-.container-fluid {
-    padding: 0 15px;
-}
+
 header .container-fluid {
     display: flex;
     justify-content: space-between;

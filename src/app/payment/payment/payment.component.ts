@@ -37,20 +37,19 @@ export class PaymentComponent implements OnInit {
               private router:Router) { 
                 this.commonHelper.getSelectedCountry.subscribe(res => {
                   if(res){
-                 
               let country=  this.countrys.filter(x=>x.callingCodes[0] == res.split('+').join(''))
               this.countryCode='+'+country[0].callingCodes[0]
               this.countryName=country[0].name
               this.country =  this.countryName +'('+this.countryCode+')'
+              this.flag=country[0].flag
             }else{
               this.countryName=this.countrys[0].name 
               this.country= this.countryName +'(+'+this.countrys[0].callingCodes[0]+')';
               this.countryCode='+'+this.countrys[0].callingCodes[0]+''
+              this.flag=this.countrys[0].flag
             }
                 })
-      if(localStorage.getItem('user')){
-        this.router.navigate(['/dashboard'])
-      }
+   
     }
 
   ngOnInit() {

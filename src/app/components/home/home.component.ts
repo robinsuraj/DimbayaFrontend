@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
     private router:Router,
     private commonHelper:CommonHelperService) { 
       if(localStorage.getItem('token')){
-        this.router.navigate(['/services'])
+        this.router.navigate(['services'])
       }
 
     }
