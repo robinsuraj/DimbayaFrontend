@@ -120,9 +120,10 @@ export class PayCreditCardDetailsComponent implements OnInit {
 
       this.authenticationService.paypal(paymentObj).subscribe(response => {
         console.log("response============>", response)
+      
         // localStorage.setItem('user', paymentObj.buyerName)
         // this.commonHelper.setUserStatus(paymentObj.buyerName);
-        // this.router.navigate(['/dashboard'])
+        window.open(response.data)
       }, err => {
         console.log("err============>", err)
         this.commonHelper.showErrorToast(err.error.message, 'Error', 5000);
