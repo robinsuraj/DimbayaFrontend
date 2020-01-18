@@ -16,6 +16,10 @@ export class AuthenticationService {
     return this.http.post("http://3.136.169.121:7000/api/payment",data);
   }
 
+  paypal(data):Observable<any>{
+    return this.http.post("http://3.136.169.121:7000/api/payment/paypal",data);
+  }
+
   //login user API
 
   loginUser(data):Observable<any>{

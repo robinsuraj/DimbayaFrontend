@@ -1,10 +1,10 @@
 <div class="container-contact100">
     <div *ngIf="!cardSelect" class="wrap-contact100">
       <form class="contact100-form validate-form">
-        <div class="wrap-input100 validate-input bg1">
-          <!-- <mat-radio-button value="1">
+        <!-- <div class="wrap-input100 validate-input bg1">
+          <mat-radio-button value="1">
             
-            <img src="../../../assets/images/visa.png" width="35px;" style="margin-right:10px;"></mat-radio-button> -->
+            <img src="../../../assets/images/visa.png" width="35px;" style="margin-right:10px;"></mat-radio-button>
           <input type="radio"> <span class="label-input100 border-ri">
             <img src="../../../assets/images/visa.png" width="35px;" style="margin-right:10px;"></span>
           <div class="right-side">
@@ -16,20 +16,148 @@
   
         <span class="contact100-form-title">
           <p>or</p>
-        </span>
-  
+        </span> -->
+        <div class="card" style="width: 100%;">
+          <div class="card-body">
+            <h5 class="card-title">Summary</h5>
+            <br>
+            <!-- <h6 class="card-subtitle mb-2 text-muted">Payment Details:</h6> -->
+            <div class="row">
+              <div class="col">
+                <p class="card-text">Top Up Amount:</p>
+              </div>
+              <div class="col">
+                <p class="card-text"> {{userData.amount}} {{userData.currencySymbol}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p class="card-text">Processing fee:</p>
+              </div>
+              <div class="col">
+                <p class="card-text">0 {{userData.currencySymbol}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p class="card-text">Total:</p>
+              </div>
+              <div class="col">
+                <p class="card-text">{{userData.amount}} {{userData.currencySymbol}}</p>
+              </div>
+            </div>
+       
+          </div>
+        </div>
+        <br>
+        <hr> 
+        <!-- <h2>Payment Methods</h2> -->
+        <div style="width: 100%; margin-top: 10px;">
+          <h5 class="card-title" style="padding: 1.25rem;">Payment Methods</h5>
         <div class="wrap-input100 validate-input bg1">
           <!-- <mat-radio-button value="1">Card</mat-radio-button> -->
-          <input type="radio"> <span class="label-input100">Card</span>
+          <input type="radio" (click)="setradio('Card')" [checked]="isSelected('Card')"> <span class="label-input100">Card</span>
           <div class="right-side">
             <i class="fa fa-cc-visa" aria-hidden="true" style="padding-right:25px;"></i>
           <i class="fa fa-cc-mastercard" aria-hidden="true"></i>
             <img src="../../../assets/images/visa.png" width="35px;" style="margin-right:10px;"><img
               src="../../../assets/images/Master.png" width="30px;"></div>
         </div>
+        <div *ngIf="isSelected('Card')">
+          <form class="credit-card-de" [formGroup]="paymentForm">
+            <div class="form-header">
+              <h4 class="title">CREDIT/ DEBIT CARD</h4>
+            </div>
+        
+        
+            <div class="form-body">
+              <!-- Card Number -->
+    
+    
+              <div class="input-group input-group-lg">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fa fa-credit-card"></i></div>
+                </div>
+                <input  class="form-control" type="text" numbersOnly [ngClass]="checkFieldValid('cardNumber')" maxlength="16" minlength="16"
+                placeholder="Card Number" formControlName="cardNumber">           
+              </div>
+    
+              <span *ngIf="checkMinMaxError('cardNumber')" style="color: red">
+                Card Number should be atleast {{paymentForm.get('cardNumber').errors.minlength.requiredLength}} digits .
+              </span>
+              <!-- Date Field -->
+              <div class="date-field">
+                <div class="month">
+                  <select name="Month" [ngClass]="checkFieldValid('expiryMonth')" formControlName="expiryMonth">
+                    <option value="january">January</option>
+                    <option value="february">February</option>
+                    <option value="march">March</option>
+                    <option value="april">April</option>
+                    <option value="may">May</option>
+                    <option value="june">June</option>
+                    <option value="july">July</option>
+                    <option value="august">August</option>
+                    <option value="september">September</option>
+                    <option value="october">October</option>
+                    <option value="november">November</option>
+                    <option value="december">December</option>
+                  </select>
+                </div>
+                <div class="year">
+                  <select name="Year" [ngClass]="checkFieldValid('expiryYear')" formControlName="expiryYear">
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                  </select>
+                </div>
+              </div>
+        
+              <!-- Card Verification Field -->
+              <div class="card-verification">
+                <div class="cvv-input">
+                  <input style="line-height: 40px" type="text" [ngClass]="checkFieldValid('cvv')" minlength="3" maxlength="4" placeholder="CVV"
+                    formControlName="cvv">
+                  <span *ngIf="checkMinMaxError('cvv')" style="color: red">
+                    CVV Number should be atleast {{paymentForm.get('cvv').errors.minlength.requiredLength}} digits .
+                  </span>
+                </div>
+                <div class="cvv-details">
+                  <p>3 or 4 digits usually found <br> on the signature strip</p>
+                </div>
+              </div>
+              <div class="savedCrad">
+                <!-- <mat-checkbox>Save this card for faster payments<i class="material-icons" style="font-size: 15px;" 
+                  matTooltip="Save your credit card information and make your next purchase quick. Your card information is encrypted and safe with us. We dont store cvv number.">
+                  info
+                  </i></mat-checkbox> -->
+              </div>
+              
+              <!-- Buttons -->
+              <button style="line-height: 35px;"type="submit" class="proceed-btn" (click)="proceed()">Proceed</button>
+              <!-- <mat-divider></mat-divider> -->
+              <!-- <div style="padding-top: 21px;">
+        
+                <a class="paypal-button"
+                  href="http://ec2-3-136-169-121.us-east-2.compute.amazonaws.com:7000/api/payment/paypal">
+                  <span class="paypal-button-title">
+                    Pay with
+                  </span>
+                  <span class="paypal-logo">
+                    <i>Pay</i><i>Pal</i>
+                  </span>
+                </a>
+              </div> -->
+              <!-- <button type="button" class="btn btn-danger" (click)="back()">Back</button> -->
+        
+            </div>
+          </form>
+        </div>
         <div class="wrap-input100 validate-input bg1">
           <!-- <mat-radio-button value="1">PayPal</mat-radio-button> -->
-          <input type="radio"> <span class="label-input100">PayPal</span>
+          <input type="radio" (click)="setradio('Paypal')" [checked]="isSelected('Paypal')"> <span class="label-input100">PayPal</span>
           <div class="right-side">
             <img src="../../../assets/images/paypal.png" width="30px;"></div>
         </div>
@@ -45,15 +173,10 @@
           <div class="right-side">
             <img src="../../../assets/images/alipay.png" width="55px;"></div>
         </div>
-        <div class="wrap-input100 validate-input bg1">
-          <!-- <mat-radio-button value="1">American Express</mat-radio-button> -->
-          <input type="radio"> <span class="label-input100">AliPay</span>
-          <div class="right-side">
-            <img src="../../../assets/images/alipay.png" width="55px;"></div>
+        <div *ngIf="isSelected('Paypal')" class="wrap-input100 validate-input bg1 text-center" style="cursor:pointer" (click)="cardProceed()">
+          <p>Continue</p>
         </div>
-        <div class="wrap-input100 validate-input bg1 text-center" style="cursor:pointer" (click)="cardProceed()">
-          <p>iDeal</p>
-        </div>
+      </div>
       </form>
       <button type="button" class="btn btn-danger" (click)="home()">Back</button>
     
