@@ -13,7 +13,7 @@ import {
       },
       {
         id: FacebookLoginProvider.PROVIDER_ID,
-        provider: new FacebookLoginProvider("175122853564083")
+        provider: new FacebookLoginProvider("484677285578637")
       }
     ]);
   

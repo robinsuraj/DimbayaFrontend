@@ -7474,7 +7474,7 @@ function getAuthServiceConfigs() {
         },
         {
             id: angularx_social_login__WEBPACK_IMPORTED_MODULE_1__["FacebookLoginProvider"].PROVIDER_ID,
-            provider: new angularx_social_login__WEBPACK_IMPORTED_MODULE_1__["FacebookLoginProvider"]("175122853564083")
+            provider: new angularx_social_login__WEBPACK_IMPORTED_MODULE_1__["FacebookLoginProvider"]("484677285578637")
         }
     ]);
     return config;
