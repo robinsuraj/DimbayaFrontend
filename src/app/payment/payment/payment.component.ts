@@ -144,6 +144,9 @@ export class PaymentComponent implements OnInit {
   register(){
     // console.log("this.",this.signUpForm)
     if(this.signUpForm.valid){
+      let currencySymbolFilter = this.currencyList.find(s=>s.code == this.signUpForm.get('currencyCode').value)
+      console.log(currencySymbolFilter)
+      console.log(this.currencyList)
       // console.log("this.signUpForm.get('firstName').value",this.signUpForm.get('firstName').value)
       const registerRequest ={
         buyerName: this.signUpForm.get('firstName').value,
@@ -154,7 +157,8 @@ export class PaymentComponent implements OnInit {
         mobile: this.signUpForm.get('mobileNumber').value,
         amount: this.signUpForm.get('amount').value,
         serviceType: 'mobile',
-        currency:this.signUpForm.get('currencyCode').value
+        currency:this.signUpForm.get('currencyCode').value,
+        currencySymbol:currencySymbolFilter.symbol
        // meterNumber:this.signUpForm.get('meterNumber').value,
       }
       this.commonHelper.setUserDataForPayment(registerRequest);

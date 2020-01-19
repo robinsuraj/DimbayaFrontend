@@ -12,34 +12,50 @@ import { Router } from '@angular/router';
 export class PayCreditCardDetailsComponent implements OnInit {
   paymentForm: FormGroup;
   userData;
-  cardSelect: boolean=false;
-  constructor(private fb:FormBuilder,
-              private authenticationService:AuthenticationService,
-              private commonHelper:CommonHelperService,
-              private router:Router
-    ) { 
-      this.commonHelper.getUserDataForPayment.subscribe(userData=>{
-        this.userData=userData
-        // if(Object.entries(this.userData).length === 0 && this.userData.constructor === Object ){
-        //   this.router.navigate(['/signup'])
-        // }
-      })
+  cardSelect: boolean = false;
+  constructor(private fb: FormBuilder,
+    private authenticationService: AuthenticationService,
+    private commonHelper: CommonHelperService,
+    private router: Router
+  ) {
+    this.commonHelper.getUserDataForPayment.subscribe(userData => {
+      this.userData = userData
+      console.log("this.userData", this.userData)
+      // if(Object.entries(this.userData).length === 0 && this.userData.constructor === Object ){
+      //   this.router.navigate(['/signup'])
+      // }
+    })
+  }
+  private selectedLink: string = "Card";
+
+  setradio(e: string): void {
+
+    this.selectedLink = e;
+
+  }
+
+  isSelected(name: string): boolean {
+
+    if (!this.selectedLink) { // if no radio button is selected, always return false so every nothing is shown  
+      return false;
     }
 
+    return (this.selectedLink === name); // if current radio button is selected, return true, else return false  
+  }
   ngOnInit() {
-    
+
     this.paymentForm = this.fb.group({
-      cardNumber:['',Validators.required],
-      expiryMonth:['january',Validators.required],
-      cvv:['',Validators.required],
-      expiryYear:['2019',Validators.required]
+      cardNumber: ['', Validators.required],
+      expiryMonth: ['january', Validators.required],
+      cvv: ['', Validators.required],
+      expiryYear: ['2019', Validators.required]
     })
   }
 
-  proceed(){
-    console.log("this.",this.paymentForm)
-    if(this.paymentForm.valid){
-      const paymentObj ={
+  proceed() {
+    console.log("this.", this.paymentForm)
+    if (this.paymentForm.valid) {
+      const paymentObj = {
         ...this.userData,
         number: this.paymentForm.get('cardNumber').value,
         exp_month: this.paymentForm.get('expiryMonth').value,
@@ -52,46 +68,68 @@ export class PayCreditCardDetailsComponent implements OnInit {
       // this.commonHelper.setUserStatus(paymentObj.buyerName);
       // this.router.navigate(['/dashboard'])
 
-      
-       this.authenticationService.payment(paymentObj).subscribe(response=>{
-        console.log("response============>",response)
-        localStorage.setItem('user',paymentObj.buyerName)
-      this.commonHelper.setUserStatus(paymentObj.buyerName);
-      this.router.navigate(['/dashboard'])
-      },err=>{
-        this.commonHelper.showErrorToast(err.error.message,'Error',5000);
-      // localStorage.clear();
-      // this.commonHelper.setUserStatus('');
+
+      this.authenticationService.payment(paymentObj).subscribe(response => {
+        console.log("response============>", response)
+        localStorage.setItem('user', paymentObj.buyerName)
+        this.commonHelper.setUserStatus(paymentObj.buyerName);
+        this.router.navigate(['/dashboard'])
+      }, err => {
+        this.commonHelper.showErrorToast(err.error.message, 'Error', 5000);
+        // localStorage.clear();
+        // this.commonHelper.setUserStatus('');
       })
-    }else{
+    } else {
       this.commonHelper.validateFormFields(this.paymentForm)
     }
   }
 
 
-   checkFieldValid(formControl){
-    if(this.paymentForm.get([formControl]).errors && this.paymentForm.get([formControl]).errors.required &&
-       this.paymentForm.get([formControl]).touched) {
-        return 'is-invalid';
-       }else{
-        return  this.checkMinMaxError(formControl);
-       }
-    }
-    checkMinMaxError(formControl){
-      // console.log(this.paymentForm.get([formControl]).errors && (this.paymentForm.get([formControl]).errors.minlength && this.paymentForm.get([formControl]).touched && !this.paymentForm.get([formControl]).errors.required ))
-     if(this.paymentForm.get([formControl]).errors && (this.paymentForm.get([formControl]).errors.minlength && this.paymentForm.get([formControl]).touched && !this.paymentForm.get([formControl]).errors.required )){
+  checkFieldValid(formControl) {
+    if (this.paymentForm.get([formControl]).errors && this.paymentForm.get([formControl]).errors.required &&
+      this.paymentForm.get([formControl]).touched) {
       return 'is-invalid';
-     }else return '';
+    } else {
+      return this.checkMinMaxError(formControl);
     }
+  }
+  checkMinMaxError(formControl) {
+    // console.log(this.paymentForm.get([formControl]).errors && (this.paymentForm.get([formControl]).errors.minlength && this.paymentForm.get([formControl]).touched && !this.paymentForm.get([formControl]).errors.required ))
+    if (this.paymentForm.get([formControl]).errors && (this.paymentForm.get([formControl]).errors.minlength && this.paymentForm.get([formControl]).touched && !this.paymentForm.get([formControl]).errors.required)) {
+      return 'is-invalid';
+    } else return '';
+  }
 
-      back(){
-        this.cardSelect=false;
-      }
+  back() {
+    this.cardSelect = false;
+  }
 
-      home(){
-        window.history.back();
+  home() {
+    window.history.back();
+  }
+  cardProceed() {
+      const paymentObj = {
+        ...this.userData
       }
-      cardProceed(){
-        this.cardSelect = true;
-      }
+      // alert("seucess")
+      // this.router.navigate(['/payment'])
+      // localStorage.setItem('user',paymentObj.buyerName)
+      // this.commonHelper.setUserStatus(paymentObj.buyerName);
+      // this.router.navigate(['/dashboard'])
+
+
+      this.authenticationService.paypal(paymentObj).subscribe(response => {
+        console.log("response============>", response)
+      
+        // localStorage.setItem('user', paymentObj.buyerName)
+        // this.commonHelper.setUserStatus(paymentObj.buyerName);
+        window.open(response.data)
+      }, err => {
+        console.log("err============>", err)
+        this.commonHelper.showErrorToast(err.error.message, 'Error', 5000);
+        // localStorage.clear();
+        // this.commonHelper.setUserStatus('');
+      })
+    
+  }
 }
