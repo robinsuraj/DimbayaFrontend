@@ -27,11 +27,9 @@
             <div class="signup-option">
                 <h2>Sign in with</h2>
                 <div class="btn-wrapper">
-                    <a href="http://ec2-3-136-169-121.us-east-2.compute.amazonaws.com:7000/api/auth/facebook"
+                    <a (click)="signinWithFB()"
             class="btn btn-primary">Facebook</a>
-          <a href="http://ec2-3-136-169-121.us-east-2.compute.amazonaws.com:7000/api/auth/google"
-            class="btn btn-danger">
-            Google +</a>
+            <a (click)="signinWithGoogle()"class="btn btn-danger"> Google +</a>
                 </div>
             </div>
         </div>

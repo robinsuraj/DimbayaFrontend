@@ -20,6 +20,8 @@ import { DialogComponent } from './shared/dialog/dialog.component';
 import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 import { NgHttpLoaderModule } from 'ng-http-loader'; 
 import { OtpComponent } from './components/otp/otp.component';
+import { getAuthServiceConfigs } from './socialloginConfig';
+import {SocialLoginModule,  AuthServiceConfig, GoogleLoginProvider} from 'angularx-social-login';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,13 +43,14 @@ import { OtpComponent } from './components/otp/otp.component';
     SharedModule,
     BsDropdownModule.forRoot(),
     NgxIntlTelInputModule,
+    SocialLoginModule.initialize(getAuthServiceConfigs()),
     ToastrModule.forRoot({timeOut: 3000,
       positionClass: 'toast-top-right',
       preventDuplicates: true}) ,
     
       NgHttpLoaderModule.forRoot(),
   ],
-  providers: [
+  providers: [ 
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorService,

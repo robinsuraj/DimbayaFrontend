@@ -5,6 +5,7 @@ import { PaymentRoutingModule } from './payment-routing.module';
 import { PaymentComponent } from './payment/payment.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { PayCreditCardDetailsComponent } from './pay-credit-card-details/pay-credit-card-details.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { PayCreditCardDetailsComponent } from './pay-credit-card-details/pay-cre
     CommonModule,
     PaymentRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ]
 })
 export class PaymentModule { }

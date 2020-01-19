@@ -3,7 +3,7 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CommonHelperService } from 'src/app/services/common-helper.service';
 import { Router } from '@angular/router';
-
+import { AuthService, GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
 @Component({
   selector: 'app-login-component',
   templateUrl: './login-component.component.html',
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private authService: AuthenticationService,
     private commonHelper: CommonHelperService,
-    private router: Router) {
+    private router: Router, private socialAuthService: AuthService ) {
 
     this.commonHelper.getSelectedCountry.subscribe(res => {
       console.log(res)
@@ -42,6 +42,28 @@ export class LoginComponent implements OnInit {
     a.focus();
     a.click();
   }
+
+  public signinWithGoogle () {
+    let socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+    this.socialAuthService.signIn(socialPlatformProvider)
+    .then((userData) => {
+       //on success
+       console.log(userData)
+       //this will return user data from google. What you need is a user token which you will send it to the server
+       this.authService.sendToRestApiMethod(userData);
+    });
+ }
+
+ public signinWithFB () {
+  let socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
+  this.socialAuthService.signIn(socialPlatformProvider)
+  .then((userData) => {
+     //on success
+     console.log(userData)
+     //this will return user data from google. What you need is a user token which you will send it to the server
+     this.authService.sendToRestApiMethod(userData);
+  });
+}
 
   setCountry(event) {
     console.log(event.target.value)

@@ -38,8 +38,8 @@
             </select>
             <img class="country-flag" *ngIf="flag" src={{flag}} />
 
-            <input type="tel" formControlName="mobileNumber" id="mobile-number" class="form-control"
-              placeholder="e.g. +1 702 123 4567">
+            <input type="tel" numbersOnly formControlName="mobileNumber" id="mobile-number" class="form-control"
+              placeholder="e.g.702 123 4567">
             <span style="color: red">
               <small
                 *ngIf="!loginForm.get('mobileNumber').errors?.required && loginForm.get('mobileNumber').errors && !loginForm.get('mobileNumber').errors?.validatePhoneNumber?.valid && loginForm.get('mobileNumber').touched">Enter
@@ -57,12 +57,11 @@
       <div class="signup-option">
         <h2>Sign in with</h2>
         <div class="btn-wrapper">
-          <a href="http://ec2-3-136-169-121.us-east-2.compute.amazonaws.com:7000/api/auth/facebook"
+          <a (click)="signinWithFB()"
             class="btn btn-primary">Facebook</a>
-          <a href="http://ec2-3-136-169-121.us-east-2.compute.amazonaws.com:7000/api/auth/google"
-            class="btn btn-danger">
-            Google +</a>
+          <a (click)="signinWithGoogle()"class="btn btn-danger"> Google +</a>
         </div>
+        
       </div>
     </div>
   </div>

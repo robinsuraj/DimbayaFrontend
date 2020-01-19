@@ -3,6 +3,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { CommonHelperService } from 'src/app/services/common-helper.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router } from '@angular/router';
+import { AuthService, GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
 
 @Component({
   selector: 'app-otp',
@@ -14,8 +15,9 @@ export class OtpComponent implements OnInit {
   mobileNumber;
   countryCode;
   constructor(private fb:FormBuilder,
-              private commonHelper:CommonHelperService,private authService:AuthenticationService,
-              private router:Router) {
+              private commonHelper:CommonHelperService,
+              private authService:AuthenticationService,
+              private router:Router, private socialAuthService: AuthService ) {
                 this.commonHelper.getMobileNumber.subscribe(res=>{
                   this.mobileNumber=res;
                 })
@@ -54,6 +56,30 @@ export class OtpComponent implements OnInit {
               element.focus(); 
         element.select();
   }}
+
+
+
+  public signinWithGoogle () {
+    let socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+    this.socialAuthService.signIn(socialPlatformProvider)
+    .then((userData) => {
+       //on success
+       console.log(userData)
+       //this will return user data from google. What you need is a user token which you will send it to the server
+       this.authService.sendToRestApiMethod(userData);
+    });
+ }
+
+ public signinWithFB () {
+  let socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
+  this.socialAuthService.signIn(socialPlatformProvider)
+  .then((userData) => {
+     //on success
+     console.log(userData)
+     //this will return user data from google. What you need is a user token which you will send it to the server
+     this.authService.sendToRestApiMethod(userData);
+  });
+}
 
   validLogin(){
     if(this.otpForm.valid ){

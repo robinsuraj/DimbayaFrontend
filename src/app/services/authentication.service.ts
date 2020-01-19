@@ -25,4 +25,11 @@ export class AuthenticationService {
   loginUserVerify(data):Observable<any>{
     return this.http.post("http://3.136.169.121:7000/api/users/verify",data);
   }
+
+  sendToRestApiMethod(userData) : void {
+    this.http.post("http://ec2-3-136-169-121.us-east-2.compute.amazonaws.com:7000/api/auth/google",
+       {   userData: userData     }
+    )
+  }
+  
 }
