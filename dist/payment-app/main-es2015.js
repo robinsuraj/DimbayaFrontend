@@ -96,7 +96,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<!-- <div class=\"container\">\n  <form [formGroup]=\"loginForm\">\n    <div class=\"row\">\n      <h4>Account Details</h4>\n      <div class=\"input-group input-group-icon\">\n        <input \n        [ngClass]=\"{ 'is-invalid': loginForm.get('email').errors?.required && loginForm.get('email').touched   }\"\n        type=\"email\" placeholder=\"Email\" formControlName=\"email\">\n        <div class=\"input-icon\"><i class=\"fa fa-envelope\"></i></div>\n      </div>\n      <div class=\"input-group input-group-icon\">\n        <input \n        [ngClass]=\"{ 'is-invalid': loginForm.get('password').errors?.required && loginForm.get('password').touched   }\"\n        type=\"password\" placeholder=\"Password\" formControlName=\"password\">\n        <div class=\"input-icon\"><i class=\"fa fa-key\"></i></div>\n      </div>\n      <button style=\" line-height: 1.4;  height: 3.4em;\" class=\"btn btn-info  btn-block btn-round\"\n        (click)=\"login()\">Login</button>\n    </div>\n  </form>\n</div> -->\n\n\n<div class=\"modal-wrapper\" style=\"background: url(../../../assets/images/2.jpg) no-repeat 0 0/cover;height: 100vh;\">\n  <div class=\"modal-overlay\"></div>\n  <div class=\"modal-container\">\n    <div class=\"modal-content\">\n      <span class=\"close\" (click)=\"moveBackPage()\">&times;</span>\n      <h3> Welcome to Dimbaya</h3>\n      <div class=\"country-code-dropdown\">\n        <form [formGroup]=\"loginForm\">\n          <div class=\"form-group\">\n            \n            <select formControlName=\"countryCode\" (change)=\"setCountry($event)\">\n              <ng-container *ngFor=\"let country of countrys\">\n                <option value=\"+{{country.callingCodes[0]}}\">(+{{country.callingCodes[0]}}) {{country.name}}</option>\n              </ng-container>\n            </select>\n            <img class=\"country-flag\" *ngIf=\"flag\" src={{flag}} />\n\n            <input type=\"tel\" formControlName=\"mobileNumber\" id=\"mobile-number\" class=\"form-control\"\n              placeholder=\"e.g. +1 702 123 4567\">\n            <span style=\"color: red\">\n              <small\n                *ngIf=\"!loginForm.get('mobileNumber').errors?.required && loginForm.get('mobileNumber').errors && !loginForm.get('mobileNumber').errors?.validatePhoneNumber?.valid && loginForm.get('mobileNumber').touched\">Enter\n                Valid Mobile Number</small>\n              <small\n                *ngIf=\"loginForm.get('mobileNumber').errors?.required && loginForm.get('mobileNumber').touched\">Mobile\n                Number is Required.</small>\n            </span>\n          </div>\n          <div class=\"form-group\">\n            <button type=\"submit\" (click)=\"login()\" class=\"btn btn-primary\">Log In</button>\n          </div>\n        </form>\n      </div>\n      <div class=\"signup-option\">\n        <h2>Sign in with</h2>\n        <div class=\"btn-wrapper\">\n          <a href=\"http://ec2-3-136-169-121.us-east-2.compute.amazonaws.com:7000/api/auth/facebook\"\n            class=\"btn btn-primary\">Facebook</a>\n          <a href=\"http://ec2-3-136-169-121.us-east-2.compute.amazonaws.com:7000/api/auth/google\"\n            class=\"btn btn-danger\">\n            Google +</a>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<!-- <div class=\"container\">\n  <form [formGroup]=\"loginForm\">\n    <div class=\"row\">\n      <h4>Account Details</h4>\n      <div class=\"input-group input-group-icon\">\n        <input \n        [ngClass]=\"{ 'is-invalid': loginForm.get('email').errors?.required && loginForm.get('email').touched   }\"\n        type=\"email\" placeholder=\"Email\" formControlName=\"email\">\n        <div class=\"input-icon\"><i class=\"fa fa-envelope\"></i></div>\n      </div>\n      <div class=\"input-group input-group-icon\">\n        <input \n        [ngClass]=\"{ 'is-invalid': loginForm.get('password').errors?.required && loginForm.get('password').touched   }\"\n        type=\"password\" placeholder=\"Password\" formControlName=\"password\">\n        <div class=\"input-icon\"><i class=\"fa fa-key\"></i></div>\n      </div>\n      <button style=\" line-height: 1.4;  height: 3.4em;\" class=\"btn btn-info  btn-block btn-round\"\n        (click)=\"login()\">Login</button>\n    </div>\n  </form>\n</div> -->\n\n\n<div class=\"modal-wrapper\" style=\"background: url(../../../assets/images/2.jpg) no-repeat 0 0/cover;height: 100vh;\">\n  <div class=\"modal-overlay\"></div>\n  <div class=\"modal-container\">\n    <div class=\"modal-content\">\n      <span class=\"close\" (click)=\"moveBackPage()\">&times;</span>\n      <h3> Welcome to Dimbaya</h3>\n      <div class=\"country-code-dropdown\">\n        <form [formGroup]=\"loginForm\">\n          <div class=\"form-group\">\n            \n            <select formControlName=\"countryCode\" (change)=\"setCountry($event)\">\n              <ng-container *ngFor=\"let country of countrys\">\n                <option value=\"+{{country.callingCodes[0]}}\">(+{{country.callingCodes[0]}}) {{country.name}}</option>\n              </ng-container>\n            </select>\n            <img class=\"country-flag\" *ngIf=\"flag\" src={{flag}} />\n\n            <input type=\"tel\" numbersOnly formControlName=\"mobileNumber\" id=\"mobile-number\" class=\"form-control\"\n              placeholder=\"e.g.702 123 4567\">\n            <span style=\"color: red\">\n              <small\n                *ngIf=\"!loginForm.get('mobileNumber').errors?.required && loginForm.get('mobileNumber').errors && !loginForm.get('mobileNumber').errors?.validatePhoneNumber?.valid && loginForm.get('mobileNumber').touched\">Enter\n                Valid Mobile Number</small>\n              <small\n                *ngIf=\"loginForm.get('mobileNumber').errors?.required && loginForm.get('mobileNumber').touched\">Mobile\n                Number is Required.</small>\n            </span>\n          </div>\n          <div class=\"form-group\">\n            <button type=\"submit\" (click)=\"login()\" class=\"btn btn-primary\">Log In</button>\n          </div>\n        </form>\n      </div>\n      <div class=\"signup-option\">\n        <h2>Sign in with</h2>\n        <div class=\"btn-wrapper\">\n          <a (click)=\"signinWithFB()\"\n            class=\"btn btn-primary\">Facebook</a>\n          <a (click)=\"signinWithGoogle()\"class=\"btn btn-danger\"> Google +</a>\n        </div>\n        \n      </div>\n    </div>\n  </div>\n</div>");
 
 /***/ }),
 
@@ -109,7 +109,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"modal-wrapper\" style=\"background: url(../../../assets/images/2.jpg) no-repeat 0 0/cover;height: 100vh;\">\n    <div class=\"modal-overlay\"></div>\n    <div class=\"modal-container\">\n        <div class=\"modal-content\">\n            <span (click)=\"moveBackPage()\"class=\"close\">&times;</span>\n            <h3> Welcome to Dimbaya</h3>\n            <p>Please enter the 4-digit verification code we sent via SMS:</p>\n            <p>(we want to make sure it's you before we contact our movers)</p>\n            <form [formGroup]=\"otpForm\">\n                <div class=\"form-group otp-wrapper\">\n                    <input class=\"form-control\" formControlName=\"key1\" numbersOnly type=\"text\" (keyup)=\"moveCursor($event)\" maxLength=\"1\" size=\"1\" min=\"0\" max=\"9\" pattern=\"[0-9]{1}\" />\n                    <input class=\"form-control\" formControlName=\"key2\" numbersOnly type=\"text\" (keyup)=\"moveCursor($event)\" maxLength=\"1\" size=\"1\" min=\"0\" max=\"9\" pattern=\"[0-9]{1}\" />\n                    <input class=\"form-control\" formControlName=\"key3\" numbersOnly type=\"text\" (keyup)=\"moveCursor($event)\" maxLength=\"1\" size=\"1\" min=\"0\" max=\"9\" pattern=\"[0-9]{1}\" />\n                    <input class=\"form-control\" formControlName=\"key4\" numbersOnly type=\"text\" (keyup)=\"moveCursor($event)\" maxLength=\"1\" size=\"1\" min=\"0\" max=\"9\" pattern=\"[0-9]{1}\" />\n                </div>\n                <div class=\"form-group\">\n                    <button type=\"button\" (click)=\"validLogin()\" class=\"btn btn-primary\">Verify</button>\n                </div>\n                <div class=\"form-control\">\n                    <label>Didn't receive the code?</label>\n                    <div class=\"resend-btn-wrapper\">\n                        <a href=\"\">Send Code Again</a>\n                        <a href=\"\">Change Phone Number</a>\n                    </div>\n                </div>\n            </form>\n            <div class=\"signup-option\">\n                <h2>Sign in with</h2>\n                <div class=\"btn-wrapper\">\n                    <a href=\"http://ec2-3-136-169-121.us-east-2.compute.amazonaws.com:7000/api/auth/facebook\"\n            class=\"btn btn-primary\">Facebook</a>\n          <a href=\"http://ec2-3-136-169-121.us-east-2.compute.amazonaws.com:7000/api/auth/google\"\n            class=\"btn btn-danger\">\n            Google +</a>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"modal-wrapper\" style=\"background: url(../../../assets/images/2.jpg) no-repeat 0 0/cover;height: 100vh;\">\n    <div class=\"modal-overlay\"></div>\n    <div class=\"modal-container\">\n        <div class=\"modal-content\">\n            <span (click)=\"moveBackPage()\"class=\"close\">&times;</span>\n            <h3> Welcome to Dimbaya</h3>\n            <p>Please enter the 4-digit verification code we sent via SMS:</p>\n            <p>(we want to make sure it's you before we contact our movers)</p>\n            <form [formGroup]=\"otpForm\">\n                <div class=\"form-group otp-wrapper\">\n                    <input class=\"form-control\" formControlName=\"key1\" numbersOnly type=\"text\" (keyup)=\"moveCursor($event)\" maxLength=\"1\" size=\"1\" min=\"0\" max=\"9\" pattern=\"[0-9]{1}\" />\n                    <input class=\"form-control\" formControlName=\"key2\" numbersOnly type=\"text\" (keyup)=\"moveCursor($event)\" maxLength=\"1\" size=\"1\" min=\"0\" max=\"9\" pattern=\"[0-9]{1}\" />\n                    <input class=\"form-control\" formControlName=\"key3\" numbersOnly type=\"text\" (keyup)=\"moveCursor($event)\" maxLength=\"1\" size=\"1\" min=\"0\" max=\"9\" pattern=\"[0-9]{1}\" />\n                    <input class=\"form-control\" formControlName=\"key4\" numbersOnly type=\"text\" (keyup)=\"moveCursor($event)\" maxLength=\"1\" size=\"1\" min=\"0\" max=\"9\" pattern=\"[0-9]{1}\" />\n                </div>\n                <div class=\"form-group\">\n                    <button type=\"button\" (click)=\"validLogin()\" class=\"btn btn-primary\">Verify</button>\n                </div>\n                <div class=\"form-control\">\n                    <label>Didn't receive the code?</label>\n                    <div class=\"resend-btn-wrapper\">\n                        <a href=\"\">Send Code Again</a>\n                        <a href=\"\">Change Phone Number</a>\n                    </div>\n                </div>\n            </form>\n            <div class=\"signup-option\">\n                <h2>Sign in with</h2>\n                <div class=\"btn-wrapper\">\n                    <a (click)=\"signinWithFB()\"\n            class=\"btn btn-primary\">Facebook</a>\n            <a (click)=\"signinWithGoogle()\"class=\"btn btn-danger\"> Google +</a>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>");
 
 /***/ }),
 
@@ -491,6 +491,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shared_dialog_dialog_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./shared/dialog/dialog.component */ "./src/app/shared/dialog/dialog.component.ts");
 /* harmony import */ var ng_http_loader__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ng-http-loader */ "./node_modules/ng-http-loader/fesm2015/ng-http-loader.js");
 /* harmony import */ var _components_otp_otp_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/otp/otp.component */ "./src/app/components/otp/otp.component.ts");
+/* harmony import */ var _socialloginConfig__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./socialloginConfig */ "./src/app/socialloginConfig.ts");
+/* harmony import */ var angularx_social_login__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! angularx-social-login */ "./node_modules/angularx-social-login/angularx-social-login.js");
+
+
 
 
 
@@ -536,6 +540,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _shared_shared_module__WEBPACK_IMPORTED_MODULE_8__["SharedModule"],
             ngx_bootstrap__WEBPACK_IMPORTED_MODULE_12__["BsDropdownModule"].forRoot(),
             ngx_intl_tel_input__WEBPACK_IMPORTED_MODULE_11__["NgxIntlTelInputModule"],
+            angularx_social_login__WEBPACK_IMPORTED_MODULE_22__["SocialLoginModule"].initialize(Object(_socialloginConfig__WEBPACK_IMPORTED_MODULE_21__["getAuthServiceConfigs"])()),
             ngx_toastr__WEBPACK_IMPORTED_MODULE_10__["ToastrModule"].forRoot({ timeOut: 3000,
                 positionClass: 'toast-top-right',
                 preventDuplicates: true }),
@@ -630,14 +635,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var src_app_services_common_helper_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/common-helper.service */ "./src/app/services/common-helper.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var angularx_social_login__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! angularx-social-login */ "./node_modules/angularx-social-login/angularx-social-login.js");
+
 
 
 
 
 let HeaderComponent = class HeaderComponent {
-    constructor(commonHelper, router) {
+    constructor(commonHelper, router, authService) {
         this.commonHelper = commonHelper;
         this.router = router;
+        this.authService = authService;
         this.commonHelper.getUserStatus.subscribe(res => {
             this.isUserAvailabe = res;
             if (this.isUserAvailabe)
@@ -651,6 +659,7 @@ let HeaderComponent = class HeaderComponent {
         localStorage.clear();
         this.commonHelper.setUserStatus('');
         this.router.navigate(['']);
+        this.authService.signOut();
     }
     login() {
         this.router.navigate(['login']);
@@ -658,7 +667,8 @@ let HeaderComponent = class HeaderComponent {
 };
 HeaderComponent.ctorParameters = () => [
     { type: src_app_services_common_helper_service__WEBPACK_IMPORTED_MODULE_2__["CommonHelperService"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] },
+    { type: angularx_social_login__WEBPACK_IMPORTED_MODULE_4__["AuthService"] }
 ];
 HeaderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -785,6 +795,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_services_authentication_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/authentication.service */ "./src/app/services/authentication.service.ts");
 /* harmony import */ var src_app_services_common_helper_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/common-helper.service */ "./src/app/services/common-helper.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var angularx_social_login__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! angularx-social-login */ "./node_modules/angularx-social-login/angularx-social-login.js");
+/* harmony import */ var ng_http_loader__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ng-http-loader */ "./node_modules/ng-http-loader/fesm2015/ng-http-loader.js");
+
+
 
 
 
@@ -792,11 +806,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let LoginComponent = class LoginComponent {
-    constructor(fb, authService, commonHelper, router) {
+    constructor(fb, authService, commonHelper, router, socialAuthService, spinner) {
         this.fb = fb;
         this.authService = authService;
         this.commonHelper = commonHelper;
         this.router = router;
+        this.socialAuthService = socialAuthService;
+        this.spinner = spinner;
         this.countrys = this.commonHelper.mockCountryData;
         this.commonHelper.getSelectedCountry.subscribe(res => {
             console.log(res);
@@ -809,13 +825,40 @@ let LoginComponent = class LoginComponent {
     ngOnInit() {
         this.loginForm = this.fb.group({
             countryCode: [this.countryCode ? this.countryCode : '+' + this.countrys[0].callingCodes[0], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
-            mobileNumber: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]
+            mobileNumber: [localStorage.getItem('mobile'), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]
         });
+        localStorage.removeItem('mobile');
     }
     clickDiv() {
         let a = this.myselect.nativeElement;
         a.focus();
         a.click();
+    }
+    signinWithGoogle() {
+        let socialPlatformProvider = angularx_social_login__WEBPACK_IMPORTED_MODULE_6__["GoogleLoginProvider"].PROVIDER_ID;
+        this.socialAuthService.signIn(socialPlatformProvider)
+            .then((userData) => {
+            //on success
+            console.log(userData);
+            localStorage.setItem('token', userData.authToken);
+            this.commonHelper.setUserStatus(true);
+            this.router.navigate(['/services/mobile_recharge']);
+            //this will return user data from google. What you need is a user token which you will send it to the server
+            this.authService.sendToRestApiMethod(userData);
+        });
+    }
+    signinWithFB() {
+        let socialPlatformProvider = angularx_social_login__WEBPACK_IMPORTED_MODULE_6__["FacebookLoginProvider"].PROVIDER_ID;
+        this.socialAuthService.signIn(socialPlatformProvider)
+            .then((userData) => {
+            //on success
+            console.log(userData);
+            localStorage.setItem('token', userData.authToken);
+            this.commonHelper.setUserStatus(true);
+            this.router.navigate(['/services/mobile_recharge']);
+            //this will return user data from google. What you need is a user token which you will send it to the server
+            this.authService.sendToRestApiMethod(userData);
+        });
     }
     setCountry(event) {
         console.log(event.target.value);
@@ -834,6 +877,8 @@ let LoginComponent = class LoginComponent {
             this.authService.loginUser(req).subscribe(res => {
                 this.commonHelper.showSuccessToast(res.message, "Success", 5000);
                 this.router.navigate(['otp']);
+            }, err => {
+                this.commonHelper.showErrorToast(err.error.message, "Error", 5000);
             });
         }
         else {
@@ -842,13 +887,16 @@ let LoginComponent = class LoginComponent {
     }
     moveBackPage() {
         window.history.back();
+        localStorage.removeItem('mobile');
     }
 };
 LoginComponent.ctorParameters = () => [
     { type: _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"] },
     { type: src_app_services_authentication_service__WEBPACK_IMPORTED_MODULE_3__["AuthenticationService"] },
     { type: src_app_services_common_helper_service__WEBPACK_IMPORTED_MODULE_4__["CommonHelperService"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
+    { type: angularx_social_login__WEBPACK_IMPORTED_MODULE_6__["AuthService"] },
+    { type: ng_http_loader__WEBPACK_IMPORTED_MODULE_7__["SpinnerVisibilityService"] }
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('myselect', { static: true })
@@ -874,7 +922,7 @@ LoginComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("input {\n  width: 100%;\n  padding: 1em;\n  line-height: 1.4;\n  background-color: #f9f9f9;\n  border: 1px solid #e5e5e5;\n  border-radius: 3px;\n  transition: all;\n  padding: 1rem;\n}\n\n#mobile-number {\n  padding: 1rem 6px 1rem 98px;\n}\n\n*,\n*:after,\n*:before {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n}\n\n.intl-tel-input {\n  /* margin: 10px; */\n  font-size: 14px;\n  /* font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; */\n  color: #333;\n}\n\n.intl-tel-input input {\n  /* width: 250px; */\n  border: 1px solid #CCC;\n  font-family: inherit;\n  font-size: 100%;\n  font-size: 16px;\n  color: inherit;\n}\n\n.form-group {\n  margin-bottom: 20px;\n}\n\n.btn-wrapper a.btn.btn-danger {\n  background: #ca3f1f;\n  color: #fff;\n}\n\n/* button styling */\n\n.btn {\n  text-decoration: none;\n  display: inline-block;\n  font-weight: 400;\n  color: #212529;\n  text-align: center;\n  vertical-align: middle;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n  background-color: transparent;\n  border: 1px solid transparent;\n  padding: 0.375rem 0.75rem;\n  font-size: 1rem;\n  line-height: 1.5;\n  border-radius: 0.25rem;\n  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n  cursor: pointer;\n}\n\n.btn:hover {\n  color: #212529;\n  text-decoration: none;\n}\n\n.btn:focus, .btn.focus {\n  outline: 0;\n  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);\n}\n\n.btn-primary {\n  color: #fff;\n  background-color: #007bff;\n  border-color: #007bff;\n}\n\n.btn-primary:hover {\n  color: #fff;\n  background-color: #0069d9;\n  border-color: #0062cc;\n}\n\n.facebook-btn {\n  color: #fff;\n  background-color: #007bff;\n  border-color: #007bff;\n}\n\n.facebook-btn:hover {\n  color: #fff;\n  background-color: #0069d9;\n  border-color: #0062cc;\n}\n\n.google-btn {\n  color: #fff;\n  background-color: #dc3545;\n  border-color: #dc3545;\n}\n\n.google-btn:hover {\n  color: #fff;\n  background-color: #c40c1d;\n  border-color: #c40c1d;\n}\n\n/* Modal Styling */\n\n.modal-container {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  position: fixed;\n  z-index: 1;\n  top: 0;\n  left: 0;\n  width: 100vw;\n  height: 100vh;\n}\n\n.modal-overlay {\n  background: rgba(0, 0, 0, 0.32);\n  position: fixed;\n  left: 0;\n  top: 0;\n  height: 100vh;\n  width: 100vw;\n}\n\n.modal-content {\n  padding: 2.5rem;\n  background: #fff;\n  border-radius: 5px;\n  width: 100%;\n  max-width: 450px;\n  position: relative;\n}\n\n.modal-content h2 {\n  font-size: 2rem;\n  margin-bottom: 1rem;\n  font-weight: 500;\n  line-height: 1.2;\n}\n\n.modal-content h3 {\n  font-size: 1.75rem;\n  padding-bottom: 10px;\n  margin-bottom: 15px;\n  font-weight: 500;\n  padding: 0 20px;\n  text-align: center;\n}\n\n.modal-content p {\n  margin-bottom: 1rem;\n}\n\n.modal-content form .btn {\n  padding: 0.375rem 3rem;\n}\n\n.modal-content .close {\n  position: absolute;\n  top: 2.5rem;\n  right: 2.5rem;\n  font-size: 2rem;\n  opacity: 0.7;\n  cursor: pointer;\n}\n\n.country-code-dropdown {\n  text-align: center;\n}\n\n.signup-option {\n  text-align: center;\n  margin-top: 20px;\n  padding-top: 20px;\n  border-top: 1px solid rgba(0, 0, 0, 0.12);\n}\n\n.btn-wrapper .btn {\n  margin: 0 10px;\n}\n\n.otp-wrapper {\n  display: flex;\n  justify-content: space-between;\n}\n\n.otp-wrapper input {\n  width: 60px;\n  height: 60px;\n  font-size: 18px;\n}\n\n.resend-btn-wrapper {\n  display: flex;\n  justify-content: space-between;\n  padding-top: 10px;\n}\n\n.resend-btn-wrapper a {\n  text-decoration: none;\n}\n\n@media (max-width: 767px) {\n  html {\n    font-size: 14px;\n  }\n\n  .modal-content {\n    width: calc(100vw - 30px);\n    padding: 25px 15px;\n  }\n\n  .modal-content h3 {\n    font-size: 1.5rem;\n  }\n\n  .modal-content .close {\n    top: 15px;\n    right: 15px;\n    line-height: 25px;\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2plZXQvRGltYmF5YUZyb250ZW5kL3NyYy9hcHAvY29tcG9uZW50cy9vdHAvb3RwLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9jb21wb25lbnRzL290cC9vdHAuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxXQUFBO0VBQ0EsWUFBQTtFQUNBLGdCQUFBO0VBQ0EseUJBQUE7RUFDQSx5QkFBQTtFQUNBLGtCQUFBO0VBQ0EsZUFBQTtFQUNBLGFBQUE7QUNDSjs7QURDQTtFQUNJLDJCQUFBO0FDRUo7O0FEQ0E7OztFQUdJLHNCQUFBO0VBQ0EsU0FBQTtFQUNBLFVBQUE7QUNFSjs7QURBQTtFQUNJLGtCQUFBO0VBQ0EsZUFBQTtFQUNBLGlFQUFBO0VBQ0EsV0FBQTtBQ0dKOztBRERBO0VBQ0ksa0JBQUE7RUFDQSxzQkFBQTtFQUNBLG9CQUFBO0VBQ0EsZUFBQTtFQUNBLGVBQUE7RUFDQSxjQUFBO0FDSUo7O0FERkE7RUFDSSxtQkFBQTtBQ0tKOztBREZBO0VBQ0ksbUJBQUE7RUFDQSxXQUFBO0FDS0o7O0FERkEsbUJBQUE7O0FBRUE7RUFDSSxxQkFBQTtFQUNBLHFCQUFBO0VBQ0EsZ0JBQUE7RUFDQSxjQUFBO0VBQ0Esa0JBQUE7RUFDQSxzQkFBQTtFQUNBLHlCQUFBO0VBQ0Esc0JBQUE7RUFDQSxxQkFBQTtFQUNBLGlCQUFBO0VBQ0EsNkJBQUE7RUFDQSw2QkFBQTtFQUNBLHlCQUFBO0VBQ0EsZUFBQTtFQUNBLGdCQUFBO0VBQ0Esc0JBQUE7RUFDQSxxSUFBQTtFQUNBLGVBQUE7QUNJSjs7QURGQTtFQUNJLGNBQUE7RUFDQSxxQkFBQTtBQ0tKOztBREZBO0VBQ0ksVUFBQTtFQUNBLGdEQUFBO0FDS0o7O0FESEE7RUFDSSxXQUFBO0VBQ0EseUJBQUE7RUFDQSxxQkFBQTtBQ01KOztBREhBO0VBQ0ksV0FBQTtFQUNBLHlCQUFBO0VBQ0EscUJBQUE7QUNNSjs7QURKQTtFQUNJLFdBQUE7RUFDQSx5QkFBQTtFQUNBLHFCQUFBO0FDT0o7O0FETEE7RUFDSSxXQUFBO0VBQ0EseUJBQUE7RUFDQSxxQkFBQTtBQ1FKOztBRE5BO0VBQ0ksV0FBQTtFQUNBLHlCQUFBO0VBQ0EscUJBQUE7QUNTSjs7QURQQTtFQUNJLFdBQUE7RUFDQSx5QkFBQTtFQUNBLHFCQUFBO0FDVUo7O0FEUEEsa0JBQUE7O0FBQ0E7RUFDSSxhQUFBO0VBQ0EsbUJBQUE7RUFDQSx1QkFBQTtFQUNBLGVBQUE7RUFDQSxVQUFBO0VBQ0EsTUFBQTtFQUNBLE9BQUE7RUFDQSxZQUFBO0VBQ0EsYUFBQTtBQ1VKOztBRFBBO0VBQ0ksK0JBQUE7RUFDQSxlQUFBO0VBQ0EsT0FBQTtFQUNBLE1BQUE7RUFDQSxhQUFBO0VBQ0EsWUFBQTtBQ1VKOztBRFBBO0VBQ0ksZUFBQTtFQUNBLGdCQUFBO0VBQ0Esa0JBQUE7RUFDQSxXQUFBO0VBQ0EsZ0JBQUE7RUFDQSxrQkFBQTtBQ1VKOztBRFJBO0VBQ0ksZUFBQTtFQUNBLG1CQUFBO0VBQ0EsZ0JBQUE7RUFDQSxnQkFBQTtBQ1dKOztBRFRBO0VBQ0ksa0JBQUE7RUFDQSxvQkFBQTtFQUNBLG1CQUFBO0VBQ0EsZ0JBQUE7RUFDQSxlQUFBO0VBQ0Esa0JBQUE7QUNZSjs7QURWQTtFQUNJLG1CQUFBO0FDYUo7O0FEWEE7RUFDSSxzQkFBQTtBQ2NKOztBRFpBO0VBQ0ksa0JBQUE7RUFDQSxXQUFBO0VBQ0EsYUFBQTtFQUNBLGVBQUE7RUFDQSxZQUFBO0VBQ0EsZUFBQTtBQ2VKOztBRGJBO0VBQ0ksa0JBQUE7QUNnQko7O0FEZEE7RUFDSSxrQkFBQTtFQUNBLGdCQUFBO0VBQ0EsaUJBQUE7RUFDQSx5Q0FBQTtBQ2lCSjs7QURmQTtFQUNJLGNBQUE7QUNrQko7O0FEZkE7RUFDSSxhQUFBO0VBQ0EsOEJBQUE7QUNrQko7O0FEaEJBO0VBQ0ksV0FBQTtFQUNBLFlBQUE7RUFDQSxlQUFBO0FDbUJKOztBRGpCQTtFQUNJLGFBQUE7RUFDQSw4QkFBQTtFQUNBLGlCQUFBO0FDb0JKOztBRGxCQTtFQUNJLHFCQUFBO0FDcUJKOztBRG5CQTtFQUNJO0lBQ0ksZUFBQTtFQ3NCTjs7RURwQkU7SUFDSSx5QkFBQTtJQUNBLGtCQUFBO0VDdUJOOztFRHJCRTtJQUNJLGlCQUFBO0VDd0JOOztFRHRCRTtJQUNJLFNBQUE7SUFDQSxXQUFBO0lBQ0EsaUJBQUE7RUN5Qk47QUFDRiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvb3RwL290cC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlucHV0IHtcbiAgICB3aWR0aDogMTAwJTtcbiAgICBwYWRkaW5nOiAxZW07XG4gICAgbGluZS1oZWlnaHQ6IDEuNDtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZjlmOWY5O1xuICAgIGJvcmRlcjogMXB4IHNvbGlkICNlNWU1ZTU7XG4gICAgYm9yZGVyLXJhZGl1czogM3B4O1xuICAgIHRyYW5zaXRpb246IGFsbDtcbiAgICBwYWRkaW5nOiAxcmVtO1xufVxuI21vYmlsZS1udW1iZXJ7XG4gICAgcGFkZGluZzogMXJlbSA2cHggMXJlbSA5OHB4O1xufVxuXG4qLFxuKjphZnRlcixcbio6YmVmb3Jle1xuICAgIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XG4gICAgbWFyZ2luOiAwO1xuICAgIHBhZGRpbmc6IDA7XG59XG4uaW50bC10ZWwtaW5wdXQge1xuICAgIC8qIG1hcmdpbjogMTBweDsgKi9cbiAgICBmb250LXNpemU6IDE0cHg7XG4gICAgLyogZm9udC1mYW1pbHk6IFwiSGVsdmV0aWNhIE5ldWVcIiwgSGVsdmV0aWNhLCBBcmlhbCwgc2Fucy1zZXJpZjsgKi9cbiAgICBjb2xvcjogIzMzMztcbn1cbi5pbnRsLXRlbC1pbnB1dCBpbnB1dCB7XG4gICAgLyogd2lkdGg6IDI1MHB4OyAqL1xuICAgIGJvcmRlcjogMXB4IHNvbGlkICNDQ0M7XG4gICAgZm9udC1mYW1pbHk6IGluaGVyaXQ7XG4gICAgZm9udC1zaXplOiAxMDAlO1xuICAgIGZvbnQtc2l6ZTogMTZweDtcbiAgICBjb2xvcjogaW5oZXJpdDtcbn1cbi5mb3JtLWdyb3Vwe1xuICAgIG1hcmdpbi1ib3R0b206IDIwcHg7XG59XG5cbi5idG4td3JhcHBlciBhLmJ0bi5idG4tZGFuZ2VyIHtcbiAgICBiYWNrZ3JvdW5kOiAjY2EzZjFmO1xuICAgIGNvbG9yOiAjZmZmO1xufVxuXG4vKiBidXR0b24gc3R5bGluZyAqL1xuXG4uYnRuIHtcbiAgICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICAgIGZvbnQtd2VpZ2h0OiA0MDA7XG4gICAgY29sb3I6ICMyMTI1Mjk7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XG4gICAgLXdlYmtpdC11c2VyLXNlbGVjdDogbm9uZTtcbiAgICAtbW96LXVzZXItc2VsZWN0OiBub25lO1xuICAgIC1tcy11c2VyLXNlbGVjdDogbm9uZTtcbiAgICB1c2VyLXNlbGVjdDogbm9uZTtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB0cmFuc3BhcmVudDtcbiAgICBib3JkZXI6IDFweCBzb2xpZCB0cmFuc3BhcmVudDtcbiAgICBwYWRkaW5nOiAwLjM3NXJlbSAwLjc1cmVtO1xuICAgIGZvbnQtc2l6ZTogMXJlbTtcbiAgICBsaW5lLWhlaWdodDogMS41O1xuICAgIGJvcmRlci1yYWRpdXM6IDAuMjVyZW07XG4gICAgdHJhbnNpdGlvbjogY29sb3IgMC4xNXMgZWFzZS1pbi1vdXQsIGJhY2tncm91bmQtY29sb3IgMC4xNXMgZWFzZS1pbi1vdXQsIGJvcmRlci1jb2xvciAwLjE1cyBlYXNlLWluLW91dCwgYm94LXNoYWRvdyAwLjE1cyBlYXNlLWluLW91dDtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG59XG4uYnRuOmhvdmVyIHtcbiAgICBjb2xvcjogIzIxMjUyOTtcbiAgICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG59XG4gIFxuLmJ0bjpmb2N1cywgLmJ0bi5mb2N1cyB7XG4gICAgb3V0bGluZTogMDtcbiAgICBib3gtc2hhZG93OiAwIDAgMCAwLjJyZW0gcmdiYSgwLCAxMjMsIDI1NSwgMC4yNSk7XG59XG4uYnRuLXByaW1hcnkge1xuICAgIGNvbG9yOiAjZmZmO1xuICAgIGJhY2tncm91bmQtY29sb3I6ICMwMDdiZmY7XG4gICAgYm9yZGVyLWNvbG9yOiAjMDA3YmZmO1xufVxuICBcbi5idG4tcHJpbWFyeTpob3ZlciB7XG4gICAgY29sb3I6ICNmZmY7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzAwNjlkOTtcbiAgICBib3JkZXItY29sb3I6ICMwMDYyY2M7XG59XG4uZmFjZWJvb2stYnRue1xuICAgIGNvbG9yOiAjZmZmO1xuICAgIGJhY2tncm91bmQtY29sb3I6ICMwMDdiZmY7XG4gICAgYm9yZGVyLWNvbG9yOiAjMDA3YmZmO1xufVxuLmZhY2Vib29rLWJ0bjpob3ZlcntcbiAgICBjb2xvcjogI2ZmZjtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMDA2OWQ5O1xuICAgIGJvcmRlci1jb2xvcjogIzAwNjJjYztcbn1cbi5nb29nbGUtYnRue1xuICAgIGNvbG9yOiAjZmZmO1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNkYzM1NDU7XG4gICAgYm9yZGVyLWNvbG9yOiAjZGMzNTQ1O1xufVxuLmdvb2dsZS1idG46aG92ZXJ7XG4gICAgY29sb3I6ICNmZmY7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2M0MGMxZDtcbiAgICBib3JkZXItY29sb3I6ICNjNDBjMWQ7XG59XG5cbi8qIE1vZGFsIFN0eWxpbmcgKi9cbi5tb2RhbC1jb250YWluZXIge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICBwb3NpdGlvbjogZml4ZWQ7XG4gICAgei1pbmRleDogMTtcbiAgICB0b3A6IDA7XG4gICAgbGVmdDogMDtcbiAgICB3aWR0aDogMTAwdnc7XG4gICAgaGVpZ2h0OiAxMDB2aDtcbn1cblxuLm1vZGFsLW92ZXJsYXkge1xuICAgIGJhY2tncm91bmQ6IHJnYmEoMCwgMCwgMCwgMC4zMik7XG4gICAgcG9zaXRpb246IGZpeGVkO1xuICAgIGxlZnQ6IDA7XG4gICAgdG9wOiAwO1xuICAgIGhlaWdodDogMTAwdmg7XG4gICAgd2lkdGg6IDEwMHZ3O1xufVxuXG4ubW9kYWwtY29udGVudCB7XG4gICAgcGFkZGluZzogMi41cmVtO1xuICAgIGJhY2tncm91bmQ6ICNmZmY7XG4gICAgYm9yZGVyLXJhZGl1czogNXB4O1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIG1heC13aWR0aDogNDUwcHg7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xufVxuLm1vZGFsLWNvbnRlbnQgaDJ7XG4gICAgZm9udC1zaXplOiAycmVtO1xuICAgIG1hcmdpbi1ib3R0b206IDFyZW07XG4gICAgZm9udC13ZWlnaHQ6IDUwMDtcbiAgICBsaW5lLWhlaWdodDogMS4yO1xufVxuLm1vZGFsLWNvbnRlbnQgaDN7XG4gICAgZm9udC1zaXplOiAxLjc1cmVtO1xuICAgIHBhZGRpbmctYm90dG9tOiAxMHB4O1xuICAgIG1hcmdpbi1ib3R0b206IDE1cHg7XG4gICAgZm9udC13ZWlnaHQ6IDUwMDtcbiAgICBwYWRkaW5nOiAwIDIwcHg7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuLm1vZGFsLWNvbnRlbnQgcCB7XG4gICAgbWFyZ2luLWJvdHRvbTogMXJlbTtcbn1cbi5tb2RhbC1jb250ZW50IGZvcm0gLmJ0bntcbiAgICBwYWRkaW5nOiAwLjM3NXJlbSAzcmVtO1xufVxuLm1vZGFsLWNvbnRlbnQgLmNsb3Nle1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICB0b3A6IDIuNXJlbTtcbiAgICByaWdodDogMi41cmVtO1xuICAgIGZvbnQtc2l6ZTogMnJlbTtcbiAgICBvcGFjaXR5OiAwLjc7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xufVxuLmNvdW50cnktY29kZS1kcm9wZG93bntcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4uc2lnbnVwLW9wdGlvbntcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgbWFyZ2luLXRvcDogMjBweDtcbiAgICBwYWRkaW5nLXRvcDogMjBweDtcbiAgICBib3JkZXItdG9wOiAxcHggc29saWQgcmdiYSgwLCAwLCAwLCAwLjEyKTtcbn1cbi5idG4td3JhcHBlciAuYnRue1xuICAgIG1hcmdpbjogMCAxMHB4O1xufVxuXG4ub3RwLXdyYXBwZXJ7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XG59XG4ub3RwLXdyYXBwZXIgaW5wdXR7XG4gICAgd2lkdGg6IDYwcHg7XG4gICAgaGVpZ2h0OiA2MHB4O1xuICAgIGZvbnQtc2l6ZTogMThweDtcbn1cbi5yZXNlbmQtYnRuLXdyYXBwZXJ7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XG4gICAgcGFkZGluZy10b3A6IDEwcHg7XG59XG4ucmVzZW5kLWJ0bi13cmFwcGVyIGF7XG4gICAgdGV4dC1kZWNvcmF0aW9uOiBub25lO1xufVxuQG1lZGlhIChtYXgtd2lkdGg6IDc2N3B4KXtcbiAgICBodG1se1xuICAgICAgICBmb250LXNpemU6IDE0cHg7XG4gICAgfVxuICAgIC5tb2RhbC1jb250ZW50e1xuICAgICAgICB3aWR0aDogY2FsYygxMDB2dyAtIDMwcHgpO1xuICAgICAgICBwYWRkaW5nOiAyNXB4IDE1cHg7XG4gICAgfVxuICAgIC5tb2RhbC1jb250ZW50IGgze1xuICAgICAgICBmb250LXNpemU6IDEuNXJlbTtcbiAgICB9XG4gICAgLm1vZGFsLWNvbnRlbnQgLmNsb3Nle1xuICAgICAgICB0b3A6IDE1cHg7XG4gICAgICAgIHJpZ2h0OiAxNXB4O1xuICAgICAgICBsaW5lLWhlaWdodDogMjVweDtcbiAgICB9XG59IiwiaW5wdXQge1xuICB3aWR0aDogMTAwJTtcbiAgcGFkZGluZzogMWVtO1xuICBsaW5lLWhlaWdodDogMS40O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZjlmOWY5O1xuICBib3JkZXI6IDFweCBzb2xpZCAjZTVlNWU1O1xuICBib3JkZXItcmFkaXVzOiAzcHg7XG4gIHRyYW5zaXRpb246IGFsbDtcbiAgcGFkZGluZzogMXJlbTtcbn1cblxuI21vYmlsZS1udW1iZXIge1xuICBwYWRkaW5nOiAxcmVtIDZweCAxcmVtIDk4cHg7XG59XG5cbiosXG4qOmFmdGVyLFxuKjpiZWZvcmUge1xuICBib3gtc2l6aW5nOiBib3JkZXItYm94O1xuICBtYXJnaW46IDA7XG4gIHBhZGRpbmc6IDA7XG59XG5cbi5pbnRsLXRlbC1pbnB1dCB7XG4gIC8qIG1hcmdpbjogMTBweDsgKi9cbiAgZm9udC1zaXplOiAxNHB4O1xuICAvKiBmb250LWZhbWlseTogXCJIZWx2ZXRpY2EgTmV1ZVwiLCBIZWx2ZXRpY2EsIEFyaWFsLCBzYW5zLXNlcmlmOyAqL1xuICBjb2xvcjogIzMzMztcbn1cblxuLmludGwtdGVsLWlucHV0IGlucHV0IHtcbiAgLyogd2lkdGg6IDI1MHB4OyAqL1xuICBib3JkZXI6IDFweCBzb2xpZCAjQ0NDO1xuICBmb250LWZhbWlseTogaW5oZXJpdDtcbiAgZm9udC1zaXplOiAxMDAlO1xuICBmb250LXNpemU6IDE2cHg7XG4gIGNvbG9yOiBpbmhlcml0O1xufVxuXG4uZm9ybS1ncm91cCB7XG4gIG1hcmdpbi1ib3R0b206IDIwcHg7XG59XG5cbi5idG4td3JhcHBlciBhLmJ0bi5idG4tZGFuZ2VyIHtcbiAgYmFja2dyb3VuZDogI2NhM2YxZjtcbiAgY29sb3I6ICNmZmY7XG59XG5cbi8qIGJ1dHRvbiBzdHlsaW5nICovXG4uYnRuIHtcbiAgdGV4dC1kZWNvcmF0aW9uOiBub25lO1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIGZvbnQtd2VpZ2h0OiA0MDA7XG4gIGNvbG9yOiAjMjEyNTI5O1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XG4gIC13ZWJraXQtdXNlci1zZWxlY3Q6IG5vbmU7XG4gIC1tb3otdXNlci1zZWxlY3Q6IG5vbmU7XG4gIC1tcy11c2VyLXNlbGVjdDogbm9uZTtcbiAgdXNlci1zZWxlY3Q6IG5vbmU7XG4gIGJhY2tncm91bmQtY29sb3I6IHRyYW5zcGFyZW50O1xuICBib3JkZXI6IDFweCBzb2xpZCB0cmFuc3BhcmVudDtcbiAgcGFkZGluZzogMC4zNzVyZW0gMC43NXJlbTtcbiAgZm9udC1zaXplOiAxcmVtO1xuICBsaW5lLWhlaWdodDogMS41O1xuICBib3JkZXItcmFkaXVzOiAwLjI1cmVtO1xuICB0cmFuc2l0aW9uOiBjb2xvciAwLjE1cyBlYXNlLWluLW91dCwgYmFja2dyb3VuZC1jb2xvciAwLjE1cyBlYXNlLWluLW91dCwgYm9yZGVyLWNvbG9yIDAuMTVzIGVhc2UtaW4tb3V0LCBib3gtc2hhZG93IDAuMTVzIGVhc2UtaW4tb3V0O1xuICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cbi5idG46aG92ZXIge1xuICBjb2xvcjogIzIxMjUyOTtcbiAgdGV4dC1kZWNvcmF0aW9uOiBub25lO1xufVxuXG4uYnRuOmZvY3VzLCAuYnRuLmZvY3VzIHtcbiAgb3V0bGluZTogMDtcbiAgYm94LXNoYWRvdzogMCAwIDAgMC4ycmVtIHJnYmEoMCwgMTIzLCAyNTUsIDAuMjUpO1xufVxuXG4uYnRuLXByaW1hcnkge1xuICBjb2xvcjogI2ZmZjtcbiAgYmFja2dyb3VuZC1jb2xvcjogIzAwN2JmZjtcbiAgYm9yZGVyLWNvbG9yOiAjMDA3YmZmO1xufVxuXG4uYnRuLXByaW1hcnk6aG92ZXIge1xuICBjb2xvcjogI2ZmZjtcbiAgYmFja2dyb3VuZC1jb2xvcjogIzAwNjlkOTtcbiAgYm9yZGVyLWNvbG9yOiAjMDA2MmNjO1xufVxuXG4uZmFjZWJvb2stYnRuIHtcbiAgY29sb3I6ICNmZmY7XG4gIGJhY2tncm91bmQtY29sb3I6ICMwMDdiZmY7XG4gIGJvcmRlci1jb2xvcjogIzAwN2JmZjtcbn1cblxuLmZhY2Vib29rLWJ0bjpob3ZlciB7XG4gIGNvbG9yOiAjZmZmO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMDA2OWQ5O1xuICBib3JkZXItY29sb3I6ICMwMDYyY2M7XG59XG5cbi5nb29nbGUtYnRuIHtcbiAgY29sb3I6ICNmZmY7XG4gIGJhY2tncm91bmQtY29sb3I6ICNkYzM1NDU7XG4gIGJvcmRlci1jb2xvcjogI2RjMzU0NTtcbn1cblxuLmdvb2dsZS1idG46aG92ZXIge1xuICBjb2xvcjogI2ZmZjtcbiAgYmFja2dyb3VuZC1jb2xvcjogI2M0MGMxZDtcbiAgYm9yZGVyLWNvbG9yOiAjYzQwYzFkO1xufVxuXG4vKiBNb2RhbCBTdHlsaW5nICovXG4ubW9kYWwtY29udGFpbmVyIHtcbiAgZGlzcGxheTogZmxleDtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIHBvc2l0aW9uOiBmaXhlZDtcbiAgei1pbmRleDogMTtcbiAgdG9wOiAwO1xuICBsZWZ0OiAwO1xuICB3aWR0aDogMTAwdnc7XG4gIGhlaWdodDogMTAwdmg7XG59XG5cbi5tb2RhbC1vdmVybGF5IHtcbiAgYmFja2dyb3VuZDogcmdiYSgwLCAwLCAwLCAwLjMyKTtcbiAgcG9zaXRpb246IGZpeGVkO1xuICBsZWZ0OiAwO1xuICB0b3A6IDA7XG4gIGhlaWdodDogMTAwdmg7XG4gIHdpZHRoOiAxMDB2dztcbn1cblxuLm1vZGFsLWNvbnRlbnQge1xuICBwYWRkaW5nOiAyLjVyZW07XG4gIGJhY2tncm91bmQ6ICNmZmY7XG4gIGJvcmRlci1yYWRpdXM6IDVweDtcbiAgd2lkdGg6IDEwMCU7XG4gIG1heC13aWR0aDogNDUwcHg7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbn1cblxuLm1vZGFsLWNvbnRlbnQgaDIge1xuICBmb250LXNpemU6IDJyZW07XG4gIG1hcmdpbi1ib3R0b206IDFyZW07XG4gIGZvbnQtd2VpZ2h0OiA1MDA7XG4gIGxpbmUtaGVpZ2h0OiAxLjI7XG59XG5cbi5tb2RhbC1jb250ZW50IGgzIHtcbiAgZm9udC1zaXplOiAxLjc1cmVtO1xuICBwYWRkaW5nLWJvdHRvbTogMTBweDtcbiAgbWFyZ2luLWJvdHRvbTogMTVweDtcbiAgZm9udC13ZWlnaHQ6IDUwMDtcbiAgcGFkZGluZzogMCAyMHB4O1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbi5tb2RhbC1jb250ZW50IHAge1xuICBtYXJnaW4tYm90dG9tOiAxcmVtO1xufVxuXG4ubW9kYWwtY29udGVudCBmb3JtIC5idG4ge1xuICBwYWRkaW5nOiAwLjM3NXJlbSAzcmVtO1xufVxuXG4ubW9kYWwtY29udGVudCAuY2xvc2Uge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHRvcDogMi41cmVtO1xuICByaWdodDogMi41cmVtO1xuICBmb250LXNpemU6IDJyZW07XG4gIG9wYWNpdHk6IDAuNztcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG4uY291bnRyeS1jb2RlLWRyb3Bkb3duIHtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG4uc2lnbnVwLW9wdGlvbiB7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgbWFyZ2luLXRvcDogMjBweDtcbiAgcGFkZGluZy10b3A6IDIwcHg7XG4gIGJvcmRlci10b3A6IDFweCBzb2xpZCByZ2JhKDAsIDAsIDAsIDAuMTIpO1xufVxuXG4uYnRuLXdyYXBwZXIgLmJ0biB7XG4gIG1hcmdpbjogMCAxMHB4O1xufVxuXG4ub3RwLXdyYXBwZXIge1xuICBkaXNwbGF5OiBmbGV4O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XG59XG5cbi5vdHAtd3JhcHBlciBpbnB1dCB7XG4gIHdpZHRoOiA2MHB4O1xuICBoZWlnaHQ6IDYwcHg7XG4gIGZvbnQtc2l6ZTogMThweDtcbn1cblxuLnJlc2VuZC1idG4td3JhcHBlciB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcbiAgcGFkZGluZy10b3A6IDEwcHg7XG59XG5cbi5yZXNlbmQtYnRuLXdyYXBwZXIgYSB7XG4gIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcbn1cblxuQG1lZGlhIChtYXgtd2lkdGg6IDc2N3B4KSB7XG4gIGh0bWwge1xuICAgIGZvbnQtc2l6ZTogMTRweDtcbiAgfVxuXG4gIC5tb2RhbC1jb250ZW50IHtcbiAgICB3aWR0aDogY2FsYygxMDB2dyAtIDMwcHgpO1xuICAgIHBhZGRpbmc6IDI1cHggMTVweDtcbiAgfVxuXG4gIC5tb2RhbC1jb250ZW50IGgzIHtcbiAgICBmb250LXNpemU6IDEuNXJlbTtcbiAgfVxuXG4gIC5tb2RhbC1jb250ZW50IC5jbG9zZSB7XG4gICAgdG9wOiAxNXB4O1xuICAgIHJpZ2h0OiAxNXB4O1xuICAgIGxpbmUtaGVpZ2h0OiAyNXB4O1xuICB9XG59Il19 */");
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvb3RwL290cC5jb21wb25lbnQuc2NzcyJ9 */");
 
 /***/ }),
 
@@ -894,6 +942,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_services_common_helper_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/common-helper.service */ "./src/app/services/common-helper.service.ts");
 /* harmony import */ var src_app_services_authentication_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/authentication.service */ "./src/app/services/authentication.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var angularx_social_login__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! angularx-social-login */ "./node_modules/angularx-social-login/angularx-social-login.js");
+
 
 
 
@@ -901,11 +951,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let OtpComponent = class OtpComponent {
-    constructor(fb, commonHelper, authService, router) {
+    constructor(fb, commonHelper, authService, router, socialAuthService) {
         this.fb = fb;
         this.commonHelper = commonHelper;
         this.authService = authService;
         this.router = router;
+        this.socialAuthService = socialAuthService;
         this.commonHelper.getMobileNumber.subscribe(res => {
             this.mobileNumber = res;
         });
@@ -940,6 +991,32 @@ let OtpComponent = class OtpComponent {
             element.select();
         }
     }
+    signinWithGoogle() {
+        let socialPlatformProvider = angularx_social_login__WEBPACK_IMPORTED_MODULE_6__["GoogleLoginProvider"].PROVIDER_ID;
+        this.socialAuthService.signIn(socialPlatformProvider)
+            .then((userData) => {
+            //on success
+            console.log(userData);
+            localStorage.setItem('token', userData.authToken);
+            this.commonHelper.setUserStatus(true);
+            this.router.navigate(['/services/mobile_recharge']);
+            //this will return user data from google. What you need is a user token which you will send it to the server
+            this.authService.sendToRestApiMethod(userData);
+        });
+    }
+    signinWithFB() {
+        let socialPlatformProvider = angularx_social_login__WEBPACK_IMPORTED_MODULE_6__["FacebookLoginProvider"].PROVIDER_ID;
+        this.socialAuthService.signIn(socialPlatformProvider)
+            .then((userData) => {
+            //on success
+            console.log(userData);
+            localStorage.setItem('token', userData.authToken);
+            this.commonHelper.setUserStatus(true);
+            this.router.navigate(['/services/mobile_recharge']);
+            //this will return user data from google. What you need is a user token which you will send it to the server
+            this.authService.sendToRestApiMethod(userData);
+        });
+    }
     validLogin() {
         if (this.otpForm.valid) {
             const req = {
@@ -953,6 +1030,7 @@ let OtpComponent = class OtpComponent {
                 this.commonHelper.showSuccessToast(res.message, "Success", 5000);
                 localStorage.setItem('token', res.data.token);
                 localStorage.setItem('userActivities', res.data.user.activities);
+                this.commonHelper.setUserStatus(true);
                 this.router.navigate(['/services/mobile_recharge']);
             }, err => {
                 this.commonHelper.showErrorToast(err.error.message, 'Error', 5000);
@@ -970,7 +1048,8 @@ OtpComponent.ctorParameters = () => [
     { type: _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"] },
     { type: src_app_services_common_helper_service__WEBPACK_IMPORTED_MODULE_3__["CommonHelperService"] },
     { type: src_app_services_authentication_service__WEBPACK_IMPORTED_MODULE_4__["AuthenticationService"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
+    { type: angularx_social_login__WEBPACK_IMPORTED_MODULE_6__["AuthService"] }
 ];
 OtpComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1231,17 +1310,23 @@ let AuthenticationService = class AuthenticationService {
         this.http = http;
     }
     register(data) {
-        return this.http.post("http://3.136.169.121:7000", data);
+        return this.http.post("http://localhost:7000", data);
     }
     payment(data) {
-        return this.http.post("http://3.136.169.121:7000/api/payment", data);
+        return this.http.post("http://localhost:7000/api/payment", data);
+    }
+    paypal(data) {
+        return this.http.post("http://localhost:7000/api/payment/paypal", data);
     }
     //login user API
     loginUser(data) {
-        return this.http.post("http://3.136.169.121:7000/api/users", data);
+        return this.http.post("http://localhost:7000/api/users", data);
     }
     loginUserVerify(data) {
-        return this.http.post("http://3.136.169.121:7000/api/users/verify", data);
+        return this.http.post("http://localhost:7000/api/users/verify", data);
+    }
+    sendToRestApiMethod(userData) {
+        this.http.post("http://ec2-3-136-169-121.us-east-2.compute.amazonaws.com:7000/api/auth/google", { userData: userData });
     }
 };
 AuthenticationService.ctorParameters = () => [
@@ -6969,7 +7054,7 @@ let CommonHelperService = class CommonHelperService {
                 "cioc": "CIV"
             }
         ];
-        this.country = new rxjs__WEBPACK_IMPORTED_MODULE_5__["BehaviorSubject"]('');
+        this.country = new rxjs__WEBPACK_IMPORTED_MODULE_5__["BehaviorSubject"](localStorage.getItem('countryCode'));
         this.getSelectedCountry = this.country.asObservable();
         this.mobileNumber = new rxjs__WEBPACK_IMPORTED_MODULE_5__["BehaviorSubject"]('');
         this.getMobileNumber = this.mobileNumber.asObservable();
@@ -7005,6 +7090,7 @@ let CommonHelperService = class CommonHelperService {
         this.userDataForPayment.next(data);
     }
     setCountry(data) {
+        localStorage.setItem('countryCode', data);
         this.country.next(data);
     }
     checkMobileNumber(code) {
@@ -7262,7 +7348,7 @@ let AlphabetsOnlyDirective = class AlphabetsOnlyDirective {
     onInputChange(event) {
         console.log("dsfsdf");
         const initalValue = this._el.nativeElement.value;
-        this._el.nativeElement.value = initalValue.replace(/[^A-Za-z]+$/g, '');
+        this._el.nativeElement.value = initalValue.replace(/[^A-Za-z ]+$/g, '');
         if (initalValue !== this._el.nativeElement.value) {
             event.stopPropagation();
         }
@@ -7362,6 +7448,37 @@ SharedModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     })
 ], SharedModule);
 
+
+
+/***/ }),
+
+/***/ "./src/app/socialloginConfig.ts":
+/*!**************************************!*\
+  !*** ./src/app/socialloginConfig.ts ***!
+  \**************************************/
+/*! exports provided: getAuthServiceConfigs */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAuthServiceConfigs", function() { return getAuthServiceConfigs; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var angularx_social_login__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! angularx-social-login */ "./node_modules/angularx-social-login/angularx-social-login.js");
+
+
+function getAuthServiceConfigs() {
+    let config = new angularx_social_login__WEBPACK_IMPORTED_MODULE_1__["AuthServiceConfig"]([
+        {
+            id: angularx_social_login__WEBPACK_IMPORTED_MODULE_1__["GoogleLoginProvider"].PROVIDER_ID,
+            provider: new angularx_social_login__WEBPACK_IMPORTED_MODULE_1__["GoogleLoginProvider"]('456970916647-s34ip4orr64rk45a7b63672ehrti5htm.apps.googleusercontent.com')
+        },
+        {
+            id: angularx_social_login__WEBPACK_IMPORTED_MODULE_1__["FacebookLoginProvider"].PROVIDER_ID,
+            provider: new angularx_social_login__WEBPACK_IMPORTED_MODULE_1__["FacebookLoginProvider"]("175122853564083")
+        }
+    ]);
+    return config;
+}
 
 
 /***/ }),

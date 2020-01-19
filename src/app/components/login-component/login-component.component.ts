@@ -34,8 +34,10 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.loginForm = this.fb.group({
       countryCode: [this.countryCode?this.countryCode:'+'+this.countrys[0].callingCodes[0], Validators.required],
-      mobileNumber: ['', Validators.required]
+      mobileNumber: [localStorage.getItem('mobile'), Validators.required]
     })
+
+    localStorage.removeItem('mobile');
   }
 
   clickDiv() {
@@ -59,13 +61,11 @@ export class LoginComponent implements OnInit {
  }
 
  public signinWithFB () {
-  this.spinner.show();
   let socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
   this.socialAuthService.signIn(socialPlatformProvider)
   .then((userData) => {
      //on success
      console.log(userData)
-     this.spinner.hide();
      localStorage.setItem('token',userData.authToken);
      this.commonHelper.setUserStatus(true)
      this.router.navigate(['/services/mobile_recharge'])
@@ -91,6 +91,8 @@ export class LoginComponent implements OnInit {
       this.authService.loginUser(req).subscribe(res => {
         this.commonHelper.showSuccessToast(res.message, "Success", 5000);
         this.router.navigate(['otp'])
+      },err=>{
+        this.commonHelper.showErrorToast(err.error.message,"Error",5000);
       })
 
     } else {
@@ -100,6 +102,8 @@ export class LoginComponent implements OnInit {
 
   moveBackPage(){
       window.history.back();
+      localStorage.removeItem('mobile');
+
   }
 
 }
