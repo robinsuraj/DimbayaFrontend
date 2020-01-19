@@ -1310,20 +1310,20 @@ let AuthenticationService = class AuthenticationService {
         this.http = http;
     }
     register(data) {
-        return this.http.post("http://localhost:7000", data);
+        return this.http.post("http://3.136.169.121:7000", data);
     }
     payment(data) {
-        return this.http.post("http://localhost:7000/api/payment", data);
+        return this.http.post("http://3.136.169.121:7000/api/payment", data);
     }
     paypal(data) {
-        return this.http.post("http://localhost:7000/api/payment/paypal", data);
+        return this.http.post("http://3.136.169.121:7000/api/payment/paypal", data);
     }
     //login user API
     loginUser(data) {
-        return this.http.post("http://localhost:7000/api/users", data);
+        return this.http.post("http://3.136.169.121:7000/api/users", data);
     }
     loginUserVerify(data) {
-        return this.http.post("http://localhost:7000/api/users/verify", data);
+        return this.http.post("http://3.136.169.121:7000/api/users/verify", data);
     }
     sendToRestApiMethod(userData) {
         this.http.post("http://ec2-3-136-169-121.us-east-2.compute.amazonaws.com:7000/api/auth/google", { userData: userData });
