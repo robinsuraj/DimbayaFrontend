@@ -105,6 +105,12 @@ export class PayCreditCardDetailsComponent implements OnInit {
   }
 
   home() {
+    localStorage.setItem('mobile',this.userData.mobile);
+    localStorage.setItem('buyerName',this.userData.buyerName);
+    localStorage.setItem('benificiaryName',this.userData.benificiaryName);
+    localStorage.setItem('email',this.userData.email);
+    localStorage.setItem('amount',this.userData.amount);
+    localStorage.setItem('currency',this.userData.currency);
     window.history.back();
   }
   cardProceed() {

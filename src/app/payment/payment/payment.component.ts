@@ -56,20 +56,26 @@ export class PaymentComponent implements OnInit {
     this.currencyList= this.countrys.map(x=>x.currencies[0]);
     let newset= new Set(this.currencyList.map(x=>JSON.stringify(x)));
     this.currencyList =Array.from(newset).map(x=>JSON.parse(x))
-
     this.signUpForm = this.fb.group({
-      firstName:['',Validators.required],
-      lastName:['',Validators.required],
-      email:['',[Validators.required,Validators.email]],
+      firstName:[localStorage.getItem('buyerName')],
+      lastName:[localStorage.getItem('benificiaryName')],
+      email:[localStorage.getItem('email'),[Validators.required,Validators.email]],
       // mobileOperator:[''],
       countryCode:[this.country,Validators.required],
-      mobileNumber:['',Validators.required],
-      amount:['',Validators.required],
+      mobileNumber:[localStorage.getItem('mobile'),Validators.required],
+      amount:[localStorage.getItem('amount'),Validators.required],
       // serviceType:['',Validators.required],
       meterNumber:[''],
-      currencyCode:[this.currencyList[0].code,Validators.required]
+      currencyCode:[localStorage.getItem('currency')? localStorage.getItem('currency'):this.currencyList[0].code,Validators.required]
     })
 
+    localStorage.removeItem('buyerName')
+    localStorage.removeItem('mobile')
+    localStorage.removeItem('buyerName');
+    localStorage.removeItem('benificiaryName');
+    localStorage.removeItem('email');
+    localStorage.removeItem('amount');
+    localStorage.removeItem('currency');
    
     // console.log(this.currencyList)
     this.commonHelper.getCountry().subscribe(res=>{

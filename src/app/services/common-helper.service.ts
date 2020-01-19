@@ -6020,15 +6020,18 @@ mockCountryData=[
   }
 ]
 
-  country = new BehaviorSubject('')
+  country = new BehaviorSubject(localStorage.getItem('countryCode'))
   getSelectedCountry = this.country.asObservable();
-setCountry(data){
+  
+  setCountry(data){
+  localStorage.setItem('countryCode',data)
   this.country.next(data);
 }
 
   checkMobileNumber(code){
     return this.mockMobileData.filter(data=>data.CountryIso==code)
   }
+
   mobileNumber = new BehaviorSubject('');
   getMobileNumber = this.mobileNumber.asObservable();
 

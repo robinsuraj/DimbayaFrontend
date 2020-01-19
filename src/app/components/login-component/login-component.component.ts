@@ -4,6 +4,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CommonHelperService } from 'src/app/services/common-helper.service';
 import { Router } from '@angular/router';
 import { AuthService, GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
+import { SpinnerVisibilityService } from 'ng-http-loader';
 @Component({
   selector: 'app-login-component',
   templateUrl: './login-component.component.html',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private authService: AuthenticationService,
     private commonHelper: CommonHelperService,
-    private router: Router, private socialAuthService: AuthService ) {
+    private router: Router, private socialAuthService: AuthService,private spinner: SpinnerVisibilityService ) {
 
     this.commonHelper.getSelectedCountry.subscribe(res => {
       console.log(res)
@@ -49,17 +50,25 @@ export class LoginComponent implements OnInit {
     .then((userData) => {
        //on success
        console.log(userData)
+       localStorage.setItem('token',userData.authToken);
+       this.commonHelper.setUserStatus(true)
+     this.router.navigate(['/services/mobile_recharge'])
        //this will return user data from google. What you need is a user token which you will send it to the server
        this.authService.sendToRestApiMethod(userData);
     });
  }
 
  public signinWithFB () {
+  this.spinner.show();
   let socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
   this.socialAuthService.signIn(socialPlatformProvider)
   .then((userData) => {
      //on success
      console.log(userData)
+     this.spinner.hide();
+     localStorage.setItem('token',userData.authToken);
+     this.commonHelper.setUserStatus(true)
+     this.router.navigate(['/services/mobile_recharge'])
      //this will return user data from google. What you need is a user token which you will send it to the server
      this.authService.sendToRestApiMethod(userData);
   });

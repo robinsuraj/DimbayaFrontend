@@ -65,6 +65,9 @@ export class OtpComponent implements OnInit {
     .then((userData) => {
        //on success
        console.log(userData)
+       localStorage.setItem('token',userData.authToken);
+       this.commonHelper.setUserStatus(true)
+       this.router.navigate(['/services/mobile_recharge'])
        //this will return user data from google. What you need is a user token which you will send it to the server
        this.authService.sendToRestApiMethod(userData);
     });
@@ -76,6 +79,10 @@ export class OtpComponent implements OnInit {
   .then((userData) => {
      //on success
      console.log(userData)
+
+     localStorage.setItem('token',userData.authToken);
+     this.commonHelper.setUserStatus(true)
+     this.router.navigate(['/services/mobile_recharge'])
      //this will return user data from google. What you need is a user token which you will send it to the server
      this.authService.sendToRestApiMethod(userData);
   });
@@ -95,6 +102,7 @@ export class OtpComponent implements OnInit {
         this.commonHelper.showSuccessToast(res.message,"Success",5000);
         localStorage.setItem('token',res.data.token);
         localStorage.setItem('userActivities',res.data.user.activities);
+        this.commonHelper.setUserStatus(true)
         this.router.navigate(['/services/mobile_recharge'])
       },err=>{
         this.commonHelper.showErrorToast(err.error.message,'Error',5000);
