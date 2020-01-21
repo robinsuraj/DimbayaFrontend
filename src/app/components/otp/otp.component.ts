@@ -14,6 +14,7 @@ export class OtpComponent implements OnInit {
   otpForm:FormGroup;
   mobileNumber;
   countryCode;
+  userData;
   constructor(private fb:FormBuilder,
               private commonHelper:CommonHelperService,
               private authService:AuthenticationService,
@@ -23,6 +24,9 @@ export class OtpComponent implements OnInit {
                 })
                 this.commonHelper.getSelectedCountry.subscribe(res=>{
                   this.countryCode=res;
+                })
+                this.commonHelper.getUserDataForPayment.subscribe(res=>{
+                  this.userData=res;
                 })
                }
 
@@ -53,7 +57,7 @@ export class OtpComponent implements OnInit {
     if(element == null)  // check if its null
         return;
     else{
-              element.focus(); 
+        element.focus(); 
         element.select();
   }}
 
@@ -103,7 +107,11 @@ export class OtpComponent implements OnInit {
         localStorage.setItem('token',res.data.token);
         localStorage.setItem('userActivities',res.data.user.activities);
         this.commonHelper.setUserStatus(true)
+        if(this.userData){
+        this.router.navigate(['/services/payment_details'])
+        }else{
         this.router.navigate(['/services/mobile_recharge'])
+        }
       },err=>{
         this.commonHelper.showErrorToast(err.error.message,'Error',5000);
       })

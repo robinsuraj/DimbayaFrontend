@@ -3,50 +3,50 @@
     <div class="col-md-4">
       <div class="resp-tabs-list">
         <span class="custom-dropdown active">
-          <a href="">
+          <a (click)="selectDivToShow('mobile')">
             <i class="fa fa-mobile" aria-hidden="true"></i>
             Mobile
           </a>
         </span>
         <ul>
           <li class="active">
-            <a href="">
+            <a (click)="selectDivToShow('mobile')">
               <i class="fa fa-mobile" aria-hidden="true"></i>
               Mobile
             </a>
           </li>
           <li>
-            <a href="">
+            <a (click)="selectDivToShow('electricity')">
               <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
               Electricity
             </a>
           </li>
           <li>
-            <a href="">
+            <a >
               <i class="fa fa-phone" aria-hidden="true"></i>
               Land Line
             </a>
           </li>
           <li>
-            <a href="">
+            <a >
               <i class="fa fa-connectdevelop" aria-hidden="true"></i>
               Broad Band
             </a>
           </li>
           <li>
-            <a href="">
+            <a >
               <i class="fa fa-flask" aria-hidden="true"></i>
               Gas
             </a>
           </li>
           <li>
-            <a href="">
+            <a >
               <i class="fa fa-tint" aria-hidden="true"></i>
               Water
             </a>
           </li>
           <li>
-            <a href="">
+            <a >
               <i class="fa fa-subway" aria-hidden="true"></i>
               Metro
             </a>
@@ -55,7 +55,91 @@
       </div>
     </div>
     <div class="col-md-8">
+        <div class="resp-tabs-tab" *ngIf="showDiv=='mobile'">  
           <form [formGroup]="signUpForm">
+          <div class="row">
+           <div class="input-group input-group-lg">
+            <div class="input-group-prepend country-flag-wrapper">
+              <div class="input-group-text">  
+                <img class="country-flag"  *ngIf="flag" src={{flag}}/> </div>
+              </div>
+            <datalist id="suggestions" >
+              <ng-container *ngFor="let country of countrys">
+                <option>{{country.name}} (+{{country.callingCodes[0]}})</option>
+              </ng-container>
+            </datalist>
+            <input  class="form-control" [ngClass]="checkFieldValid('countryCode')" formControlName="countryCode" (change)="onCountryChange($event)" placeholder="Select Country"
+              type="text" autoComplete="on" list="suggestions">
+          </div>
+          <!-- <div class=" row">
+            <select formControlName="serviceType" (change)="serviceType($event.target.value)"
+              [ngClass]="checkFieldValid('serviceType')">
+              <option value="" disabled selected hidden>Select Service Type</option>
+              <option value="mobile">Mobile Recharge</option>
+              <option value="prepaid">Prepaid Electrity</option>
+            </select>
+          </div> -->
+          <div class="input-group input-group-lg">
+            <div class="input-group-prepend">
+              <div class="input-group-text">  
+                {{countryCode}} </div>
+            </div>
+            
+            <input  numbersOnly type="text" numbersOnly [ngClass]="checkFieldValid('mobileNumber')"
+              minlength="{{minLengthDigits}}" class="form-control"
+              maxlength="{{maxLengthDigits}}"  placeholder="Mobile Number" formControlName="mobileNumber">
+          </div>
+          
+          <!-- <div class="input-group input-group-lg">
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="fa fa-user"></i></div>
+            </div>
+            <input class="form-control" type="text" alphabetsOnly [ngClass]="checkFieldValid('firstName')" placeholder="Buyers Full Name"
+              formControlName="firstName">
+          </div>
+
+          <div class="input-group input-group-lg">
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="fa fa-user"></i></div>
+            </div>
+            <input class="form-control" type="text" alphabetsOnly [ngClass]="checkFieldValid('lastName')"
+              placeholder="Beneficiary's Full Name" formControlName="lastName">
+          </div>
+
+          <div class="input-group input-group-lg">
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="fa fa-envelope"></i></div>
+            </div>
+            <input class="form-control" [ngClass]="checkFieldValid('email') || signUpForm.get('email').errors?.pattern? 'is-invalid':''"
+              pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" type="email" placeholder="Email"
+              formControlName="email">
+           
+          </div>
+          <span *ngIf="signUpForm.get('email').errors?.pattern" style="color:red;margin-top:-10px">Please Enter Valid Email
+            Id.</span> -->
+          <div class="input-group input-group-lg">
+            <div class="input-group-prepend ">
+              <div class="input-group input-group-lg" >  
+                <select class="form-control" formControlName="currencyCode" style="background-color: #e9ecef;">
+                  <ng-container *ngFor="let currency of currencyList;let i=index;">
+                    <option [value]="currency.code">{{currency.symbol}}</option>
+                  </ng-container>
+                </select>
+              </div>
+            </div>
+       
+            <input class="form-control" type="text" maxlength="12" numbersOnly [ngClass]="checkFieldValid('amount')" min=1 max=999999999999
+              placeholder="Amount" formControlName="amount">
+          </div>
+
+          <button style="line-height: 1.4;  height: 3.4em;" class="btn btn-primary  btn-block btn-round"
+            (click)="register()">PAY</button>
+        </div>
+        </form>
+      </div>
+        <div class="resp-tabs-tab" *ngIf="showDiv=='electricity'">
+        
+            <form [formGroup]="signUpForm">
             <div class="row">
              <div class="input-group input-group-lg">
               <div class="input-group-prepend country-flag-wrapper">
@@ -78,7 +162,7 @@
                 <option value="prepaid">Prepaid Electrity</option>
               </select>
             </div> -->
-            <div class="input-group input-group-lg">
+            <!-- <div class="input-group input-group-lg">
               <div class="input-group-prepend">
                 <div class="input-group-text">  
                   {{countryCode}} </div>
@@ -87,23 +171,28 @@
               <input  numbersOnly type="text" numbersOnly [ngClass]="checkFieldValid('mobileNumber')"
                 minlength="{{minLengthDigits}}" class="form-control"
                 maxlength="{{maxLengthDigits}}"  placeholder="Mobile Number" formControlName="mobileNumber">
-            </div>
-            <div class="input-group input-group-lg" *ngIf="prepaidElec">
+            </div> -->
+            <div class="input-group input-group-lg" >
+              <div class="input-group-prepend">
+                <div class="input-group-text">  
+                  <i class="fa fa-bolt"></i>
+                 </div>
+              </div>
               <input class="form-control" type="text" numbersOnly [ngClass]="checkFieldValid('meterNumber')"
                  placeholder="Meter Number"
                 formControlName="meterNumber" minlength="10" maxlength="15">
-              <span *ngIf="checkMinMaxError('meterNumber')" style="color: red">
-                Meter Number should be atleast {{signUpForm.get('meterNumber').errors.minlength.requiredLength}} digits.
-              </span>
-            </div>
-            <div class="input-group input-group-lg">
+             </div>
+             <span *ngIf="checkMinMaxError('meterNumber')" style="color:red;margin-top:-10px">
+              Meter Number should be atleast {{signUpForm.get('meterNumber').errors.minlength.requiredLength}} digits.
+            </span>
+             <!-- <div class="input-group input-group-lg">
               <div class="input-group-prepend">
                 <div class="input-group-text"><i class="fa fa-user"></i></div>
               </div>
               <input class="form-control" type="text" alphabetsOnly [ngClass]="checkFieldValid('firstName')" placeholder="Buyers Full Name"
                 formControlName="firstName">
             </div>
-
+  
             <div class="input-group input-group-lg">
               <div class="input-group-prepend">
                 <div class="input-group-text"><i class="fa fa-user"></i></div>
@@ -111,7 +200,7 @@
               <input class="form-control" type="text" alphabetsOnly [ngClass]="checkFieldValid('lastName')"
                 placeholder="Beneficiary's Full Name" formControlName="lastName">
             </div>
-
+  
             <div class="input-group input-group-lg">
               <div class="input-group-prepend">
                 <div class="input-group-text"><i class="fa fa-envelope"></i></div>
@@ -122,7 +211,8 @@
              
             </div>
             <span *ngIf="signUpForm.get('email').errors?.pattern" style="color:red;margin-top:-10px">Please Enter Valid Email
-              Id.</span>
+              Id.</span> -->
+
             <div class="input-group input-group-lg">
               <div class="input-group-prepend ">
                 <div class="input-group input-group-lg" >  
@@ -137,14 +227,13 @@
               <input class="form-control" type="text" maxlength="12" numbersOnly [ngClass]="checkFieldValid('amount')" min=1 max=999999999999
                 placeholder="Amount" formControlName="amount">
             </div>
-
+  
             <button style="line-height: 1.4;  height: 3.4em;" class="btn btn-primary  btn-block btn-round"
               (click)="register()">PAY</button>
           </div>
           </form>
-       
-        <div class="resp-tabs-tab"></div>
-        <div class="resp-tabs-tab"></div>
+      
+        </div>
         <div class="resp-tabs-tab"></div>
         <div class="resp-tabs-tab"></div>
         <div class="resp-tabs-tab"></div>
@@ -154,3 +243,7 @@
 </div>
 
 
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+       
+    </script>

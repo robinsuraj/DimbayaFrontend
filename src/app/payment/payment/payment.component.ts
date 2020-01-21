@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CommonHelperService } from 'src/app/services/common-helper.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SearchCountryField, TooltipLabel, CountryISO } from 'ngx-intl-tel-input';
-
+declare var $: any;
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
@@ -57,9 +57,9 @@ export class PaymentComponent implements OnInit {
     let newset= new Set(this.currencyList.map(x=>JSON.stringify(x)));
     this.currencyList =Array.from(newset).map(x=>JSON.parse(x))
     this.signUpForm = this.fb.group({
-      firstName:[localStorage.getItem('buyerName')],
-      lastName:[localStorage.getItem('benificiaryName')],
-      email:[localStorage.getItem('email'),[Validators.required,Validators.email]],
+      firstName:[localStorage.getItem('buyerName')? localStorage.getItem('buyerName'):''],
+      lastName:[localStorage.getItem('benificiaryName') ? localStorage.getItem('benificiaryName'):''],
+      // email:[localStorage.getItem('email'),[Validators.required,Validators.email]],
       // mobileOperator:[''],
       countryCode:[this.country,Validators.required],
       mobileNumber:[localStorage.getItem('mobile'),Validators.required],
@@ -155,21 +155,23 @@ export class PaymentComponent implements OnInit {
       console.log(this.currencyList)
       // console.log("this.signUpForm.get('firstName').value",this.signUpForm.get('firstName').value)
       const registerRequest ={
-        buyerName: this.signUpForm.get('firstName').value,
-        benificiaryName: this.signUpForm.get('lastName').value,
-        email: this.signUpForm.get('email').value,
+        // buyerName: this.signUpForm.get('firstName').value,
+        // benificiaryName: this.signUpForm.get('lastName').value,
+        // email: this.signUpForm.get('email').value,
         mobileOperator: this.countryCode,
         country:this.country.split('(')[0],
         mobile: this.signUpForm.get('mobileNumber').value,
         amount: this.signUpForm.get('amount').value,
-        serviceType: 'mobile',
+        serviceType: this.showDiv,
         currency:this.signUpForm.get('currencyCode').value,
         currencySymbol:currencySymbolFilter.symbol
        // meterNumber:this.signUpForm.get('meterNumber').value,
       }
       this.commonHelper.setUserDataForPayment(registerRequest);
+      if(localStorage.getItem('token'))
       this.router.navigate(['services/payment_details'])
-
+      else this.router.navigate(['login'])
+       
       // this.authenticationService.register(registerRequest).subscribe(response=>{
       //   this.commonHelper.showSuccessToast("Registration Success","Success",5000);
       //   this.router.navigate(['/payment'])
@@ -201,8 +203,43 @@ export class PaymentComponent implements OnInit {
     else return '';
     
   }
+showDiv ='mobile';
+  selectDivToShow(value){
 
-  
+    $('.resp-tabs-list').on('click', '.custom-dropdown > a', function(){
+      $(this).parent().next('ul').fadeToggle(350);
+      $(this).parent().html($(this).parent().next('ul').children('li.active').html());
+      return false;
+  });
+  $('.resp-tabs-list ul li a').click(function(){
+      $(this).parent().addClass('active').siblings().removeClass('active');
+      $('.custom-dropdown').html($(this).parent().html());
+      return false;
+  });
+
+    this.showDiv=value;
+    // Object.keys(this.signUpForm.controls).forEach(field => {
+    //     const control = this.signUpForm.get(field)
+    //       if (control instanceof FormControl && value==field) {
+    //       control.setValidators([Validators.required]);
+    //       control.updateValueAndValidity();    
+    //     }else{
+    //       control.clearValidators();
+    //       control.updateValueAndValidity(); 
+    //     }
+    //   });
+    if(value=='mobile'){
+      this.signUpForm.get('meterNumber').clearValidators();
+      this.signUpForm.get('meterNumber').updateValueAndValidity(); 
+      this.signUpForm.get('mobileNumber').setValidators([Validators.required]);
+      this.signUpForm.get('mobileNumber').updateValueAndValidity(); 
+    }else{
+      this.signUpForm.get('meterNumber').setValidators([Validators.required]);
+      this.signUpForm.get('meterNumber').updateValueAndValidity(); 
+      this.signUpForm.get('mobileNumber').clearValidators();
+      this.signUpForm.get('mobileNumber').updateValueAndValidity();
+    }
+  }
 }
 
 

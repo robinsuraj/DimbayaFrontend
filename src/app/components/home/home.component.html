@@ -34,7 +34,7 @@
                         </datalist>
                         <img class="country-flag"  *ngIf="flag" src={{flag}}/>
                       <input (change)="onCountryChange($event)" placeholder="Select Country" class="form-control" type="text" autoComplete="on" list="suggestions">
-                      <button (click)="login()"><i class="fa fa-check"></i></button>
+                      <button (click)="goToPayments()"><i class="fa fa-check"></i></button>
                     </div>
                   </div>
                 </div>
@@ -72,8 +72,7 @@
 
 
   <!--Vertical Tab-->
-  <div *ngIf="isLoggedIn" class="categories-section main-grid-border" id="mobilew3layouts">
-  <!-- <div class="categories-section main-grid-border" id="mobilew3layouts"> -->
+  <!-- <div *ngIf="isLoggedIn" class="categories-section main-grid-border" id="mobilew3layouts">
     <div class="container" #payment>
       <div class="category-list">
         <div id="parentVerticalTab">
@@ -90,28 +89,11 @@
           </div>
           
           <div class="side-container">
-            <!-- tab1 -->
-          <div class="tabs-box">
+             <div class="tabs-box">
             <app-signup-component></app-signup-component>
                
           </div>
-            <!-- /tab9 -->
-            
-            <!-- tab10 -->
-          
-            <!-- /tab10 -->
-            
-            <!-- tab11 -->
-          
-            <!-- /tab11 -->
-            
-            <!-- tab12 -->
-          
-            <!-- /tab12 -->
-            
-            <!-- tab13 -->
-          
-            <!-- /tab13 -->
+         
           </div>
 
 
@@ -119,7 +101,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
 
 

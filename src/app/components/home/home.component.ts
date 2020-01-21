@@ -53,4 +53,9 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['login'])
     this.countryData
   }
+
+  goToPayments(){
+    this.router.navigate(['/services'])
+    this.countryData
+  }
 }
