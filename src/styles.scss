@@ -459,7 +459,7 @@ padding-left: 15px;
   padding-bottom: 12px;
   display: block;
 }
-.container-fluid {
+body .container-fluid {
   padding: 0 15px;
 }
 header .container-fluid {
@@ -614,6 +614,7 @@ header .container-fluid {
   }
   .resp-tabs-list {
       position: relative;
+      margin-bottom: 20px;
   }
   .resp-tabs-list .custom-dropdown{
       display: block;

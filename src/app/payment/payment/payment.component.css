@@ -2,6 +2,9 @@
     min-width:15%;
     text-align:center;
 }
+.input-group>.country-flag-wrapper ~ input {
+    height: 100%;
+}
 
 .input-group .input-group-text {
     min-width:100%;
@@ -9,4 +12,8 @@
     align-items: center;
     display: flex;
     justify-content: center;
+}
+.country-flag-wrapper .country-flag{
+    transform: none;
+    position: static;
 }
