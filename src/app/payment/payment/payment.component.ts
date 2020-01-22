@@ -35,6 +35,7 @@ export class PaymentComponent implements OnInit {
               private authenticationService:AuthenticationService,
               private commonHelper:CommonHelperService,
               private router:Router) { 
+                this.commonHelper.handleNextAndPreviousPage.next(false)
                 this.commonHelper.getSelectedCountry.subscribe(res => {
                   if(res){
               let country=  this.countrys.filter(x=>x.callingCodes[0] == res.split('+').join(''))
@@ -168,6 +169,7 @@ export class PaymentComponent implements OnInit {
        // meterNumber:this.signUpForm.get('meterNumber').value,
       }
       this.commonHelper.setUserDataForPayment(registerRequest);
+      this.commonHelper.handleNextAndPreviousPage.next(true)
       if(localStorage.getItem('token'))
       this.router.navigate(['services/payment_details'])
       else this.router.navigate(['login'])

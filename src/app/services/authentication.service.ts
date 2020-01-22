@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthenticationService {
   constructor(private http: HttpClient) { }
-  
+
   register(data):Observable<any>{
     return this.http.post("http://3.136.169.121:7000",data);
   }
@@ -17,7 +17,8 @@ export class AuthenticationService {
   }
 
   paypal(data):Observable<any>{
-    return this.http.post("http://3.136.169.121:7000/api/payment/paypal",data);
+   const headers = new HttpHeaders({'authorization':localStorage.getItem('token')});
+    return this.http.post("http://3.136.169.121:7000/api/payment/paypal",data,{headers:headers});
   }
 
   //login user API
@@ -30,8 +31,8 @@ export class AuthenticationService {
     return this.http.post("http://3.136.169.121:7000/api/users/verify",data);
   }
 
-  sendToRestApiMethod(userData) : void {
-    this.http.post("http://ec2-3-136-169-121.us-east-2.compute.amazonaws.com:7000/api/auth/google",
+  sendToRestApiMethod(userData) : Observable<any> {
+   return this.http.post("http://ec2-3-136-169-121.us-east-2.compute.amazonaws.com:7000/api/users/social",
        {   userData: userData     }
     )
   }

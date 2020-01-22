@@ -18,6 +18,12 @@ export class PayCreditCardDetailsComponent implements OnInit {
     private commonHelper: CommonHelperService,
     private router: Router
   ) {
+
+    if(!this.commonHelper.handleNextAndPreviousPage.getValue()){
+      localStorage.removeItem('mobile');
+      this.router.navigate(['/services/mobile_recharge'])
+  }
+
     this.commonHelper.getUserDataForPayment.subscribe(userData => {
       this.userData = userData
       console.log("this.userData", this.userData)

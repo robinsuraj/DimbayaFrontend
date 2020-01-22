@@ -6039,4 +6039,7 @@ mockCountryData=[
     this.mobileNumber.next(data)
   }
 
+
+  handleNextAndPreviousPage = new BehaviorSubject(false);
+
 }

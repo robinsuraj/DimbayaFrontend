@@ -94,7 +94,7 @@
         /***/ (function (module, __webpack_exports__, __webpack_require__) {
             "use strict";
             __webpack_require__.r(__webpack_exports__);
-            /* harmony default export */ __webpack_exports__["default"] = ("<div class=\"modal-wrapper\" style=\"background: url(../../../assets/images/2.jpg) no-repeat 0 0/cover;height: 100vh;\">\n    <div class=\"modal-overlay\"></div>\n    <div class=\"modal-container\">\n        <div class=\"modal-content\">\n            <span (click)=\"moveBackPage()\"class=\"close\">&times;</span>\n            <h3> Welcome to Dimbaya</h3>\n            <p>Please enter the 4-digit verification code we sent via SMS:</p>\n            <p>(we want to make sure it's you before we contact our movers)</p>\n            <form [formGroup]=\"otpForm\">\n                <div class=\"form-group otp-wrapper\">\n                    <input class=\"form-control\" formControlName=\"key1\" numbersOnly type=\"text\" (keyup)=\"moveCursor($event)\" maxLength=\"1\" size=\"1\" min=\"0\" max=\"9\" pattern=\"[0-9]{1}\" />\n                    <input class=\"form-control\" formControlName=\"key2\" numbersOnly type=\"text\" (keyup)=\"moveCursor($event)\" maxLength=\"1\" size=\"1\" min=\"0\" max=\"9\" pattern=\"[0-9]{1}\" />\n                    <input class=\"form-control\" formControlName=\"key3\" numbersOnly type=\"text\" (keyup)=\"moveCursor($event)\" maxLength=\"1\" size=\"1\" min=\"0\" max=\"9\" pattern=\"[0-9]{1}\" />\n                    <input class=\"form-control\" formControlName=\"key4\" numbersOnly type=\"text\" (keyup)=\"moveCursor($event)\" maxLength=\"1\" size=\"1\" min=\"0\" max=\"9\" pattern=\"[0-9]{1}\" />\n                </div>\n                <div class=\"form-group\">\n                    <button type=\"button\" (click)=\"validLogin()\" class=\"btn btn-primary\">Verify</button>\n                </div>\n                <div class=\"form-control\">\n                    <label>Didn't receive the code?</label>\n                    <div class=\"resend-btn-wrapper\">\n                        <a href=\"\">Send Code Again</a>\n                        <a href=\"\">Change Phone Number</a>\n                    </div>\n                </div>\n            </form>\n            <div class=\"signup-option\">\n                <h2>Sign in with</h2>\n                <div class=\"btn-wrapper\">\n                    <a (click)=\"signinWithFB()\"\n            class=\"btn btn-primary\">Facebook</a>\n            <a (click)=\"signinWithGoogle()\"class=\"btn btn-danger\"> Google +</a>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>");
+            /* harmony default export */ __webpack_exports__["default"] = ("<div class=\"modal-wrapper\" style=\"background: url(../../../assets/images/2.jpg) no-repeat 0 0/cover;height: 100vh;\">\n    <div class=\"modal-overlay\"></div>\n    <div class=\"modal-container\">\n        <div class=\"modal-content\">\n            <span (click)=\"moveBackPage()\"class=\"close\">&times;</span>\n            <h3> Welcome to Dimbaya</h3>\n            <p>Please enter the 4-digit verification code we sent via SMS:</p>\n            <p>(we want to make sure it's you before we contact our movers)</p>\n            <form [formGroup]=\"otpForm\">\n                <div class=\"form-group otp-wrapper\">\n                    <input class=\"form-control\" formControlName=\"key1\" numbersOnly type=\"text\" (keyup)=\"moveCursor($event)\" maxLength=\"1\" size=\"1\" min=\"0\" max=\"9\" pattern=\"[0-9]{1}\" />\n                    <input class=\"form-control\" formControlName=\"key2\" numbersOnly type=\"text\" (keyup)=\"moveCursor($event)\" maxLength=\"1\" size=\"1\" min=\"0\" max=\"9\" pattern=\"[0-9]{1}\" />\n                    <input class=\"form-control\" formControlName=\"key3\" numbersOnly type=\"text\" (keyup)=\"moveCursor($event)\" maxLength=\"1\" size=\"1\" min=\"0\" max=\"9\" pattern=\"[0-9]{1}\" />\n                    <input class=\"form-control\" formControlName=\"key4\" numbersOnly type=\"text\" (keyup)=\"moveCursor($event)\" maxLength=\"1\" size=\"1\" min=\"0\" max=\"9\" pattern=\"[0-9]{1}\" />\n                </div>\n                <div class=\"form-group\">\n                    <button type=\"button\" (click)=\"validLogin()\" class=\"btn btn-primary\">Verify</button>\n                </div>\n                <div class=\"form-control\">\n                    <label>Didn't receive the code?</label>\n                    <div class=\"resend-btn-wrapper\">\n                        <a style=\"cursor: pointer;\"  (click)=\"resendOTP()\">Send Code Again</a>\n                        <a style=\"cursor: pointer;\" (click)=\"moveBackPage()\">Change Phone Number</a>\n                    </div>\n                </div>\n            </form>\n            <div class=\"signup-option\">\n                <h2>Sign in with</h2>\n                <div class=\"btn-wrapper\">\n                    <a (click)=\"signinWithFB()\"\n            class=\"btn btn-primary\">Facebook</a>\n            <a (click)=\"signinWithGoogle()\"class=\"btn btn-danger\"> Google +</a>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>");
             /***/ 
         }),
         /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/components/signup-component/signup-component.componentTest.html": 
@@ -823,11 +823,15 @@
                         .then(function (userData) {
                         //on success
                         console.log(userData);
-                        localStorage.setItem('token', userData.authToken);
-                        _this.commonHelper.setUserStatus(true);
-                        _this.router.navigate(['/services/mobile_recharge']);
-                        //this will return user data from google. What you need is a user token which you will send it to the server
-                        _this.authService.sendToRestApiMethod(userData);
+                        _this.authService.sendToRestApiMethod(userData).subscribe(function (res) {
+                            _this.commonHelper.showSuccessToast(res.message, "Success", 5000);
+                            localStorage.setItem('token', res.data.token);
+                            _this.commonHelper.setUserStatus(true);
+                            _this.router.navigate(['/services/mobile_recharge']);
+                            console.log(res);
+                        }, function (err) {
+                            _this.commonHelper.showErrorToast(err.error.message, "Error", 5000);
+                        });
                     });
                 };
                 LoginComponent.prototype.signinWithFB = function () {
@@ -837,11 +841,15 @@
                         .then(function (userData) {
                         //on success
                         console.log(userData);
-                        localStorage.setItem('token', userData.authToken);
-                        _this.commonHelper.setUserStatus(true);
-                        _this.router.navigate(['/services/mobile_recharge']);
-                        //this will return user data from google. What you need is a user token which you will send it to the server
-                        _this.authService.sendToRestApiMethod(userData);
+                        _this.authService.sendToRestApiMethod(userData).subscribe(function (res) {
+                            _this.commonHelper.showSuccessToast(res.message, "Success", 5000);
+                            localStorage.setItem('token', res.data.token);
+                            _this.commonHelper.setUserStatus(true);
+                            _this.router.navigate(['/services/mobile_recharge']);
+                            console.log(res);
+                        }, function (err) {
+                            _this.commonHelper.showErrorToast(err.error.message, "Error", 5000);
+                        });
                     });
                 };
                 LoginComponent.prototype.setCountry = function (event) {
@@ -861,6 +869,7 @@
                         console.log(req);
                         this.authService.loginUser(req).subscribe(function (res) {
                             _this.commonHelper.showSuccessToast(res.message, "Success", 5000);
+                            _this.commonHelper.handleNextAndPreviousPage.next(true);
                             _this.router.navigate(['otp']);
                         }, function (err) {
                             _this.commonHelper.showErrorToast(err.error.message, "Error", 5000);
@@ -871,7 +880,7 @@
                     }
                 };
                 LoginComponent.prototype.moveBackPage = function () {
-                    window.history.back();
+                    this.router.navigate(['/home']);
                     localStorage.removeItem('mobile');
                 };
                 return LoginComponent;
@@ -931,6 +940,10 @@
                     this.authService = authService;
                     this.router = router;
                     this.socialAuthService = socialAuthService;
+                    if (!this.commonHelper.handleNextAndPreviousPage.getValue()) {
+                        localStorage.removeItem('mobile');
+                        this.router.navigate(['/login']);
+                    }
                     this.commonHelper.getMobileNumber.subscribe(function (res) {
                         _this.mobileNumber = res;
                     });
@@ -975,11 +988,15 @@
                         .then(function (userData) {
                         //on success
                         console.log(userData);
-                        localStorage.setItem('token', userData.authToken);
-                        _this.commonHelper.setUserStatus(true);
-                        _this.router.navigate(['/services/mobile_recharge']);
-                        //this will return user data from google. What you need is a user token which you will send it to the server
-                        _this.authService.sendToRestApiMethod(userData);
+                        _this.authService.sendToRestApiMethod(userData).subscribe(function (res) {
+                            _this.commonHelper.showSuccessToast(res.message, "Success", 5000);
+                            localStorage.setItem('token', res.data.token);
+                            _this.commonHelper.setUserStatus(true);
+                            _this.router.navigate(['/services/mobile_recharge']);
+                            console.log(res);
+                        }, function (err) {
+                            _this.commonHelper.showErrorToast(err.error.message, "Error", 5000);
+                        });
                     });
                 };
                 OtpComponent.prototype.signinWithFB = function () {
@@ -989,11 +1006,15 @@
                         .then(function (userData) {
                         //on success
                         console.log(userData);
-                        localStorage.setItem('token', userData.authToken);
-                        _this.commonHelper.setUserStatus(true);
-                        _this.router.navigate(['/services/mobile_recharge']);
-                        //this will return user data from google. What you need is a user token which you will send it to the server
-                        _this.authService.sendToRestApiMethod(userData);
+                        _this.authService.sendToRestApiMethod(userData).subscribe(function (res) {
+                            _this.commonHelper.showSuccessToast(res.message, "Success", 5000);
+                            localStorage.setItem('token', res.data.token);
+                            _this.commonHelper.setUserStatus(true);
+                            _this.router.navigate(['/services/mobile_recharge']);
+                            console.log(res);
+                        }, function (err) {
+                            _this.commonHelper.showErrorToast(err.error.message, "Error", 5000);
+                        });
                     });
                 };
                 OtpComponent.prototype.validLogin = function () {
@@ -1026,7 +1047,22 @@
                     }
                 };
                 OtpComponent.prototype.moveBackPage = function () {
-                    window.history.back();
+                    localStorage.setItem('mobile', this.mobileNumber);
+                    this.router.navigate(['/login']);
+                };
+                OtpComponent.prototype.resendOTP = function () {
+                    var _this = this;
+                    var req = {
+                        mobile: this.mobileNumber,
+                        mobileOperator: this.countryCode,
+                        role: 'buyer'
+                    };
+                    console.log(req);
+                    this.authService.loginUser(req).subscribe(function (res) {
+                        _this.commonHelper.showSuccessToast(res.message, "Success", 5000);
+                    }, function (err) {
+                        _this.commonHelper.showErrorToast(err.error.message, "Error", 5000);
+                    });
                 };
                 return OtpComponent;
             }());
@@ -1278,7 +1314,8 @@
                     return this.http.post("http://3.136.169.121:7000/api/payment", data);
                 };
                 AuthenticationService.prototype.paypal = function (data) {
-                    return this.http.post("http://3.136.169.121:7000/api/payment/paypal", data);
+                    var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ 'authorization': localStorage.getItem('token') });
+                    return this.http.post("http://3.136.169.121:7000/api/payment/paypal", data, { headers: headers });
                 };
                 //login user API
                 AuthenticationService.prototype.loginUser = function (data) {
@@ -1288,7 +1325,7 @@
                     return this.http.post("http://3.136.169.121:7000/api/users/verify", data);
                 };
                 AuthenticationService.prototype.sendToRestApiMethod = function (userData) {
-                    this.http.post("http://ec2-3-136-169-121.us-east-2.compute.amazonaws.com:7000/api/auth/google", { userData: userData });
+                    return this.http.post("http://ec2-3-136-169-121.us-east-2.compute.amazonaws.com:7000/api/users/social", { userData: userData });
                 };
                 return AuthenticationService;
             }());
@@ -7011,6 +7048,7 @@
                     this.getSelectedCountry = this.country.asObservable();
                     this.mobileNumber = new rxjs__WEBPACK_IMPORTED_MODULE_5__["BehaviorSubject"]('');
                     this.getMobileNumber = this.mobileNumber.asObservable();
+                    this.handleNextAndPreviousPage = new rxjs__WEBPACK_IMPORTED_MODULE_5__["BehaviorSubject"](false);
                 }
                 CommonHelperService.prototype.showErrorToast = function (errorTitle, message, time) {
                     this.toastr.error(errorTitle, message, { timeOut: time });

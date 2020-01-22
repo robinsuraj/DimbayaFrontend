@@ -51,12 +51,16 @@ export class LoginComponent implements OnInit {
     this.socialAuthService.signIn(socialPlatformProvider)
     .then((userData) => {
        //on success
-       console.log(userData)
-       localStorage.setItem('token',userData.authToken);
-       this.commonHelper.setUserStatus(true)
-     this.router.navigate(['/services/mobile_recharge'])
-       //this will return user data from google. What you need is a user token which you will send it to the server
-       this.authService.sendToRestApiMethod(userData);
+       console.log(userData) 
+       this.authService.sendToRestApiMethod(userData).subscribe(res=>{
+        this.commonHelper.showSuccessToast(res.message, "Success", 5000);
+        localStorage.setItem('token',res.data.token);
+        this.commonHelper.setUserStatus(true)
+        this.router.navigate(['/services/mobile_recharge'])
+         console.log(res)
+       },err=>{
+        this.commonHelper.showErrorToast(err.error.message,"Error",5000);
+      });
     });
  }
 
@@ -64,14 +68,18 @@ export class LoginComponent implements OnInit {
   let socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
   this.socialAuthService.signIn(socialPlatformProvider)
   .then((userData) => {
-     //on success
-     console.log(userData)
-     localStorage.setItem('token',userData.authToken);
+    //on success
+    console.log(userData) 
+    this.authService.sendToRestApiMethod(userData).subscribe(res=>{
+     this.commonHelper.showSuccessToast(res.message, "Success", 5000);
+     localStorage.setItem('token',res.data.token);
      this.commonHelper.setUserStatus(true)
      this.router.navigate(['/services/mobile_recharge'])
-     //this will return user data from google. What you need is a user token which you will send it to the server
-     this.authService.sendToRestApiMethod(userData);
-  });
+      console.log(res)
+    },err=>{
+     this.commonHelper.showErrorToast(err.error.message,"Error",5000);
+   });
+ });
 }
 
   setCountry(event) {
@@ -90,6 +98,7 @@ export class LoginComponent implements OnInit {
       console.log(req)
       this.authService.loginUser(req).subscribe(res => {
         this.commonHelper.showSuccessToast(res.message, "Success", 5000);
+        this.commonHelper.handleNextAndPreviousPage.next(true)
         this.router.navigate(['otp'])
       },err=>{
         this.commonHelper.showErrorToast(err.error.message,"Error",5000);
@@ -101,7 +110,7 @@ export class LoginComponent implements OnInit {
   }
 
   moveBackPage(){
-      window.history.back();
+    this.router.navigate(['/home']);
       localStorage.removeItem('mobile');
 
   }

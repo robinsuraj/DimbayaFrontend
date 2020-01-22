@@ -19,6 +19,11 @@ export class OtpComponent implements OnInit {
               private commonHelper:CommonHelperService,
               private authService:AuthenticationService,
               private router:Router, private socialAuthService: AuthService ) {
+                if(!this.commonHelper.handleNextAndPreviousPage.getValue()){
+                    localStorage.removeItem('mobile');
+                    this.router.navigate(['/login'])
+                }
+
                 this.commonHelper.getMobileNumber.subscribe(res=>{
                   this.mobileNumber=res;
                 })
@@ -68,12 +73,16 @@ export class OtpComponent implements OnInit {
     this.socialAuthService.signIn(socialPlatformProvider)
     .then((userData) => {
        //on success
-       console.log(userData)
-       localStorage.setItem('token',userData.authToken);
-       this.commonHelper.setUserStatus(true)
-       this.router.navigate(['/services/mobile_recharge'])
-       //this will return user data from google. What you need is a user token which you will send it to the server
-       this.authService.sendToRestApiMethod(userData);
+       console.log(userData) 
+       this.authService.sendToRestApiMethod(userData).subscribe(res=>{
+        this.commonHelper.showSuccessToast(res.message, "Success", 5000);
+        localStorage.setItem('token',res.data.token);
+        this.commonHelper.setUserStatus(true)
+        this.router.navigate(['/services/mobile_recharge'])
+         console.log(res)
+       },err=>{
+        this.commonHelper.showErrorToast(err.error.message,"Error",5000);
+      });
     });
  }
 
@@ -81,15 +90,18 @@ export class OtpComponent implements OnInit {
   let socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
   this.socialAuthService.signIn(socialPlatformProvider)
   .then((userData) => {
-     //on success
-     console.log(userData)
-
-     localStorage.setItem('token',userData.authToken);
+    //on success
+    console.log(userData) 
+    this.authService.sendToRestApiMethod(userData).subscribe(res=>{
+     this.commonHelper.showSuccessToast(res.message, "Success", 5000);
+     localStorage.setItem('token',res.data.token);
      this.commonHelper.setUserStatus(true)
      this.router.navigate(['/services/mobile_recharge'])
-     //this will return user data from google. What you need is a user token which you will send it to the server
-     this.authService.sendToRestApiMethod(userData);
-  });
+      console.log(res)
+    },err=>{
+     this.commonHelper.showErrorToast(err.error.message,"Error",5000);
+   });
+ });
 }
 
   validLogin(){
@@ -121,6 +133,22 @@ export class OtpComponent implements OnInit {
   }
 
   moveBackPage(){
-    window.history.back();
+    localStorage.setItem('mobile',this.mobileNumber)
+    this.router.navigate(['/login']);
+  }
+
+
+resendOTP(){
+  const req = {
+    mobile:this.mobileNumber,
+    mobileOperator:this.countryCode,
+    role: 'buyer'
+  }
+  console.log(req)
+  this.authService.loginUser(req).subscribe(res => {
+    this.commonHelper.showSuccessToast(res.message, "Success", 5000);
+  },err=>{
+    this.commonHelper.showErrorToast(err.error.message,"Error",5000);
+  })
 }
 }
